@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Find Your ICP Using Your Own Data | EA Analytics</title>
+    <meta name="description" content="Stop guessing who your ideal customer is. Learn how to use your own CRM data to define your Ideal Customer Profile with a data-driven approach.">
+    <meta property="og:title" content="How to Find Your ICP Using Your Own Data | EA Analytics">
+    <meta property="og:description" content="Your CRM already knows who your best customers are. Learn the data-driven approach to ICP discovery.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .article-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 24px 0;
+            padding: 20px;
+            background: var(--navy-50);
+            border-radius: 10px;
+        }
+        .article-flow-step {
+            background: var(--white);
+            border: 1.5px solid var(--navy-200);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            color: var(--navy-700);
+        }
+        .article-flow-arrow {
+            font-size: 1.2rem;
+            color: var(--navy-500);
+        }
+        .article-card .metric-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .article-card .metric-tag {
+            font-size: 0.72rem;
+            padding: 2px 10px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+        .article-card .metric-tag.win {
+            background: var(--navy-100);
+            color: var(--navy-700);
+        }
+        .article-card .metric-tag.deal {
+            background: var(--gold-subtle);
+            color: var(--gold-dark);
+        }
+        .article-card .dim-question {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+        .tier-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .tier-item .tier-label {
+            font-weight: 700;
+            min-width: 110px;
+            font-size: 0.92rem;
+            color: var(--navy-900);
+        }
+        .tier-item .tier-desc {
+            font-size: 0.88rem;
+            color: var(--gray-500);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">EA <span>Data & Analytics</span></a>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html#outcomes">Services</a>
+    <a href="../resources.html" class="active">Resources</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="nav-cta" target="_blank">Book a Call</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../resources.html">Resources</a><span>&rarr;</span>How to Find Your ICP Using Your Own Data
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1>How to Find Your Ideal Customer Profile Using Your Own Data</h1>
+    <p>By Elisha Amir | EA Analytics</p>
+  </div>
+</section>
+
+<div class="article-body">
+
+    <!-- THE PROBLEM -->
+    <div class="article-callout">
+        <strong>The problem:</strong> Most ICPs are based on gut feeling, copied from competitors, or defined once and never updated. Meanwhile, your CRM holds thousands of data points about who actually buys &mdash; and who doesn't. The answers are already there. You just haven't asked the right questions yet.
+    </div>
+
+    <!-- THE APPROACH -->
+    <h2>The Approach: Data-Driven ICP Discovery</h2>
+    <p>Start with your closed-won deals and work backwards. Analyze win rates and deal sizes across multiple dimensions. Let the data reveal who your best customers actually are &mdash; vs. who you <em>think</em> they are.</p>
+    <div class="article-flow">
+        <div class="article-flow-step">Closed-Won<br>Deals</div>
+        <span class="article-flow-arrow">&rarr;</span>
+        <div class="article-flow-step">Analyze by<br>Dimension</div>
+        <span class="article-flow-arrow">&rarr;</span>
+        <div class="article-flow-step">Spot<br>Patterns</div>
+        <span class="article-flow-arrow">&rarr;</span>
+        <div class="article-flow-step">Define<br>Your ICP</div>
+        <span class="article-flow-arrow">&rarr;</span>
+        <div class="article-flow-step">Validate &amp;<br>Iterate</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <h2>Step 1: Analyze Win Rates by Dimension</h2>
+    <p>For each of these parameters, slice your deals and compare win rates and average deal sizes. The gaps will surprise you.</p>
+    <div class="article-grid-2">
+        <div class="article-card">
+            <h4>Industry</h4>
+            <p class="dim-question">Which verticals close at the highest rate? Which have the largest deals?</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Avg Deal Size</span></div>
+        </div>
+        <div class="article-card">
+            <h4>Company Size</h4>
+            <p class="dim-question">What's the sweet spot? Too small = low value, too large = long cycles?</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Avg Deal Size</span></div>
+        </div>
+        <div class="article-card">
+            <h4>Job Title / Seniority</h4>
+            <p class="dim-question">Who are the actual buyers? Directors? Engineers? C-suite?</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Conversion Speed</span></div>
+        </div>
+        <div class="article-card">
+            <h4>Region</h4>
+            <p class="dim-question">Where do you win most? Geographic patterns often surprise.</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Avg Deal Size</span></div>
+        </div>
+        <div class="article-card">
+            <h4>Lead Source / Intent</h4>
+            <p class="dim-question">Which sources produce customers, not just leads?</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Time to Close</span></div>
+        </div>
+        <div class="article-card">
+            <h4>Channel / First Touch</h4>
+            <p class="dim-question">Direct vs. paid vs. organic &mdash; what actually converts?</p>
+            <div class="metric-tags"><span class="metric-tag win">Win Rate</span><span class="metric-tag deal">Cost per Win</span></div>
+        </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <h2>Step 2: Spot the Patterns</h2>
+    <p>When you analyze the data across dimensions, clear patterns emerge:</p>
+    <ul>
+        <li>Your top 3 industries may account for 70%+ of revenue</li>
+        <li>Mid-market companies often convert at 2-3x the rate of enterprise</li>
+        <li>Demo requests may close 5x better than whitepaper downloads</li>
+        <li>Certain regions consistently outperform &mdash; don't spread budget evenly</li>
+        <li>The "ideal buyer" title might not be who you expect</li>
+    </ul>
+
+    <!-- STEP 3 -->
+    <h2>Step 3: Consolidate Into Your ICP</h2>
+    <p>Combine the top-performing segments across all dimensions into a tiered definition:</p>
+    <div class="article-callout">
+        <div class="tier-item">
+            <span class="tier-label"><strong>Prime ICP</strong></span>
+            <span class="tier-desc">Best-fit across most dimensions. Highest win rate, largest deals.</span>
+        </div>
+        <div class="tier-item">
+            <span class="tier-label"><strong>Strong ICP</strong></span>
+            <span class="tier-desc">Good fit. Strong on key dimensions, may miss on one or two.</span>
+        </div>
+        <div class="tier-item">
+            <span class="tier-label"><strong>Acceptable</strong></span>
+            <span class="tier-desc">Moderate fit. Worth pursuing but not prioritizing.</span>
+        </div>
+        <div class="tier-item">
+            <span class="tier-label"><strong>Out of Scope</strong></span>
+            <span class="tier-desc">Poor fit based on data. Deprioritize or auto-nurture.</span>
+        </div>
+    </div>
+    <p>This tiered ICP becomes the foundation for a lead scoring system you can implement directly in your CRM.</p>
+
+    <!-- STEP 4 -->
+    <h2>Step 4: Validate &amp; Iterate</h2>
+    <p>Your ICP is a living document. It should get sharper over time.</p>
+    <div class="article-grid">
+        <div class="article-card">
+            <h4>Test</h4>
+            <p>Score recent deals &mdash; does the ICP predict actual winners?</p>
+        </div>
+        <div class="article-card">
+            <h4>Verify</h4>
+            <p>Ask your sales team: do the data patterns match their experience?</p>
+        </div>
+        <div class="article-card">
+            <h4>Refine</h4>
+            <p>Recalibrate quarterly as new deals close and the data grows.</p>
+        </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <h2>What You Get at the End</h2>
+    <div class="article-grid-2">
+        <div class="article-card">
+            <h4>Documented ICP</h4>
+            <p>Backed by data, not opinions</p>
+        </div>
+        <div class="article-card">
+            <h4>Scoring System</h4>
+            <p>Ready to implement in your CRM</p>
+        </div>
+        <div class="article-card">
+            <h4>Quality Baseline</h4>
+            <p>Measure marketing going forward</p>
+        </div>
+        <div class="article-card">
+            <h4>Shared Language</h4>
+            <p>"This is a Prime lead" &mdash; sales + marketing aligned</p>
+        </div>
+    </div>
+
+</div>
+
+<section class="footer-cta">
+  <div class="footer-cta-inner">
+    <h2>Want this built for your team?</h2>
+    <p>Book a free 30-minute data audit call. I'll take a look at your current setup and show you exactly where the opportunities are.</p>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="hero-cta" target="_blank">Book a Free Data Audit Call</a>
+    <p class="alt-contact">Or reach out: <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a> &bull; <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">EA Analytics</div>
+  <div class="footer-links">
+    <a href="../resources.html">Resources</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a>
+    <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a>
+  </div>
+  <div class="footer-right">&copy; 2026 EA Analytics</div>
+</footer>
+
+</body>
+</html>

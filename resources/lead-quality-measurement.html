@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lead Quality Measurement Framework | EA Analytics</title>
+    <meta name="description" content="Stop counting leads and start measuring quality. A framework for turning raw lead volume into a quality score your team can actually act on.">
+    <meta property="og:title" content="The Lead Quality Measurement Framework | EA Analytics">
+    <meta property="og:description" content="The framework for converting raw lead volume into a quality metric that proves marketing ROI.">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 24px 0;
+        }
+        @media (max-width: 768px) { .process-flow { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+        .process-step {
+            text-align: center;
+            padding: 20px 12px;
+            border: 1.5px solid var(--navy-100);
+            background: var(--white);
+        }
+        .process-step:first-child { border-radius: 10px 0 0 10px; }
+        .process-step:last-child { border-radius: 0 10px 10px 0; }
+        @media (max-width: 768px) {
+            .process-step:first-child { border-radius: 10px 0 0 0; }
+            .process-step:nth-child(2) { border-radius: 0 10px 0 0; }
+            .process-step:nth-child(3) { border-radius: 0 0 0 10px; }
+            .process-step:last-child { border-radius: 0 0 10px 0; }
+        }
+        .process-step .step-num {
+            background: var(--navy-900);
+            color: var(--white);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .process-step h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            margin-bottom: 4px;
+        }
+        .process-step p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-bottom: 0;
+        }
+        .process-step.active {
+            background: var(--navy-50);
+            border-color: var(--navy-200);
+        }
+        .step-detail {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            border: 1px solid var(--navy-100);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        .step-detail .sd-num {
+            background: var(--navy-900);
+            color: var(--white);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .step-detail h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            margin-bottom: 4px;
+        }
+        .step-detail p {
+            font-size: 0.88rem;
+            color: var(--gray-700);
+            margin-bottom: 0;
+            line-height: 1.65;
+        }
+        .northstar-box {
+            background: var(--navy-50);
+            border: 1.5px solid var(--gold);
+            border-radius: 10px;
+            padding: 28px;
+            text-align: center;
+            margin: 24px 0;
+        }
+        .northstar-box .ns-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .northstar-box .ns-metric {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            margin-bottom: 6px;
+        }
+        .northstar-box .ns-desc {
+            font-size: 0.92rem;
+            color: var(--gray-700);
+        }
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 12px;
+            align-items: stretch;
+            margin: 24px 0;
+        }
+        @media (max-width: 768px) {
+            .comparison { grid-template-columns: 1fr; }
+            .comp-arrow { transform: rotate(90deg); }
+        }
+        .comp-card {
+            border-radius: 10px;
+            padding: 24px;
+            text-align: center;
+        }
+        .comp-card.before {
+            background: var(--gray-50);
+            border: 1.5px solid var(--gray-300);
+        }
+        .comp-card.after {
+            background: var(--navy-50);
+            border: 1.5px solid var(--gold);
+        }
+        .comp-card .comp-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+        .comp-card.before .comp-label { color: var(--gray-500); }
+        .comp-card.after .comp-label { color: var(--gold-dark); }
+        .comp-card .comp-pct {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        .comp-card.before .comp-pct { color: var(--gray-700); }
+        .comp-card.after .comp-pct { color: var(--navy-900); }
+        .comp-card .comp-note {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+        .comp-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--navy-700);
+        }
+        .filter-insight {
+            background: var(--navy-50);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .filter-insight h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            margin-bottom: 12px;
+        }
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 0;
+            font-size: 0.88rem;
+        }
+        .filter-label {
+            font-weight: 600;
+            color: var(--navy-700);
+            min-width: 130px;
+        }
+        .filter-desc {
+            color: var(--gray-500);
+        }
+        .crm-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .crm-tag {
+            background: var(--navy-50);
+            border: 1px solid var(--navy-100);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--navy-700);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="../index.html" class="nav-logo">EA <span>Data & Analytics</span></a>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="../index.html#outcomes">Services</a>
+    <a href="../resources.html" class="active">Resources</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="nav-cta" target="_blank">Book a Call</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="../resources.html">Resources</a><span>&rarr;</span>The Lead Quality Measurement Framework
+</div>
+
+<section class="page-hero">
+  <div class="page-hero-content">
+    <h1>Stop Counting Leads. Start Measuring Quality.</h1>
+    <p>By Elisha Amir | EA Analytics</p>
+  </div>
+</section>
+
+<div class="article-body">
+
+    <!-- PROBLEM -->
+    <div class="article-callout">
+        <strong>The problem:</strong> A campaign that brings 500 Out-of-Scope leads is worse than one that brings 50 Prime ICPs. But most teams can't tell the difference &mdash; they just count leads. Volume &ne; quality. And without a quality metric, you're flying blind on marketing ROI.
+    </div>
+
+    <!-- THE 4-STEP FRAMEWORK -->
+    <h2>The 4-Step Quality Framework</h2>
+    <p>Turn any CRM dataset into a clear picture of lead quality in four steps:</p>
+    <div class="process-flow">
+        <div class="process-step">
+            <div class="step-num">1</div>
+            <h4>Score</h4>
+            <p>Apply ICP scoring to every lead</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">2</div>
+            <h4>Segment</h4>
+            <p>Assign tiers based on total score</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">3</div>
+            <h4>Filter</h4>
+            <p>Remove noise to see true quality</p>
+        </div>
+        <div class="process-step active">
+            <div class="step-num">4</div>
+            <h4>Track</h4>
+            <p>Monitor the quality mix over time</p>
+        </div>
+    </div>
+
+    <div class="step-detail">
+        <div class="sd-num">1</div>
+        <div>
+            <h4>Score Every Lead</h4>
+            <p>Apply your ICP scoring model across all 6 dimensions &mdash; Industry, Company Size, Job Title, Intent, Region, and Channel. Every lead gets a total score, plus bonus points for funnel engagement. This can run automatically in your CRM.</p>
+        </div>
+    </div>
+    <div class="step-detail">
+        <div class="sd-num">2</div>
+        <div>
+            <h4>Segment Into Tiers</h4>
+            <p>Each scored lead falls into one of four tiers: <strong>Prime ICP</strong>, <strong>Strong ICP</strong>, <strong>ACP</strong>, or <strong>Out of Scope</strong>. This converts a raw number into a language your team can act on immediately.</p>
+        </div>
+    </div>
+    <div class="step-detail">
+        <div class="sd-num">3</div>
+        <div>
+            <h4>Filter Out the Noise</h4>
+            <p>Not all leads in your CRM are real opportunities. Remove duplicates, unqualified entries, partner accounts, and community sign-ups. This step often removes 50%+ of your raw pipeline &mdash; and reveals the <em>true</em> quality picture hiding underneath.</p>
+        </div>
+    </div>
+    <div class="step-detail">
+        <div class="sd-num">4</div>
+        <div>
+            <h4>Track Quality Over Time</h4>
+            <p>Monitor the tier distribution month over month. Is the share of Prime + Strong leads growing? Are certain campaigns improving quality? This is your ongoing dashboard for marketing effectiveness.</p>
+        </div>
+    </div>
+
+    <!-- NORTH STAR METRIC -->
+    <h2>Your North Star Metric</h2>
+    <p>Once you've scored, segmented, and filtered &mdash; you need one number to track. This is it:</p>
+    <div class="northstar-box">
+        <div class="ns-label">The Quality Metric</div>
+        <div class="ns-metric">% Prime + Strong ICP</div>
+        <div class="ns-desc">Of your filtered, qualified leads &mdash; what share are truly high-fit?</div>
+    </div>
+    <p>This single metric replaces "number of MQLs" as your marketing compass. It answers: <em>are we attracting the right people, or just more people?</em></p>
+
+    <!-- THE FILTERING EFFECT -->
+    <h2>The Filtering Effect</h2>
+    <p>When we applied this framework to a real B2B dataset, the results were dramatic. Filtering noise didn't just clean the data &mdash; it fundamentally changed the quality picture:</p>
+    <div class="comparison">
+        <div class="comp-card before">
+            <div class="comp-label">Before Filtering</div>
+            <div class="comp-pct">~40%</div>
+            <div class="comp-note">Prime + Strong ICP</div>
+        </div>
+        <div class="comp-arrow">&rarr;</div>
+        <div class="comp-card after">
+            <div class="comp-label">After Filtering</div>
+            <div class="comp-pct">~80%</div>
+            <div class="comp-note">Prime + Strong ICP</div>
+        </div>
+    </div>
+    <div class="article-callout">
+        <strong>Key insight:</strong> A massive share of raw leads are noise &mdash; duplicates, partners, community users, and unqualified contacts. They dilute your quality metrics and hide real performance. Filtering reveals the truth: your marketing may be performing much better than the raw numbers suggest.
+    </div>
+
+    <!-- WHAT NOISE LOOKS LIKE -->
+    <h2>What "Noise" Actually Looks Like</h2>
+    <p>These are real categories that pollute typical CRM datasets. Removing them is essential for accurate quality measurement:</p>
+    <div class="filter-insight">
+        <div class="filter-row">
+            <span class="filter-label">Duplicates</span>
+            <span class="filter-desc">Multiple contacts from the same org &mdash; inflates lead count without real value</span>
+        </div>
+        <div class="filter-row">
+            <span class="filter-label">Unqualified</span>
+            <span class="filter-desc">Failed qualification criteria &mdash; students, job seekers, wrong company type</span>
+        </div>
+        <div class="filter-row">
+            <span class="filter-label">Partners</span>
+            <span class="filter-desc">Channel partners, integrations, resellers &mdash; tracked separately from pipeline</span>
+        </div>
+        <div class="filter-row">
+            <span class="filter-label">Community</span>
+            <span class="filter-desc">Community-tier users, free-forever accounts &mdash; not sales-qualified</span>
+        </div>
+    </div>
+    <p>In practice, these categories can account for more than half of your raw leads. Until they're filtered, your quality metrics are misleading.</p>
+
+    <!-- THREE APPLICATIONS -->
+    <h2>Three Ways to Use This</h2>
+    <p>Once you have a quality score on every lead, three powerful applications open up:</p>
+    <div class="article-grid">
+        <div class="article-card">
+            <h4>Grade Your Campaigns</h4>
+            <p>Which channels bring Prime ICP leads vs. volume fillers? Compare quality scores across paid, organic, events, and partnerships. Some campaigns are quiet gold mines &mdash; others are expensive noise.</p>
+        </div>
+        <div class="article-card">
+            <h4>Track Trends</h4>
+            <p>Is lead quality improving quarter over quarter? Are new market pushes attracting the right personas? Monthly tier distribution charts become your marketing health dashboard.</p>
+        </div>
+        <div class="article-card">
+            <h4>Allocate Budget</h4>
+            <p>Shift spend toward sources that produce Prime and Strong ICP leads. A channel bringing 100 ACP leads at $50 each is worse than one bringing 20 Prime leads at $100 each. Quality-adjusted ROI changes everything.</p>
+        </div>
+    </div>
+
+    <!-- REFINEMENT LOOP -->
+    <h2>The Refinement Loop</h2>
+    <p>Your quality measurement system should get smarter over time &mdash; just like the scoring model it's built on:</p>
+    <div class="article-grid">
+        <div class="article-card">
+            <h4>V1 &mdash; Initial Baseline</h4>
+            <p>Score your existing leads. Establish your current quality mix. This is your starting point.</p>
+        </div>
+        <div class="article-card">
+            <h4>V2 &mdash; Win/Loss Calibration</h4>
+            <p>Compare scores against actual outcomes. Adjust tier thresholds based on conversion data.</p>
+        </div>
+        <div class="article-card">
+            <h4>V3 &mdash; Predictive Quality</h4>
+            <p>Layer in engagement signals. Predict quality at the point of entry &mdash; not just retrospectively.</p>
+        </div>
+    </div>
+    <div class="article-callout">
+        <strong>Remember:</strong> The initial model is a hypothesis. Every closed deal is new evidence. Recalibrate quarterly &mdash; the system compounds in accuracy over time.
+    </div>
+
+    <!-- WORKS WITH ANY CRM -->
+    <h2>Works With Any CRM</h2>
+    <p>This framework was built on Salesforce &mdash; but the 6 scoring dimensions exist in every CRM. The logic is universal. Only the field names change.</p>
+    <div class="crm-tags">
+        <span class="crm-tag">Salesforce</span>
+        <span class="crm-tag">HubSpot</span>
+        <span class="crm-tag">Pipedrive</span>
+        <span class="crm-tag">Dynamics 365</span>
+        <span class="crm-tag">Zoho CRM</span>
+        <span class="crm-tag">Any CRM</span>
+    </div>
+    <p style="text-align: center;">Industry, Company Size, Job Title, Lead Source, Region, Channel &mdash; these fields exist everywhere. Scoring logic is CRM-agnostic.</p>
+
+</div>
+
+<section class="footer-cta">
+  <div class="footer-cta-inner">
+    <h2>Want this built for your team?</h2>
+    <p>Book a free 30-minute data audit call. I'll take a look at your current setup and show you exactly where the opportunities are.</p>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="hero-cta" target="_blank">Book a Free Data Audit Call</a>
+    <p class="alt-contact">Or reach out: <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a> &bull; <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">EA Analytics</div>
+  <div class="footer-links">
+    <a href="../resources.html">Resources</a>
+    <a href="../about.html">About</a>
+    <a href="../contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a>
+    <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a>
+  </div>
+  <div class="footer-right">&copy; 2026 EA Analytics</div>
+</footer>
+
+</body>
+</html>

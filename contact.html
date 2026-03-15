@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — EA Analytics</title>
+<meta name="description" content="Get in touch with EA Analytics. Book a free data audit call or send a message.">
+<meta property="og:title" content="Contact — EA Analytics">
+<meta property="og:description" content="Get in touch to discuss your GTM analytics needs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ea-analytics.com/contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">EA <span>Data & Analytics</span></a>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html#outcomes">Services</a>
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active">Contact</a>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="nav-cta" target="_blank">Book a Call</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <h1>Let's Talk</h1>
+  <p>Have a question, want to explore working together, or just want to say hello? I'd love to hear from you.</p>
+</section>
+
+<!-- CONTACT CONTENT -->
+<section class="content-section">
+  <div class="two-col-55">
+
+    <!-- LEFT: Contact Form -->
+    <div>
+      <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+        <input type="hidden" name="access_key" value="222acbc2-cfb5-4220-9954-fbd1d7c57043">
+        <input type="hidden" name="subject" value="New inquiry from EA Analytics website">
+        <input type="hidden" name="redirect" value="https://ea-analytics.com/contact.html?sent=true">
+        <input type="checkbox" name="botcheck" style="display: none;">
+
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="message">What can I help with?</label>
+          <textarea id="message" name="message" class="form-textarea" required placeholder="Tell me a bit about your team and what you're looking for..."></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+
+      <div class="form-success" id="form-success" style="display: none;">
+        <h3>Thanks for reaching out!</h3>
+        <p>I'll get back to you within 24 hours.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Alternative Contact -->
+    <div class="contact-alt">
+      <h3>Prefer to book directly?</h3>
+
+      <div class="contact-method">
+        <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" target="_blank">Book a Call</a>
+        <p>Free 30-minute data audit call</p>
+      </div>
+
+      <div class="contact-method">
+        <a href="mailto:info@ea-analytics.com">Email</a>
+        <p>I typically respond within 24 hours</p>
+      </div>
+
+      <div class="contact-method">
+        <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">EA Analytics</div>
+  <div class="footer-links">
+    <a href="resources.html">Resources</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank">LinkedIn</a>
+    <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a>
+  </div>
+  <div class="footer-right">&copy; 2026 EA Analytics</div>
+</footer>
+
+<!-- SUCCESS STATE -->
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === 'true') {
+      var form = document.getElementById('contact-form');
+      var success = document.getElementById('form-success');
+      if (form) form.style.display = 'none';
+      if (success) success.style.display = 'block';
+    }
+  })();
+</script>
+
+</body>
+</html>
