@@ -177,6 +177,23 @@
 </head>
 <body>
 
+<!-- EMAIL GATE OVERLAY -->
+<div id="email-gate" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:999;background:var(--white);display:flex;align-items:center;justify-content:center;">
+  <div style="max-width:480px;padding:40px 24px;text-align:center;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--navy-900);margin-bottom:8px;">The ICP Lead Scoring Framework</div>
+    <p style="color:var(--gray-700);font-size:0.95rem;line-height:1.6;margin-bottom:28px;">Enter your email to access the full framework — the same system I implement for clients.</p>
+    <form action="https://api.web3forms.com/submit" method="POST" style="display:flex;flex-direction:column;gap:12px;">
+      <input type="hidden" name="access_key" value="222acbc2-cfb5-4220-9954-fbd1d7c57043">
+      <input type="hidden" name="subject" value="Lead magnet request — ICP Scoring Framework">
+      <input type="hidden" name="redirect" value="https://ea-analytics.com/resources/icp-scoring-framework.html?unlocked=true">
+      <input type="checkbox" name="botcheck" style="display:none;">
+      <input type="email" name="email" placeholder="Your email address" required style="padding:14px 16px;border:1.5px solid var(--gray-300);border-radius:8px;font-size:1rem;font-family:inherit;outline:none;">
+      <button type="submit" style="padding:14px 24px;background:var(--navy-900);color:var(--white);border:none;border-radius:8px;font-size:0.95rem;font-weight:600;font-family:inherit;cursor:pointer;">Get Access</button>
+    </form>
+    <p style="color:var(--gray-500);font-size:0.8rem;margin-top:16px;">No spam. Just the framework.</p>
+  </div>
+</div>
+
 <nav class="nav">
   <a href="../index.html" class="nav-logo">EA <span>Data & Analytics</span></a>
   <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
@@ -400,5 +417,17 @@
   <div class="footer-right">&copy; 2026 EA Analytics</div>
 </footer>
 
+<script>
+(function() {
+  var gate = document.getElementById('email-gate');
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('unlocked') === 'true') {
+    localStorage.setItem('icp-framework-unlocked', 'true');
+    gate.style.display = 'none';
+  } else if (localStorage.getItem('icp-framework-unlocked') === 'true') {
+    gate.style.display = 'none';
+  }
+})();
+</script>
 </body>
 </html>
