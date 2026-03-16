@@ -769,12 +769,36 @@ body {
 }
 
 /* ==================== PROFILE / ABOUT ==================== */
-.profile-photo {
-  width: 100%;
+.profile-photo-wrap {
+  position: relative;
   max-width: 360px;
   border-radius: 12px;
+  overflow: hidden;
   border: 1.5px solid var(--gold);
   box-shadow: 0 8px 32px rgba(10,22,82,0.08);
+}
+
+.profile-photo {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.profile-blur {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: blur(12px);
+  transform: scale(1.05);
+  transition: opacity 0.4s ease-out;
+}
+
+.profile-photo-wrap.loaded .profile-blur {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .about-intro h2 {

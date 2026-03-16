@@ -42,7 +42,13 @@
 <section class="content-section">
   <div class="two-col-40">
     <div>
-      <img src="assets/profile.jpg" alt="Elisha Amir" class="profile-photo">
+      <div class="profile-photo-wrap">
+        <img src="assets/profile-tiny.jpg" alt="" class="profile-photo profile-blur" aria-hidden="true">
+        <picture>
+          <source srcset="assets/profile-600.webp" type="image/webp">
+          <img src="assets/profile-600.jpg" alt="Elisha Amir" class="profile-photo" loading="eager" width="600" height="600" onload="this.parentElement.parentElement.classList.add('loaded')">
+        </picture>
+      </div>
     </div>
     <div class="about-intro">
       <h2>Elisha Amir</h2>
