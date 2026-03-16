@@ -116,6 +116,7 @@ body {
   padding: 120px 40px 80px;
   position: relative;
   overflow: hidden;
+  border-bottom: 2px solid var(--gold);
 }
 
 .hero::before {
@@ -176,7 +177,7 @@ body {
 
 .hero-sub {
   font-size: 1.1rem;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.65);
   margin-bottom: 40px;
   line-height: 1.7;
 }
@@ -1197,9 +1198,11 @@ body {
   }
   .nav-links.open a { display: block; }
   .nav-hamburger { display: flex; }
-  .hero { padding: 100px 24px 60px; min-height: auto; }
-  .hero h1 { font-size: 2rem; }
-  .hero-sub { font-size: 1rem; }
+  .hero { padding: 100px 24px 48px; min-height: auto; }
+  .hero h1 { font-size: 2.4rem; margin-bottom: 16px; }
+  .hero-badge { margin-bottom: 20px; }
+  .hero-sub { font-size: 1rem; margin-bottom: 32px; }
+  .hero-footnote { margin-top: 14px; }
   .page-hero { padding: 100px 24px 60px; }
   .page-hero h1 { font-size: 2rem; }
   .outcome-grid { grid-template-columns: 1fr; gap: 20px; }
