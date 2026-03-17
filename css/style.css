@@ -750,8 +750,8 @@ body {
 
 .two-col-40 {
   display: grid;
-  grid-template-columns: 40% 1fr;
-  gap: 60px;
+  grid-template-columns: auto 1fr;
+  gap: 48px;
   align-items: start;
 }
 
@@ -771,8 +771,8 @@ body {
 /* ==================== PROFILE / ABOUT ==================== */
 .profile-photo-wrap {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 280px;
+  height: 280px;
   border-radius: 12px;
   overflow: hidden;
   border: 1.5px solid var(--gold);
@@ -1247,7 +1247,11 @@ body {
   .footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
   .footer-links { justify-content: center; flex-wrap: wrap; }
   .section-title { font-size: 1.6rem; }
-  .two-col, .two-col-55, .two-col-40 { grid-template-columns: 1fr; gap: 40px; }
+  .two-col, .two-col-55, .two-col-40 { grid-template-columns: 1fr; gap: 32px; }
+  .two-col-40 > div:first-child { display: flex; justify-content: center; }
+  .two-col-40 .about-intro { text-align: center; }
+  .two-col-40 .about-intro ul { align-items: center; }
+  .profile-photo-wrap { width: 220px; height: 220px; }
   .personal-grid { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
   .article-grid-2 { grid-template-columns: 1fr; }
