@@ -1249,8 +1249,8 @@ body {
   .section-title { font-size: 1.6rem; }
   .two-col, .two-col-55, .two-col-40 { grid-template-columns: 1fr; gap: 32px; }
   .two-col-40 > div:first-child { display: flex; justify-content: center; }
-  .two-col-40 .about-intro { text-align: center; }
-  .two-col-40 .about-intro ul { align-items: center; }
+  .two-col-40 .about-intro { text-align: left; }
+  .two-col-40 .about-intro h2 { text-align: center; }
   .profile-photo-wrap { width: 220px; height: 220px; }
   .personal-grid { grid-template-columns: 1fr; }
   .article-grid { grid-template-columns: 1fr; }
