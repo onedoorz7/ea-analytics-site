@@ -1302,8 +1302,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .tools-logos { gap: 20px; }
-  .tool-logo { font-size: 0.78rem; }
+  .tools-strip { display: none; }
 }
 
 /* ---------- ANIMATIONS ---------- */
