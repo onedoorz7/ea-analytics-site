@@ -1263,6 +1263,50 @@ body {
 /* ==================== ANIMATIONS ==================== */
 
 /* Hero entrance */
+/* ---------- TOOLS STRIP ---------- */
+.tools-strip {
+  text-align: center;
+  padding: 28px 24px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.tools-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gray-300);
+  margin-bottom: 16px;
+}
+
+.tools-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.tool-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-300);
+  letter-spacing: 0.3px;
+  transition: color 0.3s ease;
+}
+
+.tool-logo:hover {
+  color: var(--gray-500);
+}
+
+@media (max-width: 768px) {
+  .tools-logos { gap: 20px; }
+  .tool-logo { font-size: 0.78rem; }
+}
+
+/* ---------- ANIMATIONS ---------- */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
