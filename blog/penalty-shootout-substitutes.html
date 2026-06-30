@@ -178,8 +178,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <p class="hero-sub">Managers gamble on fresh legs for the shootout. Across 35 years of penalties, does the substitute gamble actually backfire?</p>
   <div class="hero-stats">
     <div class="hero-stat"><div class="hero-stat-n">72.0%</div><div class="hero-stat-l">baseline conversion (all kicks)</div></div>
-    <div class="hero-stat"><div class="hero-stat-n">57.1%</div><div class="hero-stat-l">extra-time substitutes (105'+)</div></div>
-    <div class="hero-stat"><div class="hero-stat-n">50.0%</div><div class="hero-stat-l">dying-minutes subs (110'+)</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">57.1%</div><div class="hero-stat-l">specialist takers (105'+)</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">50.0%</div><div class="hero-stat-l">dying-minute subs (110'+)</div></div>
   </div>
   <div class="hero-scroll">&darr; SCROLL</div>
 </div>
@@ -205,7 +205,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <h2>How Often Does a Shootout Penalty Go In?</h2>
   <p>First, the yardstick. Across all 840 kicks, the overall conversion rate is <strong>72.0%</strong> (95% CI 68.9%&ndash;75.0%).</p>
   <p>Roughly three in four shootout penalties are scored. Missing is the exception, which is exactly why a missed sub stands out.</p>
-  <p>For scale: even Lionel Messi has converted about <strong>78%</strong> of his career penalties (114 of 147, shootouts aside), barely above this baseline. The spot-kick humbles almost everyone.</p>
+  <p>For scale: even Lionel Messi has converted about <strong>78%</strong> of his career penalties (114 of 147, shootouts aside), not far above this baseline. The spot-kick humbles almost everyone.</p>
   <div class="stat-pair">
     <div class="stat-block"><div class="stat-block-n blue">72.0%</div><div class="stat-block-l">all shootout penalties<br>(840 kicks)</div></div>
     <div class="stat-block"><div class="stat-block-n">72.8%</div><div class="stat-block-l">taken by a starter<br>(486 kicks)</div></div>
@@ -220,7 +220,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <div class="container">
     <div class="section-label">The Headline</div>
     <h2>The Cost of the Late Gamble</h2>
-    <p>Line the groups up against the 72.0% baseline (dashed) and the pattern is stark: the further a taker sits from having started the match, the less often the kick goes in.</p>
+    <p>Line the groups up against the 72.0% baseline (dashed). All substitutes dip only slightly; it's the dying-minute subs, sent on at 110'+, who fall away.</p>
   </div>
   <div class="container--wide">
     <div class="chart-wrapper"><canvas id="chart-headline"></canvas></div>
@@ -248,7 +248,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
     <div class="data-table-scroll">
       <table class="data-table">
         <thead><tr><th>Role</th><th class="num">Kicks</th><th class="num">Scored</th><th class="num">Conversion</th><th class="num">95% CI</th></tr></thead>
-        <tbody><tr><td>Starter</td><td class='num'>486</td><td class='num'>354</td><td class='num'><strong>72.8%</strong></td><td class='num'>68.7%–76.6%</td></tr><tr><td>Sub before 90'</td><td class='num'>203</td><td class='num'>138</td><td class='num'><strong>68.0%</strong></td><td class='num'>61.3%–74.0%</td></tr><tr><td>Sub 90–104'</td><td class='num'>31</td><td class='num'>23</td><td class='num'><strong>74.2%</strong></td><td class='num'>56.8%–86.3%</td></tr><tr><td>Sub in ET (105'+)</td><td class='num'>35</td><td class='num'>20</td><td class='num'><strong>57.1%</strong></td><td class='num'>40.9%–72.0%</td></tr></tbody>
+        <tbody><tr><td>Starter</td><td class='num'>486</td><td class='num'>354</td><td class='num'><strong>72.8%</strong></td><td class='num'>68.7%–76.6%</td></tr><tr><td>Sub before 90'</td><td class='num'>203</td><td class='num'>138</td><td class='num'><strong>68.0%</strong></td><td class='num'>61.3%–74.0%</td></tr><tr><td>Sub 90–104'</td><td class='num'>31</td><td class='num'>23</td><td class='num'><strong>74.2%</strong></td><td class='num'>56.8%–86.3%</td></tr><tr><td>Specialist takers (105'+)</td><td class='num'>35</td><td class='num'>20</td><td class='num'><strong>57.1%</strong></td><td class='num'>40.9%–72.0%</td></tr></tbody>
       </table>
     </div>
     <p class="table-note">A few older Copa América matches lacked published lineup data; those kicks are counted in the baseline but excluded from the role split. Lineups for the live 2026 fixtures are taken from match reports.</p>
@@ -262,14 +262,14 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <div class="container">
 <section class="narrative-section fade-up">
   <div class="section-label">The Finding</div>
-  <h2>It's the Extra-Time Sub Who Pays</h2>
+  <h2>It's the Specialist Taker Who Pays</h2>
   <p>It's <em>not</em> substitutes in general who falter. Across all subs, the gap (<strong>67.3%</strong> vs <strong>72.8%</strong> for starters) is only borderline.</p>
-  <p>The effect sits with the players sent on late. <strong>Extra-time subs convert just 57.1%</strong>, and the dying-minutes specialists (on at 110'+) manage only <strong>50.0%</strong>.</p>
+  <p>The effect sits with the specialist takers, sent on at 105'+ largely to take a kick. They convert just <strong>57.1%</strong>, and the most extreme, on at 110'+, only <strong>50.0%</strong>.</p>
   <p>Since the hypothesis is directional, subs predicted to do <em>worse</em>, the one-sided test is the relevant one; the two-sided figure is shown too.</p>
   <div class="data-table-scroll">
     <table class="data-table">
       <thead><tr><th>Comparison</th><th class="num">Conversion</th><th class="num">two-sided p</th><th class="num">one-sided p</th><th>Verdict</th></tr></thead>
-      <tbody><tr><td>Starters vs all substitutes</td><td class='num'>72.8% vs 67.3%</td><td class='num'>0.108</td><td class='num'><strong>0.054</strong></td><td>not significant</td></tr><tr><td>Starters vs extra-time subs (≥105')</td><td class='num'>72.8% vs 57.1%</td><td class='num'>0.046</td><td class='num'><strong>0.023</strong></td><td>significant</td></tr><tr><td>Starters vs late subs (≥110', n=20)</td><td class='num'>72.8% vs 50.0%</td><td class='num'>0.026</td><td class='num'><strong>0.013</strong></td><td>significant</td></tr></tbody>
+      <tbody><tr><td>Starters vs all substitutes</td><td class='num'>72.8% vs 67.3%</td><td class='num'>0.108</td><td class='num'><strong>0.054</strong></td><td>not significant</td></tr><tr><td>Starters vs specialist takers (≥105')</td><td class='num'>72.8% vs 57.1%</td><td class='num'>0.046</td><td class='num'><strong>0.023</strong></td><td>significant</td></tr><tr><td>Starters vs dying-minute subs (≥110', n=20)</td><td class='num'>72.8% vs 50.0%</td><td class='num'>0.026</td><td class='num'><strong>0.013</strong></td><td>significant</td></tr></tbody>
     </table>
   </div>
   <div class="callout--maroon callout">
@@ -283,8 +283,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="chart-section fade-up">
   <div class="container">
     <div class="section-label">By Minute of Entry</div>
-    <h2>The Extra-Time Arrivals Fare Worst</h2>
-    <p>Grouping substitutes by when they came on, conversion is noisy through normal time, but the players sent on in the final stretch (105&ndash;120') dip clearly below the 72.8% starter line (dashed).</p>
+    <h2>Fresh Legs Help, Until the Last Gasp</h2>
+    <p>Fresh legs aren't the problem. Substitutes who come on with time to settle hold up fine, including those sent on early in extra time (90&ndash;104'). Only at 105'+, with barely a touch before the kick, does the line drop below the 72.8% starter mark (dashed).</p>
   </div>
   <div class="container--wide">
     <div class="chart-wrapper"><canvas id="chart-minute"></canvas></div>
@@ -293,7 +293,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 </div>
 
 <div class="container">
-  <div class="pullquote fade-up">The fresh-legs gamble looks worst exactly where managers reach for it most: the final minutes of extra time.</div>
+  <div class="pullquote fade-up">The fresh-legs gamble looks worst exactly where managers reach for it most: the last-gasp specialist, sent on at 105'+ to take a kick.</div>
 </div>
 
 <hr class="divider divider--wide">
@@ -302,8 +302,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <div class="container">
 <section class="narrative-section fade-up">
   <div class="section-label">The Specialists</div>
-  <h2>Every Extra-Time Sub Who Took One</h2>
-  <p>The closest cases to the hypothesis: players introduced in extra time (105'+), often with the shootout in mind. As a group they scored <strong>20 of 35</strong> (57.1%).</p>
+  <h2>The Specialist Takers, One by One</h2>
+  <p>The closest cases to the hypothesis: every taker sent on at 105'+, often with the shootout in mind. As a group they scored <strong>20 of 35</strong> (57.1%).</p>
   <div class="data-table-scroll">
     <table class="data-table">
       <thead><tr><th>Player</th><th>Team</th><th>Tournament</th><th class="num">On</th><th>Result</th></tr></thead>
@@ -344,8 +344,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <div class="section-label">A Caveat</div>
   <h2>Why This Isn't a Clean Experiment</h2>
   <p>A substitute is not a random starter. Part of the gap may reflect player quality, not just cold legs.</p>
-  <p>But it often cuts the other way. The late sub is frequently a designated specialist, sent on precisely because he is one of the squad's best takers, with a strong record in normal play.</p>
-  <p>That even these specialists miss more points at the conditions (a long wait, then one cold, decisive kick) more than the player. Either way this is observational data: the pattern is real, but not proof that the substitution itself is the cause.</p>
+  <p>But it often cuts the other way. The late sub is frequently a designated specialist, sent on precisely because he is one of the squad's best takers, with a strong record in open play.</p>
+  <p>That even these specialists miss more often suggests the conditions (a long wait, then one cold, decisive kick) matter more than the player. Either way this is observational data: the pattern is real, but it does not prove the substitution itself is the cause.</p>
   <div class="aside-box">
     <h3>Scope</h3>
     <p>This analysis covers shootout penalties only. In-play penalties, taken in open play rather than a shootout, convert a touch higher (around 75% historically) and carry different pressures. Everything here is shootout-specific.</p>
@@ -377,7 +377,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 </footer>
 
 <script>
-var D = {"baseline": 72.0, "starter_p": 72.8, "headline": {"labels": ["Starters", "Substitutes", "Dying-minute subs (110'+)"], "values": [72.8, 67.3, 50.0], "counts": [486, 269, 20]}, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [72.8, 68.0, 74.2, 57.1], "counts": [486, 203, 31, 35]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [77.5, 63.7, 67.5, 74.2, 57.1], "counts": [40, 80, 83, 31, 35]}};
+var D = {"baseline": 72.0, "starter_p": 72.8, "headline": {"labels": ["Starters", "Substitutes", "Dying-minute subs (110'+)"], "values": [72.8, 67.3, 50.0], "counts": [486, 269, 20]}, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Specialist takers (105'+)"], "values": [72.8, 68.0, 74.2, 57.1], "counts": [486, 203, 31, 35]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [77.5, 63.7, 67.5, 74.2, 57.1], "counts": [40, 80, 83, 31, 35]}};
 var MAROON = '#B81D3A', GOLD = '#1E5FA8', GOLD_DK = '#15457C', GREEN = '#157A48',
     RED = '#C8102E', NAVY = '#12263F', SLATE = '#475569', MUTED = '#8A8A95';
 var MOB = window.innerWidth < 560;     // tighten chart type on small screens
