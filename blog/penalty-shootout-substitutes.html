@@ -25,8 +25,8 @@
 :root {
   --bg: #FDFCF9; --surface: #FFFFFF; --surface-alt: #F5F0E8; --border: #E8E4DB;
   --text: #1A1A2E; --text-secondary: #4A4A5A; --text-muted: #8A8A95;
-  --gold: #C9A836; --gold-dk: #8B6914; --maroon: #56042C; --maroon-light: #8A1538;
-  --green: #006B3F; --red: #C8102E; --navy: #1A1A2E; --cream: #F5F0E8;
+  --gold: #1B8A5A; --gold-dk: #116A41; --maroon: #B81D3A; --maroon-light: #D33B53;
+  --green: #157A48; --red: #C8102E; --navy: #14313F; --cream: #EAF2EC;
   --content-width: 720px; --content-wide: 960px;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,9 +37,9 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 /* HERO */
 .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
   align-items: center; text-align: center; padding: 2rem 1.5rem;
-  background: linear-gradient(165deg, #06080f 0%, #0d1b34 45%, #2d1018 100%); position: relative; overflow: hidden; }
+  background: linear-gradient(165deg, #061310 0%, #0b3a2c 48%, #0a2f3e 100%); position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 38%, rgba(201,168,54,0.10) 0%, transparent 55%); pointer-events: none; }
+  background: radial-gradient(ellipse at 50% 38%, rgba(31,168,106,0.14) 0%, transparent 55%); pointer-events: none; }
 .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
   margin-bottom: 1.5rem; font-weight: 600; opacity: 0.85; }
 .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.4rem, 7vw, 5rem);
@@ -48,7 +48,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; margin-top: 1.2rem; line-height: 1.6; }
 .hero-stats { display: flex; gap: 1.5rem; margin: 2.5rem 0 1rem; flex-wrap: wrap; justify-content: center; }
 .hero-stat { text-align: center; padding: 1rem 1.3rem; background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(201,168,54,0.22); border-radius: 10px; min-width: 140px; }
+  border: 1px solid rgba(31,168,106,0.28); border-radius: 10px; min-width: 140px; }
 .hero-stat-n { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--gold); line-height: 1;
   font-variant-numeric: tabular-nums; }
 .hero-stat-l { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; max-width: 140px; line-height: 1.3; }
@@ -335,8 +335,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 
 <script>
 var D = {"baseline": 72.0, "starter_p": 73.3, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [73.3, 67.9, 76.7, 59.4], "counts": [475, 196, 30, 32]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [76.9, 62.8, 68.4, 76.7, 59.4], "counts": [39, 78, 79, 30, 32]}};
-var MAROON = '#56042C', GOLD = '#C9A836', GOLD_DK = '#8B6914', GREEN = '#006B3F',
-    RED = '#C8102E', NAVY = '#1A1A2E', MUTED = '#8A8A95';
+var MAROON = '#B81D3A', GOLD = '#1B8A5A', GOLD_DK = '#116A41', GREEN = '#157A48',
+    RED = '#C8102E', NAVY = '#14313F', SLATE = '#475569', MUTED = '#8A8A95';
 Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
 Chart.defaults.font.size = 11;
 Chart.defaults.color = '#4A4A5A';
@@ -362,7 +362,7 @@ function baseLine(value, label, color){
 
 // CHART 1: conversion by role
 try {
-  var roleColors = [NAVY, MAROON, GOLD_DK, RED];
+  var roleColors = ['#14633B', '#4F9E73', '#D69A2D', '#C0233C'];  // safe -> risk ramp
   new Chart($('chart-roles'), {
     type: 'bar',
     data: { labels: D.roles.labels.map(function(l,i){ return [l, 'n=' + D.roles.counts[i]]; }),
@@ -376,7 +376,7 @@ try {
         y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
           ticks: { callback: function(v){ return v + '%'; } },
           title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
-    plugins: [ baseLine(D.baseline, 'Overall ' + D.baseline + '%', GOLD_DK) ]
+    plugins: [ baseLine(D.baseline, 'Overall ' + D.baseline + '%', SLATE) ]
   });
 } catch(e){ console.error('roles', e); }
 
@@ -386,7 +386,7 @@ try {
     type: 'line',
     data: { labels: D.minute.labels.map(function(l,i){ return [l, 'n=' + D.minute.counts[i]]; }),
       datasets: [{ label: 'Substitute conversion', data: D.minute.values,
-        borderColor: MAROON, backgroundColor: 'rgba(86,4,44,0.08)', borderWidth: 2.5,
+        borderColor: MAROON, backgroundColor: 'rgba(184,29,58,0.08)', borderWidth: 2.5,
         pointRadius: 4, pointBackgroundColor: MAROON, tension: 0.25, fill: true }] },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
@@ -396,7 +396,7 @@ try {
         y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
           ticks: { callback: function(v){ return v + '%'; } },
           title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
-    plugins: [ baseLine(D.starter_p, 'Starters ' + D.starter_p + '%', NAVY) ]
+    plugins: [ baseLine(D.starter_p, 'Starters ' + D.starter_p + '%', SLATE) ]
   });
 } catch(e){ console.error('minute', e); }
 
