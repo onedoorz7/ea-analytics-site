@@ -9,13 +9,14 @@
 <meta property="og:description" content="840 shootout kicks, 1990-2026. Do extra-time substitutes convert worse than the players who lasted 120 minutes? The data has an answer.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ea-analytics.com/blog/penalty-shootout-substitutes">
-<meta property="og:image" content="https://ea-analytics.com/assets/og-image.png">
+<meta property="og:image" content="https://ea-analytics.com/assets/penalty-subs-og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <link rel="canonical" href="https://ea-analytics.com/blog/penalty-shootout-substitutes">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sent On to Miss?">
 <meta name="twitter:description" content="35 years of penalty shootouts. Do extra-time subs really backfire? The numbers, analysed.">
+<meta name="twitter:image" content="https://ea-analytics.com/assets/penalty-subs-og.png">
 <meta name="author" content="Elisha Amir">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,8 +26,8 @@
 :root {
   --bg: #FDFCF9; --surface: #FFFFFF; --surface-alt: #F5F0E8; --border: #E8E4DB;
   --text: #1A1A2E; --text-secondary: #4A4A5A; --text-muted: #8A8A95;
-  --gold: #1B8A5A; --gold-dk: #116A41; --maroon: #B81D3A; --maroon-light: #D33B53;
-  --green: #157A48; --red: #C8102E; --navy: #14313F; --cream: #EAF2EC;
+  --gold: #1E5FA8; --gold-dk: #15457C; --maroon: #B81D3A; --maroon-light: #D33B53;
+  --green: #157A48; --red: #C8102E; --navy: #12263F; --cream: #EAF0F7;
   --content-width: 720px; --content-wide: 960px;
 }
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,9 +38,9 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 /* HERO */
 .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
   align-items: center; text-align: center; padding: 2rem 1.5rem;
-  background: linear-gradient(165deg, #061310 0%, #0b3a2c 48%, #0a2f3e 100%); position: relative; overflow: hidden; }
+  background: linear-gradient(165deg, #060a16 0%, #0c2748 48%, #0a1b33 100%); position: relative; overflow: hidden; }
 .hero::before { content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 38%, rgba(31,168,106,0.14) 0%, transparent 55%); pointer-events: none; }
+  background: radial-gradient(ellipse at 50% 38%, rgba(58,118,190,0.16) 0%, transparent 55%); pointer-events: none; }
 .hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
   margin-bottom: 1.5rem; font-weight: 600; opacity: 0.85; }
 .hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.4rem, 7vw, 5rem);
@@ -48,7 +49,7 @@ body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; back
 .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; margin-top: 1.2rem; line-height: 1.6; }
 .hero-stats { display: flex; gap: 1.5rem; margin: 2.5rem 0 1rem; flex-wrap: wrap; justify-content: center; }
 .hero-stat { text-align: center; padding: 1rem 1.3rem; background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(31,168,106,0.28); border-radius: 10px; min-width: 140px; }
+  border: 1px solid rgba(70,130,200,0.30); border-radius: 10px; min-width: 140px; }
 .hero-stat-n { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--gold); line-height: 1;
   font-variant-numeric: tabular-nums; }
 .hero-stat-l { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; max-width: 140px; line-height: 1.3; }
@@ -91,7 +92,8 @@ p strong { color: var(--text); font-weight: 600; }
 .stat-block { text-align: center; padding: 1.4rem 1.8rem; background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; min-width: 150px; }
 .stat-block-n { font-size: 2.2rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: var(--navy); }
-.stat-block-n.green { color: var(--green); } .stat-block-n.maroon { color: var(--maroon); } .stat-block-n.red { color: var(--red); }
+.stat-block-n.green { color: var(--green); } .stat-block-n.maroon { color: var(--maroon); }
+.stat-block-n.red { color: var(--red); } .stat-block-n.blue { color: var(--gold); }
 .stat-block-l { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.3; }
 
 /* ASIDE */
@@ -171,8 +173,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">The Hook</div>
   <h2>The 119th-Minute Substitution</h2>
-  <p>It is the oldest gamble in tournament football: with a shootout looming, send on fresh legs for the kick. On 29 June 2026, the Netherlands did exactly that &mdash; and watched substitute Justin Kluivert strike the post as they went out of the World Cup. England fans need no reminding of Euro 2020, when Marcus Rashford and Jadon Sancho were sent on in the 119th minute and both failed.</p>
-  <p>The intuition is that fresh, confident legs should help. The folklore says the opposite. So I built a dataset of <strong>840 shootout kicks</strong> from <strong>88 men's international shootouts</strong> (World Cup, Euros and Copa América, 1990&ndash;2026) to find out.</p>
+  <p>It is a move we see more, not less. In an analytics era fixated on the highest-percentage option, managers increasingly send on a fresh, specialist taker in the dying minutes, purely for the shootout. On 29 June 2026 the Netherlands did exactly that, then watched substitute Justin Kluivert strike the post as they went out of the World Cup. England fans need no reminding of Euro 2020, when Marcus Rashford and Jadon Sancho came on in the 119th minute and both failed.</p>
+  <p>There is something quietly cruel about it. The player barely touches the game; a few minutes of cold legs, maybe one sprint, and then the whole tournament rests on his single kick. So does the gamble actually work? I built a dataset of <strong>840 shootout kicks</strong> from <strong>88 men's international shootouts</strong> (World Cup, Euros and Copa América, 1990&ndash;2026) to find out.</p>
 </section>
 </div>
 
@@ -183,20 +185,40 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">The Baseline</div>
   <h2>How Often Does a Shootout Penalty Go In?</h2>
-  <p>Before judging substitutes, we need the yardstick. Across all 840 kicks in the dataset, the overall conversion rate is <strong>72.0%</strong> (95% confidence interval 68.9%&ndash;75.0%). Roughly three in four shootout penalties are scored &mdash; missing is the exception, which is exactly why a missed sub stands out.</p>
+  <p>Before judging substitutes, we need the yardstick. Across all 840 kicks in the dataset, the overall conversion rate is <strong>72.0%</strong> (95% confidence interval 68.9%&ndash;75.0%). Roughly three in four shootout penalties are scored, so missing is the exception. That is exactly why a missed sub stands out.</p>
+  <p>For scale: Lionel Messi, for many the greatest of all time, has converted about <strong>78%</strong> of his career penalties (114 of 147, shootouts aside), barely above this shootout baseline. The spot-kick humbles almost everyone.</p>
   <div class="stat-pair">
-    <div class="stat-block"><div class="stat-block-n green">72.0%</div><div class="stat-block-l">all shootout penalties<br>(840 kicks)</div></div>
+    <div class="stat-block"><div class="stat-block-n blue">72.0%</div><div class="stat-block-l">all shootout penalties<br>(840 kicks)</div></div>
     <div class="stat-block"><div class="stat-block-n">73.3%</div><div class="stat-block-l">taken by a starter<br>(475 kicks)</div></div>
     <div class="stat-block"><div class="stat-block-n maroon">67.8%</div><div class="stat-block-l">taken by a substitute<br>(258 kicks)</div></div>
   </div>
 </section>
 </div>
 
+<!-- HEADLINE CHART -->
+<div class="container--wide">
+<section class="chart-section fade-up">
+  <div class="container">
+    <div class="section-label">The Headline</div>
+    <h2>The Cost of the Late Gamble</h2>
+    <p>Line the groups up against the 72.0% baseline (dashed) and the pattern is stark: the further a taker sits from having started the match, the less often the kick goes in.</p>
+  </div>
+  <div class="container--wide">
+    <div class="chart-wrapper"><canvas id="chart-headline"></canvas></div>
+  </div>
+  <div class="container">
+    <p class="table-note">The late groups are subsets of all substitutes and carry small samples (dying-minute subs: n=17), so read them as indicative.</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider divider--wide">
+
 <!-- ROLE CHART -->
 <div class="container--wide">
 <section class="chart-section fade-up">
   <div class="container">
-    <div class="section-label">The Data</div>
+    <div class="section-label">The Detail</div>
     <h2>Conversion by Role</h2>
     <p>Each taker is labelled by how they got onto the pitch: a starter, or a substitute grouped by when they came on. The dashed line is the 72.0% overall baseline.</p>
   </div>
@@ -223,7 +245,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <div class="section-label">The Finding</div>
   <h2>It's the Extra-Time Sub Who Pays</h2>
   <p>It is <em>not</em> substitutes in general who falter. Across all subs the gap (<strong>67.8%</strong> vs <strong>73.3%</strong> for starters) is only borderline. The effect concentrates in the players sent on late: <strong>extra-time substitutes convert just 59.4%</strong>, and the dying-minutes specialists brought on at 110'+ manage only <strong>52.9%</strong>.</p>
-  <p>Because the hypothesis is directional &mdash; subs are predicted to do <em>worse</em>, not merely differently &mdash; the one-sided test is the relevant one (the stricter two-sided figure is shown too).</p>
+  <p>Because the hypothesis is directional (subs are predicted to do <em>worse</em>, not merely differently), the one-sided test is the relevant one; the stricter two-sided figure is shown too.</p>
   <div class="data-table-scroll">
     <table class="data-table">
       <thead><tr><th>Comparison</th><th class="num">Conversion</th><th class="num">two-sided p</th><th class="num">one-sided p</th><th>Verdict</th></tr></thead>
@@ -231,7 +253,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
     </table>
   </div>
   <div class="callout--maroon callout">
-    <p>A logistic regression agrees: being a substitute multiplies the odds of scoring by <strong>0.77</strong> (95% CI 0.55&ndash;1.07, p = 0.121) &mdash; a substitute's scoring odds are roughly <strong>23% lower</strong> than a starter's. For comparison, published tournament studies put substitutes near 61% against 74% for starters.</p>
+    <p>A logistic regression agrees: being a substitute multiplies the odds of scoring by <strong>0.77</strong> (95% CI 0.55&ndash;1.07, p = 0.121). A substitute's scoring odds are roughly <strong>23% lower</strong> than a starter's. For comparison, published tournament studies put substitutes near 61% against 74% for starters.</p>
   </div>
 </section>
 </div>
@@ -242,7 +264,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
   <div class="container">
     <div class="section-label">By Minute of Entry</div>
     <h2>The Extra-Time Arrivals Fare Worst</h2>
-    <p>Grouping substitutes by when they came on, conversion is noisy through normal time &mdash; but the players sent on in the final stretch (105&ndash;120') dip clearly below the 73.3% starter line (dashed).</p>
+    <p>Grouping substitutes by when they came on, conversion is noisy through normal time, but the players sent on in the final stretch (105&ndash;120') dip clearly below the 73.3% starter line (dashed).</p>
   </div>
   <div class="container--wide">
     <div class="chart-wrapper"><canvas id="chart-minute"></canvas></div>
@@ -251,7 +273,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 </div>
 
 <div class="container">
-  <div class="pullquote fade-up">The fresh-legs gamble looks worst exactly where managers reach for it most &mdash; the final minutes of extra time.</div>
+  <div class="pullquote fade-up">The fresh-legs gamble looks worst exactly where managers reach for it most: the final minutes of extra time.</div>
 </div>
 
 <hr class="divider divider--wide">
@@ -278,7 +300,7 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">For Context</div>
   <h2>Baseline by Competition &amp; Era</h2>
-  <p>Conversion is remarkably stable across competitions and decades &mdash; the substitute effect is not an artefact of one tournament or period.</p>
+  <p>Conversion is remarkably stable across competitions and decades, so the substitute effect is not an artefact of one tournament or period.</p>
   <div class="stat-pair" style="align-items:flex-start;">
     <div class="data-table-scroll" style="flex:1;min-width:260px;">
       <table class="data-table">
@@ -299,13 +321,12 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <!-- CAVEAT -->
 <div class="container">
 <section class="narrative-section fade-up">
-  <div class="section-label">The Honest Caveat</div>
+  <div class="section-label">A Caveat</div>
   <h2>Why This Isn't a Clean Experiment</h2>
-  <p>One important caveat: a substitute is not a random starter. Designated penalty takers are usually a team's senior players &mdash; the captain, the No. 10, the striker &mdash; and they tend to start. The man sent on in the 118th minute is, more often than not, further down the pecking order: younger, less experienced, or simply not among the side's first-choice takers.</p>
-  <p>So part of the gap almost certainly reflects <strong>who these players are</strong>, not just cold legs or the chaos of being thrown on late. Confidence, big-game temperament and raw ability all plausibly favour starters. This is observational data: substitutes are deployed <em>because</em> of a situation, never assigned at random. The numbers show a real and consistent pattern &mdash; they do not prove the substitution itself is the cause.</p>
+  <p>A substitute is not a random starter, so part of the gap may reflect player quality rather than cold legs alone. But it often cuts the other way: the late sub is frequently a designated specialist, sent on precisely because he is one of the squad's best takers with a strong record in normal play. That even these specialists miss more here points at the conditions (a long wait, then one cold and decisive kick) rather than the player. Either way the data is observational, so the pattern is real but not proof that the substitution itself is the cause.</p>
   <div class="aside-box">
     <h3>Scope</h3>
-    <p>This analysis covers shootout penalties only. In-play penalties &mdash; taken in open play rather than a shootout &mdash; convert a touch higher (around 75% historically) and carry different pressures. Everything here is shootout-specific.</p>
+    <p>This analysis covers shootout penalties only. In-play penalties, taken in open play rather than a shootout, convert a touch higher (around 75% historically) and carry different pressures. Everything here is shootout-specific.</p>
   </div>
 </section>
 </div>
@@ -316,8 +337,8 @@ footer a { color: var(--gold-dk); text-decoration: none; }
     <summary>Methodology &amp; Sources</summary>
     <div class="meth-inner">
       <p>840 shootout kicks from 88 men's international shootouts (FIFA World Cup, UEFA Euros, Copa América), 1990&ndash;2026. Each taker is classified as a starter or a substitute, with the substitute's minute of entry, by joining the shootout result to the match lineups.</p>
-      <p>Two sources. <strong>StatsBomb open data</strong> (event-level data with exact substitution minutes) is the ground truth for recent tournaments. <strong>Wikipedia</strong> knockout-stage pages &mdash; which carry both the shootout box and full lineups with substitution minutes &mdash; provide the historical coverage. The Wikipedia parser was validated against StatsBomb on the 18 shootouts present in both sources, matching 100% on outcome sequences and substitute counts.</p>
-      <p>Confidence intervals use the Wilson method; group comparisons use a two-proportion z-test (one- and two-sided) supported by a logistic regression. Live 2026 fixtures and a handful of older Copa América matches lacked published lineups; those kicks count toward the baseline but are excluded from the starter-vs-substitute split. The 2026 World Cup is ongoing &mdash; figures are a snapshot.</p>
+      <p>Two sources. <strong>StatsBomb open data</strong> (event-level data with exact substitution minutes) is the ground truth for recent tournaments. <strong>Wikipedia</strong> knockout-stage pages, which carry both the shootout box and full lineups with substitution minutes, provide the historical coverage. The Wikipedia parser was validated against StatsBomb on the 18 shootouts present in both sources, matching 100% on outcome sequences and substitute counts.</p>
+      <p>Confidence intervals use the Wilson method; group comparisons use a two-proportion z-test (one- and two-sided) supported by a logistic regression. Live 2026 fixtures and a handful of older Copa América matches lacked published lineups; those kicks count toward the baseline but are excluded from the starter-vs-substitute split. The 2026 World Cup is ongoing, so figures are a snapshot.</p>
     </div>
   </details>
 
@@ -334,9 +355,9 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 </footer>
 
 <script>
-var D = {"baseline": 72.0, "starter_p": 73.3, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [73.3, 67.9, 76.7, 59.4], "counts": [475, 196, 30, 32]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [76.9, 62.8, 68.4, 76.7, 59.4], "counts": [39, 78, 79, 30, 32]}};
-var MAROON = '#B81D3A', GOLD = '#1B8A5A', GOLD_DK = '#116A41', GREEN = '#157A48',
-    RED = '#C8102E', NAVY = '#14313F', SLATE = '#475569', MUTED = '#8A8A95';
+var D = {"baseline": 72.0, "starter_p": 73.3, "headline": {"labels": ["Starters", "Substitutes", "Dying-minute subs (110'+)"], "values": [73.3, 67.8, 52.9], "counts": [475, 258, 17]}, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [73.3, 67.9, 76.7, 59.4], "counts": [475, 196, 30, 32]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [76.9, 62.8, 68.4, 76.7, 59.4], "counts": [39, 78, 79, 30, 32]}};
+var MAROON = '#B81D3A', GOLD = '#1E5FA8', GOLD_DK = '#15457C', GREEN = '#157A48',
+    RED = '#C8102E', NAVY = '#12263F', SLATE = '#475569', MUTED = '#8A8A95';
 Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
 Chart.defaults.font.size = 11;
 Chart.defaults.color = '#4A4A5A';
@@ -360,9 +381,28 @@ function baseLine(value, label, color){
   };
 }
 
+// CHART 0: headline comparison (starters vs subs vs dying-minute subs)
+try {
+  new Chart($('chart-headline'), {
+    type: 'bar',
+    data: { labels: D.headline.labels.map(function(l,i){ return [l, 'n=' + D.headline.counts[i]]; }),
+      datasets: [{ label: 'Conversion', data: D.headline.values,
+        backgroundColor: ['#13314F', '#3E6FA3', '#C0233C'], borderRadius: 6, maxBarThickness: 130 }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        title: { display: true, text: 'Shootout conversion: starters vs substitutes vs late subs', font: { size: 13, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.headline.counts[c.dataIndex] + ')'; } } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 11, weight: 600 } } },
+        y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
+          ticks: { callback: function(v){ return v + '%'; } },
+          title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
+    plugins: [ baseLine(D.baseline, 'Baseline ' + D.baseline + '%', SLATE) ]
+  });
+} catch(e){ console.error('headline', e); }
+
 // CHART 1: conversion by role
 try {
-  var roleColors = ['#14633B', '#4F9E73', '#D69A2D', '#C0233C'];  // safe -> risk ramp
+  var roleColors = ['#13314F', '#3E6FA3', '#D69A2D', '#C0233C'];  // safe -> risk ramp
   new Chart($('chart-roles'), {
     type: 'bar',
     data: { labels: D.roles.labels.map(function(l,i){ return [l, 'n=' + D.roles.counts[i]]; }),
