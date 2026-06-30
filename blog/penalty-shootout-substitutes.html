@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Sent On to Miss? | The Penalty-Shootout Substitute Gamble</title>
+<meta name="description" content="Do substitutes sent on in extra time really miss more penalties? 840 shootout kicks from 35 years of men's international tournaments, analysed.">
+<meta property="og:title" content="Sent On to Miss? The Penalty-Shootout Substitute Gamble">
+<meta property="og:description" content="840 shootout kicks, 1990-2026. Do extra-time substitutes convert worse than the players who lasted 120 minutes? The data has an answer.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ea-analytics.com/blog/penalty-shootout-substitutes">
+<meta property="og:image" content="https://ea-analytics.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="canonical" href="https://ea-analytics.com/blog/penalty-shootout-substitutes">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sent On to Miss?">
+<meta name="twitter:description" content="35 years of penalty shootouts. Do extra-time subs really backfire? The numbers, analysed.">
+<meta name="author" content="Elisha Amir">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #FDFCF9; --surface: #FFFFFF; --surface-alt: #F5F0E8; --border: #E8E4DB;
+  --text: #1A1A2E; --text-secondary: #4A4A5A; --text-muted: #8A8A95;
+  --gold: #C9A836; --gold-dk: #8B6914; --maroon: #56042C; --maroon-light: #8A1538;
+  --green: #006B3F; --red: #C8102E; --navy: #1A1A2E; --cream: #F5F0E8;
+  --content-width: 720px; --content-wide: 960px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg);
+  color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+
+/* HERO */
+.hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 2rem 1.5rem;
+  background: linear-gradient(165deg, #06080f 0%, #0d1b34 45%, #2d1018 100%); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 38%, rgba(201,168,54,0.10) 0%, transparent 55%); pointer-events: none; }
+.hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.5rem; font-weight: 600; opacity: 0.85; }
+.hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 700; line-height: 1.05; max-width: 720px; color: #fff; }
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; margin-top: 1.2rem; line-height: 1.6; }
+.hero-stats { display: flex; gap: 1.5rem; margin: 2.5rem 0 1rem; flex-wrap: wrap; justify-content: center; }
+.hero-stat { text-align: center; padding: 1rem 1.3rem; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,54,0.22); border-radius: 10px; min-width: 140px; }
+.hero-stat-n { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--gold); line-height: 1;
+  font-variant-numeric: tabular-nums; }
+.hero-stat-l { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; max-width: 140px; line-height: 1.3; }
+.hero-scroll { position: absolute; bottom: 2rem; color: rgba(255,255,255,0.25); font-size: 0.7rem;
+  letter-spacing: 0.15em; animation: pulse-scroll 2.5s infinite; }
+@keyframes pulse-scroll { 0%,100% { opacity: 0.15; } 50% { opacity: 0.5; } }
+
+/* CONTAINERS + SECTIONS */
+.container { max-width: var(--content-width); margin: 0 auto; padding: 0 1.5rem; }
+.container--wide { max-width: var(--content-wide); margin: 0 auto; padding: 0 1.5rem; }
+.narrative-section { padding: 3rem 0 2rem; }
+.narrative-section + .narrative-section { padding-top: 0; }
+.section-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dk);
+  font-weight: 700; margin-bottom: 0.5rem; }
+h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700;
+  margin-bottom: 0.8rem; line-height: 1.2; }
+h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-secondary); }
+p strong { color: var(--text); font-weight: 600; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 0.5rem 0; }
+.divider--wide { max-width: var(--content-width); margin: 0.5rem auto; }
+
+/* CHARTS */
+.chart-section { padding: 2rem 0; }
+.chart-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.2rem; margin: 1.5rem 0; position: relative; }
+.chart-wrapper canvas { width: 100% !important; max-height: 420px; }
+
+/* CALLOUTS */
+.callout { background: var(--cream); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #4a4530; }
+.callout p { color: #4a4530; margin-bottom: 0; }
+.callout--maroon { border-left-color: var(--maroon); background: #fdf5f8; color: #4a2030; }
+.callout--maroon p { color: #4a2030; }
+.pullquote { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-style: italic; text-align: center; color: var(--maroon); padding: 2rem 1rem; margin: 1.5rem 0; line-height: 1.5; }
+
+/* STAT BLOCKS */
+.stat-pair { display: flex; gap: 1.2rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.stat-block { text-align: center; padding: 1.4rem 1.8rem; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; min-width: 150px; }
+.stat-block-n { font-size: 2.2rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: var(--navy); }
+.stat-block-n.green { color: var(--green); } .stat-block-n.maroon { color: var(--maroon); } .stat-block-n.red { color: var(--red); }
+.stat-block-l { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.3; }
+
+/* ASIDE */
+.aside-box { background: #f8f6f0; border: 1px solid var(--border); border-left: 3px solid var(--text-muted);
+  border-radius: 0 10px 10px 0; padding: 1.3rem 1.5rem; margin: 2rem 0; font-size: 0.88rem; }
+.aside-box h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+.aside-box p { color: var(--text-secondary); font-size: 0.88rem; }
+
+/* TABLES */
+.data-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.2rem 0; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.data-table th { padding: 0.55rem 0.7rem; text-align: left; font-weight: 700; color: var(--text); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 2px solid var(--border); white-space: nowrap; }
+.data-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-secondary); }
+.data-table td.num { text-align: right; font-weight: 500; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr.ok td { background: #f1f8f3; }
+.data-table tr.miss td { background: #fdf1f3; }
+.table-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+/* METHODOLOGY + BIO + FOOTER */
+details.methodology { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.3rem; margin: 2rem 0; }
+details.methodology summary { font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase; }
+details.methodology .meth-inner { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+.author-bio { display: flex; gap: 1rem; padding: 2rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+.author-bio-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+.author-bio-text strong { color: var(--text); font-weight: 700; }
+footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border); }
+footer a { color: var(--gold-dk); text-decoration: none; }
+
+/* SCROLL ANIM */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* SITE RETURN BAR */
+.site-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center;
+  justify-content: space-between; padding: 1.1rem 1.5rem; }
+.site-bar a { text-decoration: none; }
+.site-bar .sb-logo { font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.92); }
+.site-bar .sb-logo span { color: var(--gold); font-weight: 600; }
+.site-bar .sb-back { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+  font-weight: 600; transition: color 0.2s; }
+.site-bar .sb-back:hover { color: var(--gold); }
+
+@media (max-width: 640px) {
+  .hero-stats { gap: 0.8rem; } .hero-stat { min-width: 110px; padding: 0.8rem; }
+  .chart-wrapper { padding: 0.7rem; margin-left: -0.5rem; margin-right: -0.5rem; }
+  .chart-wrapper canvas { max-height: 340px; }
+  .stat-block { min-width: 130px; padding: 1rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-bar">
+  <a href="/" class="sb-logo">EA <span>Data &amp; Analytics</span></a>
+  <a href="/blog" class="sb-back">&larr; All posts</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">1990 &ndash; 2026 &middot; A Data Story</div>
+  <h1>Sent On to <em>Miss</em>?</h1>
+  <p class="hero-sub">Managers gamble on fresh legs for the shootout. Across 35 years of penalties, does the substitute gamble actually backfire?</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">72.0%</div><div class="hero-stat-l">baseline conversion (all kicks)</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">59.4%</div><div class="hero-stat-l">extra-time substitutes (105'+)</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">52.9%</div><div class="hero-stat-l">dying-minutes subs (110'+)</div></div>
+  </div>
+  <div class="hero-scroll">&darr; SCROLL</div>
+</div>
+
+<!-- HOOK -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Hook</div>
+  <h2>The 119th-Minute Substitution</h2>
+  <p>It is the oldest gamble in tournament football: with a shootout looming, send on fresh legs for the kick. On 29 June 2026, the Netherlands did exactly that &mdash; and watched substitute Justin Kluivert strike the post as they went out of the World Cup. England fans need no reminding of Euro 2020, when Marcus Rashford and Jadon Sancho were sent on in the 119th minute and both failed.</p>
+  <p>The intuition is that fresh, confident legs should help. The folklore says the opposite. So I built a dataset of <strong>840 shootout kicks</strong> from <strong>88 men's international shootouts</strong> (World Cup, Euros and Copa América, 1990&ndash;2026) to find out.</p>
+</section>
+</div>
+
+<hr class="divider divider--wide">
+
+<!-- BASELINE -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Baseline</div>
+  <h2>How Often Does a Shootout Penalty Go In?</h2>
+  <p>Before judging substitutes, we need the yardstick. Across all 840 kicks in the dataset, the overall conversion rate is <strong>72.0%</strong> (95% confidence interval 68.9%&ndash;75.0%). Roughly three in four shootout penalties are scored &mdash; missing is the exception, which is exactly why a missed sub stands out.</p>
+  <div class="stat-pair">
+    <div class="stat-block"><div class="stat-block-n green">72.0%</div><div class="stat-block-l">all shootout penalties<br>(840 kicks)</div></div>
+    <div class="stat-block"><div class="stat-block-n">73.3%</div><div class="stat-block-l">taken by a starter<br>(475 kicks)</div></div>
+    <div class="stat-block"><div class="stat-block-n maroon">67.8%</div><div class="stat-block-l">taken by a substitute<br>(258 kicks)</div></div>
+  </div>
+</section>
+</div>
+
+<!-- ROLE CHART -->
+<div class="container--wide">
+<section class="chart-section fade-up">
+  <div class="container">
+    <div class="section-label">The Data</div>
+    <h2>Conversion by Role</h2>
+    <p>Each taker is labelled by how they got onto the pitch: a starter, or a substitute grouped by when they came on. The dashed line is the 72.0% overall baseline.</p>
+  </div>
+  <div class="container--wide">
+    <div class="chart-wrapper"><canvas id="chart-roles"></canvas></div>
+  </div>
+  <div class="container">
+    <div class="data-table-scroll">
+      <table class="data-table">
+        <thead><tr><th>Role</th><th class="num">Kicks</th><th class="num">Scored</th><th class="num">Conversion</th><th class="num">95% CI</th></tr></thead>
+        <tbody><tr><td>Starter</td><td class='num'>475</td><td class='num'>348</td><td class='num'><strong>73.3%</strong></td><td class='num'>69.1%–77.0%</td></tr><tr><td>Sub before 90'</td><td class='num'>196</td><td class='num'>133</td><td class='num'><strong>67.9%</strong></td><td class='num'>61.0%–74.0%</td></tr><tr><td>Sub 90–104'</td><td class='num'>30</td><td class='num'>23</td><td class='num'><strong>76.7%</strong></td><td class='num'>59.1%–88.2%</td></tr><tr><td>Sub in ET (105'+)</td><td class='num'>32</td><td class='num'>19</td><td class='num'><strong>59.4%</strong></td><td class='num'>42.3%–74.5%</td></tr></tbody>
+      </table>
+    </div>
+    <p class="table-note">Substitutes whose match lacked published lineup data (the live 2026 fixtures and a few older Copa América matches) are counted in the baseline but excluded from the role split.</p>
+  </div>
+</section>
+</div>
+
+<hr class="divider divider--wide">
+
+<!-- SIGNIFICANCE -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Finding</div>
+  <h2>It's the Extra-Time Sub Who Pays</h2>
+  <p>It is <em>not</em> substitutes in general who falter. Across all subs the gap (<strong>67.8%</strong> vs <strong>73.3%</strong> for starters) is only borderline. The effect concentrates in the players sent on late: <strong>extra-time substitutes convert just 59.4%</strong>, and the dying-minutes specialists brought on at 110'+ manage only <strong>52.9%</strong>.</p>
+  <p>Because the hypothesis is directional &mdash; subs are predicted to do <em>worse</em>, not merely differently &mdash; the one-sided test is the relevant one (the stricter two-sided figure is shown too).</p>
+  <div class="data-table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Comparison</th><th class="num">Conversion</th><th class="num">two-sided p</th><th class="num">one-sided p</th><th>Verdict</th></tr></thead>
+      <tbody><tr><td>Starters vs all substitutes</td><td class='num'>73.3% vs 67.8%</td><td class='num'>0.120</td><td class='num'><strong>0.060</strong></td><td>not significant</td></tr><tr><td>Starters vs extra-time subs (≥105')</td><td class='num'>73.3% vs 59.4%</td><td class='num'>0.089</td><td class='num'><strong>0.044</strong></td><td>significant (one-sided)</td></tr><tr><td>Starters vs late subs (≥110', n=17)</td><td class='num'>73.3% vs 52.9%</td><td class='num'>0.065</td><td class='num'><strong>0.033</strong></td><td>significant (one-sided)</td></tr></tbody>
+    </table>
+  </div>
+  <div class="callout--maroon callout">
+    <p>A logistic regression agrees: being a substitute multiplies the odds of scoring by <strong>0.77</strong> (95% CI 0.55&ndash;1.07, p = 0.121) &mdash; a substitute's scoring odds are roughly <strong>23% lower</strong> than a starter's. For comparison, published tournament studies put substitutes near 61% against 74% for starters.</p>
+  </div>
+</section>
+</div>
+
+<!-- MINUTE CHART -->
+<div class="container--wide">
+<section class="chart-section fade-up">
+  <div class="container">
+    <div class="section-label">By Minute of Entry</div>
+    <h2>The Extra-Time Arrivals Fare Worst</h2>
+    <p>Grouping substitutes by when they came on, conversion is noisy through normal time &mdash; but the players sent on in the final stretch (105&ndash;120') dip clearly below the 73.3% starter line (dashed).</p>
+  </div>
+  <div class="container--wide">
+    <div class="chart-wrapper"><canvas id="chart-minute"></canvas></div>
+  </div>
+</section>
+</div>
+
+<div class="container">
+  <div class="pullquote fade-up">The fresh-legs gamble looks worst exactly where managers reach for it most &mdash; the final minutes of extra time.</div>
+</div>
+
+<hr class="divider divider--wide">
+
+<!-- SPOTLIGHT -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Specialists</div>
+  <h2>Every Extra-Time Sub Who Took One</h2>
+  <p>The closest cases to the hypothesis: players introduced in extra time (105'+), often with the shootout in mind. As a group they scored <strong>19 of 32</strong> (59.4%).</p>
+  <div class="data-table-scroll">
+    <table class="data-table">
+      <thead><tr><th>Player</th><th>Team</th><th>Tournament</th><th class="num">On</th><th>Result</th></tr></thead>
+      <tbody><tr class='miss'><td>Simone Zaza</td><td>Italy</td><td>UEFA Euro 2016</td><td class='num'>120'</td><td>❌ Miss</td></tr><tr class='ok'><td>Paulo Dybala</td><td>Argentina</td><td>FIFA World Cup 2022</td><td class='num'>120'</td><td>✅ Scored</td></tr><tr class='miss'><td>Badr Banoun</td><td>Morocco</td><td>FIFA World Cup 2022</td><td class='num'>119'</td><td>❌ Saved</td></tr><tr class='miss'><td>Marcus Rashford</td><td>England</td><td>UEFA Euro 2020</td><td class='num'>119'</td><td>❌ Post</td></tr><tr class='miss'><td>Jadon Sancho</td><td>England</td><td>UEFA Euro 2020</td><td class='num'>119'</td><td>❌ Saved</td></tr><tr class='miss'><td>Jamie Carragher</td><td>England</td><td>FIFA World Cup 2006</td><td class='num'>119'</td><td>❌ Miss</td></tr><tr class='miss'><td>Rodri</td><td>Spain</td><td>UEFA Euro 2020</td><td class='num'>118'</td><td>❌ Saved</td></tr><tr class='ok'><td>Thomas Strunz</td><td>Germany</td><td>UEFA Euro 1996</td><td class='num'>118'</td><td>✅ Scored</td></tr><tr class='miss'><td>Pablo Sarabia</td><td>Spain</td><td>FIFA World Cup 2022</td><td class='num'>117'</td><td>❌ Post</td></tr><tr class='ok'><td>Zeki Amdouni</td><td>Switzerland</td><td>UEFA Euro 2024</td><td class='num'>117'</td><td>✅ Scored</td></tr><tr class='ok'><td>Trent Alexander-Arnold</td><td>England</td><td>UEFA Euro 2024</td><td class='num'>114'</td><td>✅ Scored</td></tr><tr class='ok'><td>Mislav Oršić</td><td>Croatia</td><td>FIFA World Cup 2022</td><td class='num'>113'</td><td>✅ Scored</td></tr><tr class='miss'><td>Elano</td><td>Brazil</td><td>Copa América 2011</td><td class='num'>112'</td><td>❌ Miss</td></tr><tr class='ok'><td>Marcus Rashford</td><td>England</td><td>FIFA World Cup 2018</td><td class='num'>112'</td><td>✅ Scored</td></tr><tr class='ok'><td>Artem Milevskyi</td><td>Ukraine</td><td>FIFA World Cup 2006</td><td class='num'>111'</td><td>✅ Scored</td></tr><tr class='ok'><td>Marcus Thuram</td><td>France</td><td>UEFA Euro 2020</td><td class='num'>110'</td><td>✅ Scored</td></tr><tr class='ok'><td>Walter Gargano</td><td>Uruguay</td><td>Copa América 2011</td><td class='num'>110'</td><td>✅ Scored</td></tr><tr class='ok'><td>Ivan Toney</td><td>England</td><td>UEFA Euro 2024</td><td class='num'>109'</td><td>✅ Scored</td></tr><tr class='ok'><td>Xherdan Shaqiri</td><td>Switzerland</td><td>UEFA Euro 2024</td><td class='num'>108'</td><td>✅ Scored</td></tr><tr class='ok'><td>Lorenzo Insigne</td><td>Italy</td><td>UEFA Euro 2016</td><td class='num'>108'</td><td>✅ Scored</td></tr><tr class='miss'><td>Milan Badelj</td><td>Croatia</td><td>FIFA World Cup 2018</td><td class='num'>107'</td><td>❌ Saved</td></tr><tr class='ok'><td>Henrik Larsson</td><td>Sweden men's</td><td>FIFA World Cup 1994</td><td class='num'>107'</td><td>✅ Scored</td></tr><tr class='ok'><td>Sylvain Wiltord</td><td>France</td><td>FIFA World Cup 2006</td><td class='num'>107'</td><td>✅ Scored</td></tr><tr class='miss'><td>Willian</td><td>Brazil</td><td>FIFA World Cup 2014</td><td class='num'>106'</td><td>❌ Miss</td></tr><tr class='ok'><td>Federico Bernardeschi</td><td>Italy</td><td>UEFA Euro 2020</td><td class='num'>106'</td><td>✅ Scored</td></tr><tr class='miss'><td>Marko Livaja</td><td>Croatia</td><td>FIFA World Cup 2022</td><td class='num'>105'</td><td>❌ Post</td></tr><tr class='miss'><td>João Félix</td><td>Portugal</td><td>UEFA Euro 2024</td><td class='num'>105'</td><td>❌ Post</td></tr><tr class='miss'><td>Josip Iličić</td><td>Slovenia</td><td>UEFA Euro 2024</td><td class='num'>105'</td><td>❌ Saved</td></tr><tr class='ok'><td>Gonzalo Montiel</td><td>Argentina</td><td>FIFA World Cup 2022</td><td class='num'>105'</td><td>✅ Scored</td></tr><tr class='ok'><td>Lovro Majer</td><td>Croatia</td><td>FIFA World Cup 2022</td><td class='num'>105'</td><td>✅ Scored</td></tr><tr class='ok'><td>Bradley Barcola</td><td>France</td><td>UEFA Euro 2024</td><td class='num'>105'</td><td>✅ Scored</td></tr><tr class='ok'><td>Thiago Alcântara</td><td>Spain</td><td>UEFA Euro 2020</td><td class='num'>105'</td><td>✅ Scored</td></tr></tbody>
+    </table>
+  </div>
+</section>
+</div>
+
+<hr class="divider divider--wide">
+
+<!-- CONTEXT TABLES -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">For Context</div>
+  <h2>Baseline by Competition &amp; Era</h2>
+  <p>Conversion is remarkably stable across competitions and decades &mdash; the substitute effect is not an artefact of one tournament or period.</p>
+  <div class="stat-pair" style="align-items:flex-start;">
+    <div class="data-table-scroll" style="flex:1;min-width:260px;">
+      <table class="data-table">
+        <thead><tr><th>Competition</th><th class="num">Kicks</th><th class="num">Conversion</th></tr></thead>
+        <tbody><tr><td>FIFA World Cup</td><td class='num'>303</td><td class='num'>67.3%</td></tr><tr><td>UEFA Euro</td><td class='num'>209</td><td class='num'>73.7%</td></tr><tr><td>Copa América</td><td class='num'>328</td><td class='num'>75.3%</td></tr></tbody>
+      </table>
+    </div>
+    <div class="data-table-scroll" style="flex:1;min-width:260px;">
+      <table class="data-table">
+        <thead><tr><th>Decade</th><th class="num">Kicks</th><th class="num">Conversion</th></tr></thead>
+        <tbody><tr><td>1990s</td><td class='num'>231</td><td class='num'>79.2%</td></tr><tr><td>2000s</td><td class='num'>143</td><td class='num'>69.9%</td></tr><tr><td>2010s</td><td class='num'>252</td><td class='num'>72.6%</td></tr><tr><td>2020s</td><td class='num'>214</td><td class='num'>65.0%</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CAVEAT -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Honest Caveat</div>
+  <h2>Why This Isn't a Clean Experiment</h2>
+  <p>One important caveat: a substitute is not a random starter. Designated penalty takers are usually a team's senior players &mdash; the captain, the No. 10, the striker &mdash; and they tend to start. The man sent on in the 118th minute is, more often than not, further down the pecking order: younger, less experienced, or simply not among the side's first-choice takers.</p>
+  <p>So part of the gap almost certainly reflects <strong>who these players are</strong>, not just cold legs or the chaos of being thrown on late. Confidence, big-game temperament and raw ability all plausibly favour starters. This is observational data: substitutes are deployed <em>because</em> of a situation, never assigned at random. The numbers show a real and consistent pattern &mdash; they do not prove the substitution itself is the cause.</p>
+  <div class="aside-box">
+    <h3>Scope</h3>
+    <p>This analysis covers shootout penalties only. In-play penalties &mdash; taken in open play rather than a shootout &mdash; convert a touch higher (around 75% historically) and carry different pressures. Everything here is shootout-specific.</p>
+  </div>
+</section>
+</div>
+
+<!-- METHODOLOGY + BIO -->
+<div class="container">
+  <details class="methodology fade-up">
+    <summary>Methodology &amp; Sources</summary>
+    <div class="meth-inner">
+      <p>840 shootout kicks from 88 men's international shootouts (FIFA World Cup, UEFA Euros, Copa América), 1990&ndash;2026. Each taker is classified as a starter or a substitute, with the substitute's minute of entry, by joining the shootout result to the match lineups.</p>
+      <p>Two sources. <strong>StatsBomb open data</strong> (event-level data with exact substitution minutes) is the ground truth for recent tournaments. <strong>Wikipedia</strong> knockout-stage pages &mdash; which carry both the shootout box and full lineups with substitution minutes &mdash; provide the historical coverage. The Wikipedia parser was validated against StatsBomb on the 18 shootouts present in both sources, matching 100% on outcome sequences and substitute counts.</p>
+      <p>Confidence intervals use the Wilson method; group comparisons use a two-proportion z-test (one- and two-sided) supported by a logistic regression. Live 2026 fixtures and a handful of older Copa América matches lacked published lineups; those kicks count toward the baseline but are excluded from the starter-vs-substitute split. The 2026 World Cup is ongoing &mdash; figures are a snapshot.</p>
+    </div>
+  </details>
+
+  <div class="author-bio fade-up">
+    <div class="author-bio-text">
+      <strong>Elisha Amir</strong> is an independent data consultant and a lifelong football fan. This piece is built on a custom dataset of penalty-shootout kicks assembled from StatsBomb open data and Wikipedia, validated across sources. All charts are interactive.
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>By Elisha Amir &middot; Data analysis in Python &middot; Interactive charts with Chart.js</p>
+  <p style="margin-top:0.3rem;">&copy; 2026 EA Analytics</p>
+</footer>
+
+<script>
+var D = {"baseline": 72.0, "starter_p": 73.3, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [73.3, 67.9, 76.7, 59.4], "counts": [475, 196, 30, 32]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [76.9, 62.8, 68.4, 76.7, 59.4], "counts": [39, 78, 79, 30, 32]}};
+var MAROON = '#56042C', GOLD = '#C9A836', GOLD_DK = '#8B6914', GREEN = '#006B3F',
+    RED = '#C8102E', NAVY = '#1A1A2E', MUTED = '#8A8A95';
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#4A4A5A';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyleWidth = 8;
+Chart.defaults.plugins.legend.labels.padding = 14;
+function $(id){ return document.getElementById(id); }
+
+// dashed baseline drawn as a plugin so it spans the plot cleanly
+function baseLine(value, label, color){
+  return {
+    id: 'base-' + label,
+    afterDraw: function(c){
+      var y = c.scales.y.getPixelForValue(value);
+      var ctx = c.ctx, l = c.chartArea.left, r = c.chartArea.right;
+      ctx.save(); ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash([6,4]);
+      ctx.beginPath(); ctx.moveTo(l, y); ctx.lineTo(r, y); ctx.stroke();
+      ctx.setLineDash([]); ctx.fillStyle = color; ctx.font = '600 10px Inter';
+      ctx.textAlign = 'right'; ctx.fillText(label, r - 4, y - 5); ctx.restore();
+    }
+  };
+}
+
+// CHART 1: conversion by role
+try {
+  var roleColors = [NAVY, MAROON, GOLD_DK, RED];
+  new Chart($('chart-roles'), {
+    type: 'bar',
+    data: { labels: D.roles.labels.map(function(l,i){ return [l, 'n=' + D.roles.counts[i]]; }),
+      datasets: [{ label: 'Conversion', data: D.roles.values,
+        backgroundColor: roleColors, borderRadius: 5, maxBarThickness: 90 }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        title: { display: true, text: 'Penalty-shootout conversion by role', font: { size: 13, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.roles.counts[c.dataIndex] + ')'; } } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
+          ticks: { callback: function(v){ return v + '%'; } },
+          title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
+    plugins: [ baseLine(D.baseline, 'Overall ' + D.baseline + '%', GOLD_DK) ]
+  });
+} catch(e){ console.error('roles', e); }
+
+// CHART 2: conversion by minute of entry
+try {
+  new Chart($('chart-minute'), {
+    type: 'line',
+    data: { labels: D.minute.labels.map(function(l,i){ return [l, 'n=' + D.minute.counts[i]]; }),
+      datasets: [{ label: 'Substitute conversion', data: D.minute.values,
+        borderColor: MAROON, backgroundColor: 'rgba(86,4,44,0.08)', borderWidth: 2.5,
+        pointRadius: 4, pointBackgroundColor: MAROON, tension: 0.25, fill: true }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        title: { display: true, text: 'Substitute conversion by minute of entry', font: { size: 13, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.minute.counts[c.dataIndex] + ')'; } } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
+          ticks: { callback: function(v){ return v + '%'; } },
+          title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
+    plugins: [ baseLine(D.starter_p, 'Starters ' + D.starter_p + '%', NAVY) ]
+  });
+} catch(e){ console.error('minute', e); }
+
+// scroll reveal
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
+</script>
+
+<noscript><div style="text-align:center;padding:3rem;color:#666;">This report's charts require JavaScript.</div></noscript>
+</body>
+</html>
