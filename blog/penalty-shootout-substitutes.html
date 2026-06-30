@@ -33,7 +33,7 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg);
-  color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; }
+  color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
 /* HERO */
 .hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
@@ -141,10 +141,26 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 .site-bar .sb-back:hover { color: var(--gold); }
 
 @media (max-width: 640px) {
-  .hero-stats { gap: 0.8rem; } .hero-stat { min-width: 110px; padding: 0.8rem; }
-  .chart-wrapper { padding: 0.7rem; margin-left: -0.5rem; margin-right: -0.5rem; }
-  .chart-wrapper canvas { max-height: 340px; }
-  .stat-block { min-width: 130px; padding: 1rem 1.2rem; }
+  body { line-height: 1.62; }
+  .container, .container--wide { padding: 0 1.05rem; }
+  p { font-size: 0.94rem; }
+  .hero { min-height: 86vh; padding: 2rem 1.1rem; }
+  .hero-stats { gap: 0.55rem; }
+  .hero-stat { min-width: 96px; padding: 0.65rem 0.55rem; }
+  .hero-stat-l { font-size: 0.6rem; max-width: 110px; }
+  .narrative-section { padding: 2rem 0 1.3rem; }
+  .chart-section { padding: 1.4rem 0; }
+  .chart-wrapper { padding: 0.55rem; margin-left: -0.35rem; margin-right: -0.35rem; }
+  .chart-wrapper canvas { max-height: 300px; }
+  .stat-pair { gap: 0.6rem; }
+  .stat-block { min-width: 100px; padding: 0.85rem 0.7rem; flex: 1 1 30%; }
+  .stat-block-n { font-size: 1.75rem; }
+  .stat-block-l { font-size: 0.66rem; }
+  .data-table { font-size: 0.74rem; }
+  .data-table th, .data-table td { padding: 0.4rem 0.5rem; }
+  .data-table th { font-size: 0.64rem; }
+  .callout, .aside-box { font-size: 0.84rem; }
+  .pullquote { font-size: 1.08rem; padding: 1.4rem 0.4rem; }
 }
 </style>
 </head>
@@ -173,8 +189,10 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">The Hook</div>
   <h2>The 119th-Minute Substitution</h2>
-  <p>It is a move we see more, not less. In an analytics era fixated on the highest-percentage option, managers increasingly send on a fresh, specialist taker in the dying minutes, purely for the shootout. On 29 June 2026 the Netherlands did exactly that, then watched substitute Justin Kluivert strike the post as they went out of the World Cup. England fans need no reminding of Euro 2020, when Marcus Rashford and Jadon Sancho came on in the 119th minute and both failed.</p>
-  <p>There is something quietly cruel about it. The player barely touches the game; a few minutes of cold legs, maybe one sprint, and then the whole tournament rests on his single kick. So does the gamble actually work? I built a dataset of <strong>840 shootout kicks</strong> from <strong>88 men's international shootouts</strong> (World Cup, Euros and Copa América, 1990&ndash;2026) to find out.</p>
+  <p>It's a move we see more, not less. In an analytics era chasing the highest-percentage option, managers increasingly send on a fresh, specialist taker in the dying minutes, purely for the shootout.</p>
+  <p>On 29 June 2026 the Netherlands did exactly that, then watched substitute Justin Kluivert hit the post and go out of the World Cup. England fans remember Euro 2020: Rashford and Sancho, on in the 119th minute, both missed.</p>
+  <p>There's something cruel about it. The player barely touches the game, then the whole tournament rests on his one kick.</p>
+  <p>So does the gamble work? I built a dataset of <strong>840 shootout kicks</strong> from <strong>88 men's international shootouts</strong> (World Cup, Euros, Copa América; 1990&ndash;2026) to find out.</p>
 </section>
 </div>
 
@@ -185,8 +203,9 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">The Baseline</div>
   <h2>How Often Does a Shootout Penalty Go In?</h2>
-  <p>Before judging substitutes, we need the yardstick. Across all 840 kicks in the dataset, the overall conversion rate is <strong>72.0%</strong> (95% confidence interval 68.9%&ndash;75.0%). Roughly three in four shootout penalties are scored, so missing is the exception. That is exactly why a missed sub stands out.</p>
-  <p>For scale: Lionel Messi, for many the greatest of all time, has converted about <strong>78%</strong> of his career penalties (114 of 147, shootouts aside), barely above this shootout baseline. The spot-kick humbles almost everyone.</p>
+  <p>First, the yardstick. Across all 840 kicks, the overall conversion rate is <strong>72.0%</strong> (95% CI 68.9%&ndash;75.0%).</p>
+  <p>Roughly three in four shootout penalties are scored. Missing is the exception, which is exactly why a missed sub stands out.</p>
+  <p>For scale: even Lionel Messi has converted about <strong>78%</strong> of his career penalties (114 of 147, shootouts aside), barely above this baseline. The spot-kick humbles almost everyone.</p>
   <div class="stat-pair">
     <div class="stat-block"><div class="stat-block-n blue">72.0%</div><div class="stat-block-l">all shootout penalties<br>(840 kicks)</div></div>
     <div class="stat-block"><div class="stat-block-n">72.8%</div><div class="stat-block-l">taken by a starter<br>(486 kicks)</div></div>
@@ -244,8 +263,9 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">The Finding</div>
   <h2>It's the Extra-Time Sub Who Pays</h2>
-  <p>It is <em>not</em> substitutes in general who falter. Across all subs the gap (<strong>67.3%</strong> vs <strong>72.8%</strong> for starters) is only borderline. The effect concentrates in the players sent on late: <strong>extra-time substitutes convert just 57.1%</strong>, and the dying-minutes specialists brought on at 110'+ manage only <strong>50.0%</strong>.</p>
-  <p>Because the hypothesis is directional (subs are predicted to do <em>worse</em>, not merely differently), the one-sided test is the relevant one; the stricter two-sided figure is shown too.</p>
+  <p>It's <em>not</em> substitutes in general who falter. Across all subs, the gap (<strong>67.3%</strong> vs <strong>72.8%</strong> for starters) is only borderline.</p>
+  <p>The effect sits with the players sent on late. <strong>Extra-time subs convert just 57.1%</strong>, and the dying-minutes specialists (on at 110'+) manage only <strong>50.0%</strong>.</p>
+  <p>Since the hypothesis is directional, subs predicted to do <em>worse</em>, the one-sided test is the relevant one; the two-sided figure is shown too.</p>
   <div class="data-table-scroll">
     <table class="data-table">
       <thead><tr><th>Comparison</th><th class="num">Conversion</th><th class="num">two-sided p</th><th class="num">one-sided p</th><th>Verdict</th></tr></thead>
@@ -323,7 +343,9 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 <section class="narrative-section fade-up">
   <div class="section-label">A Caveat</div>
   <h2>Why This Isn't a Clean Experiment</h2>
-  <p>A substitute is not a random starter, so part of the gap may reflect player quality rather than cold legs alone. But it often cuts the other way: the late sub is frequently a designated specialist, sent on precisely because he is one of the squad's best takers with a strong record in normal play. That even these specialists miss more here points at the conditions (a long wait, then one cold and decisive kick) rather than the player. Either way the data is observational, so the pattern is real but not proof that the substitution itself is the cause.</p>
+  <p>A substitute is not a random starter. Part of the gap may reflect player quality, not just cold legs.</p>
+  <p>But it often cuts the other way. The late sub is frequently a designated specialist, sent on precisely because he is one of the squad's best takers, with a strong record in normal play.</p>
+  <p>That even these specialists miss more points at the conditions (a long wait, then one cold, decisive kick) more than the player. Either way this is observational data: the pattern is real, but not proof that the substitution itself is the cause.</p>
   <div class="aside-box">
     <h3>Scope</h3>
     <p>This analysis covers shootout penalties only. In-play penalties, taken in open play rather than a shootout, convert a touch higher (around 75% historically) and carry different pressures. Everything here is shootout-specific.</p>
@@ -358,8 +380,11 @@ footer a { color: var(--gold-dk); text-decoration: none; }
 var D = {"baseline": 72.0, "starter_p": 72.8, "headline": {"labels": ["Starters", "Substitutes", "Dying-minute subs (110'+)"], "values": [72.8, 67.3, 50.0], "counts": [486, 269, 20]}, "roles": {"labels": ["Starter", "Sub before 90'", "Sub 90\u2013104'", "Sub in ET (105'+)"], "values": [72.8, 68.0, 74.2, 57.1], "counts": [486, 203, 31, 35]}, "minute": {"labels": ["<60'", "60\u201374'", "75\u201389'", "90\u2013104'", "105\u2013120'"], "values": [77.5, 63.7, 67.5, 74.2, 57.1], "counts": [40, 80, 83, 31, 35]}};
 var MAROON = '#B81D3A', GOLD = '#1E5FA8', GOLD_DK = '#15457C', GREEN = '#157A48',
     RED = '#C8102E', NAVY = '#12263F', SLATE = '#475569', MUTED = '#8A8A95';
+var MOB = window.innerWidth < 560;     // tighten chart type on small screens
+var TF = MOB ? 8.5 : 11;               // x-axis tick font
+var TT = MOB ? 11 : 13;                // chart title font
 Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
-Chart.defaults.font.size = 11;
+Chart.defaults.font.size = MOB ? 9.5 : 11;
 Chart.defaults.color = '#4A4A5A';
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.pointStyleWidth = 8;
@@ -390,9 +415,9 @@ try {
         backgroundColor: ['#13314F', '#3E6FA3', '#C0233C'], borderRadius: 6, maxBarThickness: 130 }] },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
-        title: { display: true, text: 'Shootout conversion: starters vs substitutes vs late subs', font: { size: 13, weight: 700 }, color: NAVY },
+        title: { display: true, text: (MOB ? 'Conversion: starter / sub / late sub' : 'Shootout conversion: starters vs substitutes vs late subs'), font: { size: TT, weight: 700 }, color: NAVY },
         tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.headline.counts[c.dataIndex] + ')'; } } } },
-      scales: { x: { grid: { display: false }, ticks: { font: { size: 11, weight: 600 } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: TF, weight: 600 } } },
         y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
           ticks: { callback: function(v){ return v + '%'; } },
           title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
@@ -410,9 +435,9 @@ try {
         backgroundColor: roleColors, borderRadius: 5, maxBarThickness: 90 }] },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
-        title: { display: true, text: 'Penalty-shootout conversion by role', font: { size: 13, weight: 700 }, color: NAVY },
+        title: { display: true, text: 'Penalty-shootout conversion by role', font: { size: TT, weight: 700 }, color: NAVY },
         tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.roles.counts[c.dataIndex] + ')'; } } } },
-      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: TF } } },
         y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
           ticks: { callback: function(v){ return v + '%'; } },
           title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
@@ -430,9 +455,9 @@ try {
         pointRadius: 4, pointBackgroundColor: MAROON, tension: 0.25, fill: true }] },
     options: { responsive: true, maintainAspectRatio: false,
       plugins: { legend: { display: false },
-        title: { display: true, text: 'Substitute conversion by minute of entry', font: { size: 13, weight: 700 }, color: NAVY },
+        title: { display: true, text: 'Substitute conversion by minute of entry', font: { size: TT, weight: 700 }, color: NAVY },
         tooltip: { callbacks: { label: function(c){ return c.raw + '%  (n=' + D.minute.counts[c.dataIndex] + ')'; } } } },
-      scales: { x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: TF } } },
         y: { beginAtZero: true, max: 100, grid: { color: '#eee' },
           ticks: { callback: function(v){ return v + '%'; } },
           title: { display: true, text: 'Conversion rate', font: { size: 10 } } } } },
