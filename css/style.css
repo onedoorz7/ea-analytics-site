@@ -1502,3 +1502,52 @@ body {
   .testimonial-card { padding: 30px 22px 26px; }
   .testimonial-quote { font-size: 1.15rem; }
 }
+
+/* ============================================================
+   Open Door (outside the niche)
+   ============================================================ */
+.logo-strip a { display: inline-flex; text-decoration: none; }
+.logo-strip a:hover .client-logo { opacity: 1; transform: translateY(-2px); }
+.logo-strip .client-logo { transition: opacity 0.3s ease, transform 0.3s ease; }
+
+.open-door {
+  background: var(--accent-light);
+  border-top: 1px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  padding: 70px 40px;
+  text-align: center;
+}
+
+.open-door-inner { max-width: 620px; margin: 0 auto; }
+
+.open-door-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--navy-900);
+  margin-bottom: 16px;
+}
+
+.open-door p {
+  color: var(--gray-500);
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+  line-height: 1.7;
+}
+
+.open-door-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--navy-600);
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--gold);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.open-door-link:hover { color: var(--gold-dark); }
+
+@media (max-width: 640px) {
+  .open-door { padding: 50px 20px; }
+  .open-door-title { font-size: 1.5rem; }
+}
