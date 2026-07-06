@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>A Record Built to Fall | The World Cup Goals Race</title>
+<meta name="description" content="Messi finally owns the World Cup scoring record. The data says he might not keep it for long — the age curves, the perfect ratio, and the 48-team format that widened the runway.">
+<meta property="og:title" content="A Record Built to Fall — The World Cup Goals Race">
+<meta property="og:description" content="Messi: 20 goals in 30 matches. Mbappé: 19 in 19 — at age 27. And a 48-team format serving more games than ever. The record race, analysed.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ea-analytics.com/blog/world-cup-goals-record">
+<meta property="og:image" content="https://ea-analytics.com/assets/wc-record-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="canonical" href="https://ea-analytics.com/blog/world-cup-goals-record">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A Record Built to Fall">
+<meta name="twitter:description" content="Messi 20 in 30. Mbappé 19 in 19, at 27. The World Cup scoring record race, analysed by age, rate, and format.">
+<meta name="twitter:image" content="https://ea-analytics.com/assets/wc-record-og.png">
+<meta name="author" content="Elisha Amir">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #FDFCF9; --surface: #FFFFFF; --surface-alt: #F5F0E8; --border: #E8E4DB;
+  --text: #1A1A2E; --text-secondary: #4A4A5A; --text-muted: #8A8A95;
+  --gold: #1E5FA8; --gold-dk: #15457C; --maroon: #B81D3A; --maroon-light: #D33B53;
+  --green: #157A48; --red: #C8102E; --navy: #12263F; --cream: #EAF0F7;
+  --content-width: 720px; --content-wide: 960px;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg);
+  color: var(--text); line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* HERO */
+.hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; padding: 2rem 1.5rem;
+  background: linear-gradient(165deg, #060a16 0%, #0c2748 48%, #0a1b33 100%); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 38%, rgba(58,118,190,0.16) 0%, transparent 55%); pointer-events: none; }
+.hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.5rem; font-weight: 600; opacity: 0.85; }
+.hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 700; line-height: 1.05; max-width: 760px; color: #fff; }
+.hero h1 em { color: var(--gold); font-style: italic; }
+.hero-sub { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 540px; margin-top: 1.2rem; line-height: 1.6; }
+.hero-stats { display: flex; gap: 1.5rem; margin: 2.5rem 0 1rem; flex-wrap: wrap; justify-content: center; }
+.hero-stat { text-align: center; padding: 1rem 1.3rem; background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(70,130,200,0.30); border-radius: 10px; min-width: 140px; }
+.hero-stat-n { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 900; color: var(--gold); line-height: 1;
+  font-variant-numeric: tabular-nums; }
+.hero-stat-l { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-top: 0.4rem; max-width: 150px; line-height: 1.3; }
+.hero-scroll { position: absolute; bottom: 2rem; color: rgba(255,255,255,0.25); font-size: 0.7rem;
+  letter-spacing: 0.15em; animation: pulse-scroll 2.5s infinite; }
+@keyframes pulse-scroll { 0%,100% { opacity: 0.15; } 50% { opacity: 0.5; } }
+
+/* CONTAINERS + SECTIONS */
+.container { max-width: var(--content-width); margin: 0 auto; padding: 0 1.5rem; }
+.container--wide { max-width: var(--content-wide); margin: 0 auto; padding: 0 1.5rem; }
+.narrative-section { padding: 3rem 0 2rem; }
+.narrative-section + .narrative-section { padding-top: 0; }
+.section-label { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dk);
+  font-weight: 700; margin-bottom: 0.5rem; }
+h2 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: 700;
+  margin-bottom: 0.8rem; line-height: 1.2; }
+h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+p { font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-secondary); }
+p strong { color: var(--text); font-weight: 600; }
+.divider { border: none; border-top: 1px solid var(--border); margin: 0.5rem 0; }
+
+/* CHARTS */
+.chart-section { padding: 2rem 0; }
+.chart-wrapper { background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 1.2rem; margin: 1.5rem 0; position: relative; }
+.chart-wrapper canvas { width: 100% !important; max-height: 440px; }
+
+/* CALLOUTS */
+.callout { background: var(--cream); border-left: 3px solid var(--gold); padding: 1rem 1.2rem; margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #4a4530; }
+.callout p { color: #4a4530; margin-bottom: 0; }
+.callout--maroon { border-left-color: var(--maroon); background: #fdf5f8; color: #4a2030; }
+.callout--maroon p { color: #4a2030; }
+.pullquote { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-style: italic; text-align: center; color: var(--maroon); padding: 2rem 1rem; margin: 1.5rem 0; line-height: 1.5; }
+
+/* STAT BLOCKS */
+.stat-pair { display: flex; gap: 1.2rem; justify-content: center; margin: 2rem 0; flex-wrap: wrap; }
+.stat-block { text-align: center; padding: 1.4rem 1.8rem; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; min-width: 150px; }
+.stat-block-n { font-size: 2.2rem; font-weight: 900; line-height: 1; font-variant-numeric: tabular-nums; color: var(--navy); }
+.stat-block-n.green { color: var(--green); } .stat-block-n.maroon { color: var(--maroon); }
+.stat-block-n.red { color: var(--red); } .stat-block-n.blue { color: var(--gold); }
+.stat-block-l { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.3; }
+
+/* TABLES */
+.data-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.2rem 0; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.data-table th { padding: 0.55rem 0.7rem; text-align: left; font-weight: 700; color: var(--text); font-size: 0.7rem;
+  text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 2px solid var(--border); white-space: nowrap; }
+.data-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid rgba(0,0,0,0.05); color: var(--text-secondary); }
+.data-table td.num { text-align: right; font-weight: 500; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr.hot td { background: #f1f6fc; }
+.table-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; }
+.data-table th.sortable { cursor: pointer; user-select: none; white-space: nowrap; }
+.data-table th.sortable:hover { color: var(--gold-dk); }
+.data-table th .arr { opacity: 0.45; font-size: 0.8em; margin-left: 3px; font-weight: 400; }
+
+/* METHODOLOGY + BIO + FOOTER */
+details.methodology { background: var(--surface-alt); border: 1px solid var(--border); border-radius: 10px;
+  padding: 1.3rem; margin: 2rem 0; }
+details.methodology summary { font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.05em; text-transform: uppercase; }
+details.methodology .meth-inner { margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+.author-bio { display: flex; gap: 1rem; padding: 2rem 0; border-top: 1px solid var(--border); margin-top: 2rem; }
+.author-bio-text { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
+.author-bio-text strong { color: var(--text); font-weight: 700; }
+footer { text-align: center; padding: 2.5rem 1.5rem; color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border); }
+footer a { color: var(--gold-dk); text-decoration: none; }
+
+/* SCROLL ANIM */
+.fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* SITE RETURN BAR */
+.site-bar { position: absolute; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center;
+  justify-content: space-between; padding: 1.1rem 1.5rem; }
+.site-bar a { text-decoration: none; }
+.site-bar .sb-logo { font-weight: 800; font-size: 0.95rem; color: rgba(255,255,255,0.92); }
+.site-bar .sb-logo span { color: var(--gold); font-weight: 600; }
+.site-bar .sb-back { font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.55);
+  font-weight: 600; transition: color 0.2s; }
+.site-bar .sb-back:hover { color: var(--gold); }
+
+@media (max-width: 640px) {
+  body { line-height: 1.62; }
+  .container, .container--wide { padding: 0 1.05rem; }
+  p { font-size: 0.94rem; }
+  .hero { min-height: 86vh; padding: 2rem 1.1rem; }
+  .hero-stats { gap: 0.55rem; }
+  .hero-stat { min-width: 96px; padding: 0.65rem 0.55rem; }
+  .hero-stat-l { font-size: 0.6rem; max-width: 110px; }
+  .narrative-section { padding: 2rem 0 1.3rem; }
+  .chart-section { padding: 1.4rem 0; }
+  .chart-wrapper { padding: 0.55rem; margin-left: -0.35rem; margin-right: -0.35rem; }
+  .chart-wrapper canvas { max-height: 320px; }
+  .stat-pair { gap: 0.6rem; }
+  .stat-block { min-width: 100px; padding: 0.85rem 0.7rem; flex: 1 1 30%; }
+  .stat-block-n { font-size: 1.75rem; }
+  .stat-block-l { font-size: 0.66rem; }
+  .data-table { font-size: 0.74rem; }
+  .data-table th, .data-table td { padding: 0.4rem 0.5rem; }
+  .data-table th { font-size: 0.64rem; }
+  .callout { font-size: 0.84rem; }
+  .pullquote { font-size: 1.08rem; padding: 1.4rem 0.4rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-bar">
+  <a href="/" class="sb-logo">EA <span>Data &amp; Analytics</span></a>
+  <a href="/blog" class="sb-back">&larr; All posts</a>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">1930 &ndash; 2026 &middot; A Data Story</div>
+  <h1>A Record Built to <em>Fall</em></h1>
+  <p class="hero-sub">Messi finally owns the World Cup scoring record. It took him twenty years. The data says he might not keep it for twenty days.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">20</div><div class="hero-stat-l">Messi &mdash; career WC goals (all-time record)</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">19 / 19</div><div class="hero-stat-l">Mbapp&eacute; &mdash; goals / matches, at age 27</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">8</div><div class="hero-stat-l">possible matches per team in the 48-team format</div></div>
+  </div>
+  <div class="hero-scroll">&darr; SCROLL</div>
+</div>
+
+<!-- HOOK -->
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Hook</div>
+  <h2>Two Goals Against Austria</h2>
+  <p>On June 22, in his sixth World Cup, Lionel Messi scored twice against Austria and passed Miroslav Klose's 16 career goals &mdash; a record that had stood since 2014, at the end of a summit chase that goes back to Gerd M&uuml;ller in 1974.</p>
+  <p>It's the kind of record that should settle a debate for a generation. Klose needed four tournaments to build it. Messi needed six, across twenty years, finishing the job at 39 in front of a packed American stadium.</p>
+  <p>Here's the uncomfortable part: <strong>Kylian Mbapp&eacute; is one goal behind him &mdash; and twelve years younger.</strong></p>
+  <p>When Messi played his first World Cup match in 2006, Mbapp&eacute; was seven. When Messi was 27, he had 5 career World Cup goals. Mbapp&eacute;, who is 27 now, has 19. In 19 matches. A goal a game, every game, across three tournaments.</p>
+  <p>So I did what I always do with a good story: pulled the data. Every World Cup goal by the men at the top of this list, by age, by match, and by the format they played in. The race is closer, faster, and more structurally rigged than the headlines suggest.</p>
+</section>
+</div>
+
+<!-- CHART 1: THE RACE BY AGE -->
+<div class="container--wide chart-section fade-up">
+  <div class="chart-wrapper" style="height:460px;"><canvas id="chart-race"></canvas></div>
+  <p class="table-note" style="text-align:center;">Cumulative career World Cup goals by age at each tournament. 2026 totals through July 5 &mdash; Messi and Mbapp&eacute; are still playing.</p>
+</div>
+
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Age Curves</div>
+  <h2>Five Goals at 27 vs Nineteen at 27</h2>
+  <p>Look at Messi's line. It's the least "Messi" chart you'll ever see: one goal as a teenager in 2006, a blank in 2010, a slow climb through 2014 and 2018. Half his career total &mdash; 14 of 20 &mdash; came in his last two tournaments, at ages 35 and 38.</p>
+  <p>Now look at Mbapp&eacute;'s. Four goals at 19. Twelve by 23, including a final hat-trick. Nineteen at 27. His line doesn't climb, it launches. He is <strong>fourteen goals ahead of where Messi stood at the same age</strong> &mdash; and nine ahead of Klose, whose record he's already matched and passed this summer.</p>
+  <p>And then there's the new arrival. Erling Haaland, in his <strong>first ever World Cup</strong>, has 7 goals in 4 appearances &mdash; including the brace that knocked out Brazil. He turns 26 two days after this final. His line is a single dot, but it's a dot placed higher, earlier, than anyone on this chart except the 1950s outliers.</p>
+  <div class="callout">
+    <p><strong>The record chase, live:</strong> Messi plays Egypt in the Round of 16 tomorrow (July 7). Mbapp&eacute; is already through to the quarterfinals. Two more Mbapp&eacute; goals and the all-time record changes hands twice in a single tournament &mdash; something that has never happened in 96 years of World Cups.</p>
+  </div>
+</section>
+</div>
+
+<!-- CHART 2: GOALS PER GAME -->
+<div class="container--wide chart-section fade-up">
+  <div class="chart-wrapper" style="height:420px;"><canvas id="chart-rate"></canvas></div>
+  <p class="table-note" style="text-align:center;">Career World Cup goals per match, minimum 10 career goals (Haaland shown for context, 4 matches). Includes 2026 through July 5.</p>
+</div>
+
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">Rate vs Volume</div>
+  <h2>The Perfect Ratio</h2>
+  <p>Career totals are what make headlines. But totals are a product of two things: how good you are, and <strong>how many matches you get</strong>. Divide one by the other and the leaderboard rearranges itself.</p>
+  <p>Mbapp&eacute;'s 19-in-19 &mdash; a clean 1.00 per game across three tournaments &mdash; is the best sustained rate of the modern 32-team era. Messi's 20 came at 0.67 per game. Cristiano Ronaldo, who this summer became the first man to score in six World Cups, sits at 0.42.</p>
+  <p>And yet the all-time rate podium belongs to another century. Just Fontaine scored 13 goals in <em>six matches</em> in 1958 &mdash; 2.17 per game, in the only World Cup he ever played. S&aacute;ndor Kocsis: 11 in 5 in 1954. Gerd M&uuml;ller: 14 in 13. Those rates are unreachable now &mdash; not because strikers got worse, but because tournaments got longer, defenses got organized, and nobody's career ends after one six-game summer.</p>
+  <p>Which is exactly why the volume record keeps moving in the other direction.</p>
+</section>
+</div>
+
+<!-- CHART 3: THE RUNWAY -->
+<div class="container--wide chart-section fade-up">
+  <div class="chart-wrapper" style="height:400px;"><canvas id="chart-runway"></canvas></div>
+  <p class="table-note" style="text-align:center;">Maximum possible matches for a team reaching the final, by format era. The 2026 expansion added a Round of 32 &mdash; an eighth game.</p>
+</div>
+
+<div class="container">
+<section class="narrative-section fade-up">
+  <div class="section-label">The Structural Tailwind</div>
+  <h2>The Widening Runway</h2>
+  <p>This is the part of the story the record books won't footnote. In Fontaine's 1958, a finalist played at most 6 matches. From 1974 through 2022, the ceiling was 7. This summer, for the first time, it's <strong>8</strong> &mdash; 48 teams, 104 matches, a brand-new Round of 32.</p>
+  <p>More teams also means a wider field: the expansion let in sides ranked far below the old 32-team cut, and the group stage plus new knockout round is where the goals piled up. This tournament has already produced <strong>269 goals in 92 matches</strong> &mdash; an all-time record for a single edition with two weeks still to play, at 2.92 per match against 2.69 in Qatar.</p>
+  <p>Layer the setting on top. This is the biggest, longest, most broadcast World Cup ever staged, in the United States &mdash; a market FIFA has courted for decades &mdash; with a final at MetLife Stadium. A tournament built for spectacle needed storylines to match: the 39-year-old chasing his last record, the heir apparent hunting him in real time, the new machine announcing himself against Brazil. Three players on 7+ goals in one tournament. <strong>That has never happened before.</strong> It's not a conspiracy; it's structure. More games, more goals, more chances for history to happen on American prime time.</p>
+  <div class="pullquote">"Records are counts. Counts follow opportunity.<br>When the opportunity changes, the record was always going to."</div>
+</section>
+
+<section class="narrative-section fade-up">
+  <div class="section-label">The Honest Version</div>
+  <h2>So Is the Record Cheap?</h2>
+  <p>No &mdash; and it's worth being precise about why.</p>
+  <p>Messi's 20 required scoring at 38 and 39, in his eighth consecutive World Cup match with a goal &mdash; itself a record, past Fontaine's and Jairzinho's streaks. Klose's 16 took 24 matches of relentless tournament fitness across twelve years. Nobody hands these out with the fixture list.</p>
+  <p>But cross-era comparisons need denominators. Klose got a maximum of 7 games per tournament. Mbapp&eacute; and Haaland will get up to 8, every four years, for the rest of their careers &mdash; plus a 2030 edition and beyond that may grow again. If Mbapp&eacute; simply maintains his career rate through two more World Cups, he retires somewhere north of 30 career goals. The record Messi spent twenty years reaching wouldn't just fall; it would be moved to a different shelf.</p>
+  <p>The fair way to hold both truths: <strong>celebrate the total, but judge the players on rate and context.</strong> On rate, Mbapp&eacute;'s 1.00-per-game across three tournaments is arguably the greatest sustained World Cup scoring feat of the modern era. On longevity, Messi's twenty-year arc is untouchable. And on pure per-match violence, a 25-year-old Norwegian just put up Gerd M&uuml;ller numbers in his first month on the stage.</p>
+</section>
+
+<section class="narrative-section fade-up">
+  <div class="section-label">The Leaderboard</div>
+  <h2>Where the Race Stands</h2>
+  <p>As of the close of play on July 5. Click a column to sort &mdash; the "per match" column is where the arguments start.</p>
+  <div class="data-table-scroll">
+    <table class="data-table" id="tbl-leader">
+      <thead><tr>
+        <th class="sortable" onclick="sortTable('tbl-leader',0)">Player <span class="arr">↕</span></th>
+        <th class="sortable" onclick="sortTable('tbl-leader',1)">Goals <span class="arr">▼</span></th>
+        <th class="sortable" onclick="sortTable('tbl-leader',2)">Matches <span class="arr">↕</span></th>
+        <th class="sortable" onclick="sortTable('tbl-leader',3)">Per match <span class="arr">↕</span></th>
+        <th class="sortable" onclick="sortTable('tbl-leader',4)">Tournaments <span class="arr">↕</span></th>
+        <th>Status</th>
+      </tr></thead>
+      <tbody>
+        <tr class="hot"><td><strong>Lionel Messi</strong></td><td class="num">20</td><td class="num">30</td><td class="num">0.67</td><td class="num">6</td><td>Active &mdash; R16 July 7</td></tr>
+        <tr class="hot"><td><strong>Kylian Mbapp&eacute;</strong></td><td class="num">19</td><td class="num">19</td><td class="num">1.00</td><td class="num">3</td><td>Active &mdash; quarterfinal</td></tr>
+        <tr><td>Miroslav Klose</td><td class="num">16</td><td class="num">24</td><td class="num">0.67</td><td class="num">4</td><td>Record holder 2014&ndash;2026</td></tr>
+        <tr><td>Ronaldo (Naz&aacute;rio)</td><td class="num">15</td><td class="num">19</td><td class="num">0.79</td><td class="num">3</td><td>Retired</td></tr>
+        <tr><td>Harry Kane</td><td class="num">14</td><td class="num">16</td><td class="num">0.88</td><td class="num">3</td><td>Active &mdash; quarterfinal</td></tr>
+        <tr><td>Gerd M&uuml;ller</td><td class="num">14</td><td class="num">13</td><td class="num">1.08</td><td class="num">2</td><td>Retired</td></tr>
+        <tr><td>Just Fontaine</td><td class="num">13</td><td class="num">6</td><td class="num">2.17</td><td class="num">1</td><td>Retired</td></tr>
+        <tr><td>Pel&eacute;</td><td class="num">12</td><td class="num">14</td><td class="num">0.86</td><td class="num">4</td><td>Retired</td></tr>
+        <tr><td>S&aacute;ndor Kocsis</td><td class="num">11</td><td class="num">5</td><td class="num">2.20</td><td class="num">1</td><td>Retired</td></tr>
+        <tr><td>J&uuml;rgen Klinsmann</td><td class="num">11</td><td class="num">17</td><td class="num">0.65</td><td class="num">3</td><td>Retired</td></tr>
+        <tr><td>Cristiano Ronaldo</td><td class="num">11</td><td class="num">26</td><td class="num">0.42</td><td class="num">6</td><td>Active &mdash; first to score in 6 WCs</td></tr>
+        <tr class="hot"><td><strong>Erling Haaland</strong></td><td class="num">7</td><td class="num">4</td><td class="num">1.75</td><td class="num">1</td><td>Active &mdash; WC debut, QF vs England</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="table-note">Career totals include the 2026 tournament through July 5. Messi, Mbapp&eacute;, Kane, Haaland and Cristiano Ronaldo were all still alive in the bracket at time of writing.</p>
+</section>
+
+<section class="narrative-section fade-up">
+  <div class="section-label">What Happens Next</div>
+  <h2>A Record With a Short Lease</h2>
+  <p>The all-time mark stood at 14 for thirty-two years, then at 15, then at 16 for twelve. It has now moved twice in one summer &mdash; and might move again before the confetti at MetLife.</p>
+  <p>Whatever happens this month, the trend line is set. The format hands out more matches than at any point in history. The next generation arrived scoring at rates the 32-team era never saw. The 2030 World Cup will be the centenary edition, spread across three continents, and Mbapp&eacute; will be 31, Haaland 30.</p>
+  <p>Messi's record is monumental. It's also, by every structural measure in this piece, a record built to fall. Enjoy holding it, Leo &mdash; and given who's chasing, maybe don't put it on a high shelf just yet.</p>
+  <div class="callout--maroon callout">
+    <p><strong>Written mid-tournament</strong> &mdash; numbers frozen at close of play July 5, 2026 (pre&ndash;Round-of-16 completion). Messi, Mbapp&eacute;, Haaland and Kane were all still playing. If you're reading this after the final: yes, I know. That's the point of the article.</p>
+  </div>
+</section>
+
+<details class="methodology fade-up">
+  <summary>Methodology &amp; Sources</summary>
+  <div class="meth-inner">
+    <p>Career and per-tournament goal data from Wikipedia's <em>List of FIFA World Cup top goalscorers</em> (updated July 6, 2026), cross-checked against FOX Sports' 2026 Golden Boot and Mbapp&eacute; record trackers, ESPN match pages, and FIFA.com. Ages computed from birthdates at each tournament's opening match. Format-era maximums from tournament structures (1930&ndash;2026): a 2026 finalist can play 8 matches (3 group + R32 + R16 + QF + SF + final). Tournament goal totals: 269 in 92 matches through July 5, 2026 vs 172 in 64 (2022), 169 (2018), 171 (2014). Match counts verified: per-tournament appearances sum to career totals for all players charted. Notable verification catches: Haaland was an unused substitute vs France (so 7 goals in 4 apps, not 5); Cristiano Ronaldo's 2026 goals bring him to 11 career (some aggregators still show 8). Analysis and charts by the author; charts built with Chart.js.</p>
+  </div>
+</details>
+
+<div class="author-bio fade-up">
+  <div class="author-bio-text">
+    <strong>Elisha Amir</strong> is an independent data consultant and a lifelong football fan. By day he builds lead scoring and revenue analytics for B2B companies; on weeks like this one, the same methods get pointed at the World Cup. All charts are interactive.
+  </div>
+</div>
+</div>
+
+<footer>
+  <p>By Elisha Amir &middot; Data analysis in Python &middot; Interactive charts with Chart.js</p>
+  <p style="margin-top:0.3rem;">&copy; 2026 EA Analytics</p>
+</footer>
+
+<script>
+// cumulative goals by age; 2026 points are through July 5 (mid-tournament)
+var RACE = {
+  "Messi":     { color: '#2E86DE', pts: [{x:18.9,y:1},{x:23,y:1},{x:26.9,y:5},{x:31,y:6},{x:35,y:13},{x:38.9,y:20}] },
+  "Mbappé":{ color: '#15457C', pts: [{x:19.5,y:4},{x:23.9,y:12},{x:27.5,y:19}] },
+  "Klose":     { color: '#8A8A95', pts: [{x:24,y:5},{x:28,y:10},{x:32,y:14},{x:36,y:16}] },
+  "Ronaldo (BRA)": { color: '#157A48', pts: [{x:21.7,y:4},{x:25.7,y:12},{x:29.7,y:15}] },
+  "Pelé": { color: '#D69A2D', pts: [{x:17.6,y:6},{x:21.6,y:7},{x:25.7,y:8},{x:29.7,y:12}] },
+  "G. Müller": { color: '#B81D3A', pts: [{x:24.6,y:10},{x:28.6,y:14}] },
+  "Haaland":   { color: '#C8102E', pts: [{x:25.9,y:7}] }
+};
+var MAROON = '#B81D3A', GOLD = '#1E5FA8', GOLD_DK = '#15457C', NAVY = '#12263F', SLATE = '#475569';
+var MOB = window.innerWidth < 560;
+var TF = MOB ? 8.5 : 11, TT = MOB ? 11 : 13;
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.font.size = MOB ? 9.5 : 11;
+Chart.defaults.color = '#4A4A5A';
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyleWidth = 8;
+Chart.defaults.plugins.legend.labels.padding = 12;
+function $(id){ return document.getElementById(id); }
+
+// CHART 1: the race by age
+try {
+  new Chart($('chart-race'), {
+    type: 'line',
+    data: { datasets: Object.keys(RACE).map(function(name){
+      var r = RACE[name];
+      var active = (name === 'Messi' || name === 'Mbappé' || name === 'Haaland');
+      return { label: name, data: r.pts, borderColor: r.color,
+        backgroundColor: r.color, borderWidth: active ? 3 : 1.8,
+        pointRadius: name === 'Haaland' ? 7 : (active ? 4.5 : 3),
+        pointStyle: name === 'Haaland' ? 'rectRot' : 'circle',
+        tension: 0.15, fill: false,
+        borderDash: active ? [] : [5,4] };
+    }) },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: (MOB ? 'Career WC goals by age' : 'The race by age: cumulative World Cup goals'), font: { size: TT, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){ return c.dataset.label + ': ' + c.parsed.y + ' goals at age ' + Math.round(c.parsed.x); } } },
+        legend: { position: 'bottom' }
+      },
+      scales: {
+        x: { type: 'linear', min: 16, max: 40, grid: { color: '#f0ede6' },
+          title: { display: true, text: 'Age at tournament', font: { size: 10 } },
+          ticks: { stepSize: 2, font: { size: TF } } },
+        y: { beginAtZero: true, max: 22, grid: { color: '#eee' },
+          title: { display: true, text: 'Career World Cup goals', font: { size: 10 } } }
+      } }
+  });
+} catch(e){ console.error('race', e); }
+
+// CHART 2: goals per match
+try {
+  var rateData = [
+    { p: 'Kocsis', v: 2.20, n: 5 }, { p: 'Fontaine', v: 2.17, n: 6 },
+    { p: 'Haaland*', v: 1.75, n: 4 }, { p: 'G. Müller', v: 1.08, n: 13 },
+    { p: 'Mbappé', v: 1.00, n: 19 }, { p: 'Kane', v: 0.88, n: 16 },
+    { p: 'Pelé', v: 0.86, n: 14 }, { p: 'Ronaldo (BRA)', v: 0.79, n: 19 },
+    { p: 'Messi', v: 0.67, n: 30 }, { p: 'Klose', v: 0.67, n: 24 },
+    { p: 'Klinsmann', v: 0.65, n: 17 }, { p: 'C. Ronaldo', v: 0.42, n: 26 }
+  ];
+  new Chart($('chart-rate'), {
+    type: 'bar',
+    data: { labels: rateData.map(function(d){ return [d.p, d.n + ' matches']; }),
+      datasets: [{ data: rateData.map(function(d){ return d.v; }),
+        backgroundColor: rateData.map(function(d){
+          if (d.p === 'Mbappé' || d.p === 'Messi' || d.p === 'Haaland*') return '#1E5FA8';
+          return '#B9C4D6';
+        }), borderRadius: 5, maxBarThickness: 56 }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        title: { display: true, text: 'Goals per World Cup match (career)', font: { size: TT, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){ return c.raw + ' goals/match (' + rateData[c.dataIndex].n + ' matches)'; } } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: TF } } },
+        y: { beginAtZero: true, grid: { color: '#eee' },
+          title: { display: true, text: 'Goals per match', font: { size: 10 } } } } }
+  });
+} catch(e){ console.error('rate', e); }
+
+// CHART 3: the widening runway
+try {
+  new Chart($('chart-runway'), {
+    type: 'bar',
+    data: { labels: ['1930–38', '1950–70', '1974–78', '1982–94', '1998–2022', '2026'],
+      datasets: [{ data: [5, 6, 7, 7, 7, 8],
+        backgroundColor: ['#B9C4D6','#B9C4D6','#B9C4D6','#B9C4D6','#B9C4D6','#D69A2D'],
+        borderRadius: 6, maxBarThickness: 90 }] },
+    options: { responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false },
+        title: { display: true, text: (MOB ? 'Max matches for a finalist, by era' : 'The runway: maximum matches for a World Cup finalist, by era'), font: { size: TT, weight: 700 }, color: NAVY },
+        tooltip: { callbacks: { label: function(c){
+          var notes = ['13–16 teams', '16 teams', '16 teams, two group stages', '24 teams', '32 teams, 64 matches', '48 teams, 104 matches'];
+          return c.raw + ' matches · ' + notes[c.dataIndex]; } } } },
+      scales: { x: { grid: { display: false }, ticks: { font: { size: TF, weight: 600 } } },
+        y: { beginAtZero: true, max: 9, grid: { color: '#eee' },
+          ticks: { stepSize: 1 },
+          title: { display: true, text: 'Max matches (finalist)', font: { size: 10 } } } } }
+  });
+} catch(e){ console.error('runway', e); }
+
+// sortable table
+function sortTable(tid, col){
+  var t = $(tid), tb = t.tBodies[0], rows = Array.prototype.slice.call(tb.rows);
+  var dir = t.getAttribute('data-sc') === col + ':desc' ? 'asc' : 'desc';
+  t.setAttribute('data-sc', col + ':' + dir);
+  function val(r){ var c = r.cells[col]; var v = c.getAttribute('data-sort'); return v === null ? c.textContent : v; }
+  rows.sort(function(a, b){
+    var x = val(a), y = val(b), nx = parseFloat(x), ny = parseFloat(y), r;
+    if (!isNaN(nx) && !isNaN(ny)) r = nx - ny;
+    else r = ('' + x).toLowerCase().localeCompare(('' + y).toLowerCase());
+    return dir === 'asc' ? r : -r;
+  });
+  rows.forEach(function(r){ tb.appendChild(r); });
+  var ths = t.tHead.rows[0].cells;
+  for (var i = 0; i < ths.length; i++){ var a = ths[i].querySelector('.arr'); if (a) a.textContent = (i === col) ? (dir === 'asc' ? '▲' : '▼') : '↕'; }
+}
+
+// scroll reveal
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
+</script>
+
+<noscript><div style="text-align:center;padding:3rem;color:#666;">This report's charts require JavaScript.</div></noscript>
+</body>
+</html>
