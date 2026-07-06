@@ -1394,3 +1394,104 @@ body {
     transform: none;
   }
 }
+
+/* ============================================================
+   Clients & Testimonial
+   ============================================================ */
+.clients {
+  padding: 90px 40px 100px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.logo-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  flex-wrap: wrap;
+  margin: 40px 0 56px;
+}
+
+.client-logo {
+  height: 34px;
+  filter: grayscale(1);
+  opacity: 0.55;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.client-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+.client-wordmark {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.55rem;
+  letter-spacing: -0.5px;
+  color: var(--navy-900);
+  line-height: 34px;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 16px;
+  padding: 44px 48px 38px;
+  position: relative;
+  overflow: hidden;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--navy-700));
+}
+
+.testimonial-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.45rem;
+  line-height: 1.5;
+  color: var(--navy-900);
+  margin-bottom: 22px;
+}
+
+.testimonial-attrib {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 18px;
+}
+
+.t-name {
+  font-weight: 600;
+  color: var(--navy-900);
+  font-size: 0.95rem;
+}
+
+.t-role {
+  color: var(--gray-500);
+  font-size: 0.85rem;
+}
+
+.testimonial-context {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  border-top: 1px solid var(--gray-100);
+  padding-top: 16px;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .clients { padding: 60px 20px 70px; }
+  .logo-strip { gap: 36px; }
+  .testimonial-card { padding: 32px 24px 28px; }
+  .testimonial-quote { font-size: 1.2rem; }
+}
