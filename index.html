@@ -87,6 +87,7 @@
           <span class="t-role">Co-Founder &amp; Chief Growth Officer, Faddom</span>
         </div>
         <p class="testimonial-context">Lead scoring from two years of CRM data. One segment converts at 3.8x the average rate.</p>
+        <a class="t-case-link" href="case-studies/faddom">Read the full case &rarr;</a>
       </div>
       <div class="testimonial-card">
         <a class="t-logo" href="https://formsort.com" target="_blank" rel="noopener" aria-label="Formsort website"><img src="assets/logo-formsort.svg" alt="Formsort" width="156" height="28"></a>
@@ -268,6 +269,12 @@
       <p>Turn raw lead volume into a quality score your team can act on.</p>
       <span class="dd-link">Read the guide &rarr;</span>
     </a>
+    <a href="funnel-score" class="deep-dive-card reveal">
+      <div class="dd-badge" style="background:rgba(196,163,90,0.15);color:var(--gold-dark);">Interactive</div>
+      <h4>Score Your Funnel in Two Minutes</h4>
+      <p>Six questions, instant score, and exactly where an audit would look first. No email required.</p>
+      <span class="dd-link">Take the assessment &rarr;</span>
+    </a>
   </div>
 </section>
 
@@ -330,10 +337,16 @@
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
         Connect on LinkedIn
       </a>
+      <button class="video-chip" id="video-chip" type="button">&#9654;&nbsp; 40-second intro</button>
       <a href="about" class="founder-more">More about me &rarr;</a>
     </div>
   </div>
 </section>
+
+<div class="video-modal" id="video-modal" role="dialog" aria-modal="true" aria-label="Intro video">
+  <button class="video-close" id="video-close" aria-label="Close video">&times;</button>
+  <video id="intro-video" controls preload="none" playsinline></video>
+</div>
 
 <!-- FOOTER CTA -->
 <section class="footer-cta">
@@ -533,6 +546,29 @@
     es.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
   }, { threshold: 0.4 });
   els.forEach(function (el) { io.observe(el); });
+})();
+
+// Intro video: chip appears only when assets/intro-video.mp4 exists in the repo
+(function () {
+  var chip = document.getElementById('video-chip');
+  var modal = document.getElementById('video-modal');
+  var vid = document.getElementById('intro-video');
+  if (!chip || !modal || !vid) return;
+  fetch('assets/intro-video.mp4', { method: 'HEAD' }).then(function (r) {
+    if (r.ok) chip.classList.add('available');
+  }).catch(function () {});
+  function close() {
+    modal.classList.remove('open');
+    vid.pause();
+  }
+  chip.addEventListener('click', function () {
+    if (!vid.src) vid.src = 'assets/intro-video.mp4';
+    modal.classList.add('open');
+    vid.play();
+  });
+  document.getElementById('video-close').addEventListener('click', close);
+  modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
 })();
 
 // Sticky mobile CTA: show after the hero, hide near the footer CTA

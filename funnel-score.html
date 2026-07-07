@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ea-analytics.goatcounter.com https://api.web3forms.com; frame-src https://calendar.app.google https://calendar.google.com; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0a1652">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Score Your Funnel | EA Analytics</title>
+<meta name="description" content="A 2-minute self-assessment for B2B GTM teams. Six questions, instant score, and exactly where a data audit would look first. Nothing you click leaves this page.">
+<meta property="og:title" content="Score Your Funnel — a 2-minute GTM data self-assessment">
+<meta property="og:description" content="Six questions. Instant score. Find out how much signal is sitting unused in your CRM.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ea-analytics.com/funnel-score">
+<meta property="og:image" content="https://ea-analytics.com/assets/og-image.png">
+<link rel="canonical" href="https://ea-analytics.com/funnel-score">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.quiz-shell { max-width: 680px; margin: -46px auto 0; padding: 0 20px 90px; position: relative; z-index: 5; }
+.quiz-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 18px;
+  box-shadow: 0 18px 60px rgba(10, 22, 82, 0.12);
+  padding: 38px 40px 34px;
+}
+.quiz-progress { display: flex; gap: 6px; margin-bottom: 26px; }
+.qp-seg { height: 4px; flex: 1; background: var(--gray-100); border-radius: 2px; transition: background 0.3s ease; }
+.qp-seg.done { background: var(--gold); }
+.quiz-qnum { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-dark); font-weight: 700; margin-bottom: 8px; }
+.quiz-q { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--navy-900); line-height: 1.35; margin-bottom: 22px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 10px; }
+.quiz-opt {
+  text-align: left;
+  padding: 14px 18px;
+  border: 1.5px solid var(--gray-100);
+  border-radius: 12px;
+  background: var(--white);
+  font-size: 0.92rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+.quiz-opt:hover { border-color: var(--gold); background: var(--gray-50); transform: translateX(3px); }
+.quiz-back {
+  margin-top: 20px;
+  background: none; border: none;
+  color: var(--gray-500);
+  font-size: 0.82rem;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.quiz-back:hover { color: var(--navy-600); }
+.quiz-note { text-align: center; font-size: 0.75rem; color: var(--gray-500); margin-top: 16px; }
+
+/* result */
+.result { display: none; text-align: center; }
+.result.show { display: block; }
+.score-dial { width: 180px; height: 110px; margin: 6px auto 2px; }
+.score-num { font-family: 'Playfair Display', Georgia, serif; font-size: 2.6rem; font-weight: 700; color: var(--navy-900); line-height: 1; }
+.score-num span { font-size: 1.1rem; color: var(--gray-500); font-weight: 400; }
+.result-tier { font-family: 'Playfair Display', Georgia, serif; font-size: 1.5rem; color: var(--navy-900); margin: 14px 0 8px; }
+.result-sub { color: var(--gray-500); font-size: 0.92rem; max-width: 460px; margin: 0 auto 22px; line-height: 1.6; }
+.result-focus {
+  text-align: left;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+.result-focus h4 { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 12px; }
+.result-focus li { font-size: 0.88rem; color: var(--gray-700); margin-bottom: 10px; line-height: 1.5; list-style: none; padding-left: 22px; position: relative; }
+.result-focus li::before { content: '\2192'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+.result-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.result-cta-primary {
+  background: var(--navy-900); color: var(--white);
+  padding: 13px 26px; border-radius: 9px;
+  font-weight: 700; font-size: 0.92rem; text-decoration: none;
+  border: 1.5px solid var(--gold);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.result-cta-primary:hover { background: var(--navy-600); transform: translateY(-2px); }
+.result-cta-secondary {
+  color: var(--navy-600); font-weight: 600; font-size: 0.92rem;
+  text-decoration: none; padding: 13px 10px;
+}
+.result-cta-secondary:hover { color: var(--gold-dark); }
+.result-restart { margin-top: 18px; background: none; border: none; color: var(--gray-500); font-size: 0.78rem; cursor: pointer; }
+.result-restart:hover { color: var(--navy-600); }
+
+@media (max-width: 560px) {
+  .quiz-card { padding: 28px 20px 26px; }
+  .quiz-q { font-size: 1.15rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">EA <span>Data & Analytics</span></a>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="/#outcomes">Services</a>
+    <a href="resources">Resources</a>
+    <a href="blog">Blog</a>
+    <a href="about">About</a>
+    <a href="contact">Contact</a>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-bottom: 120px;">
+  <div class="page-hero-content">
+    <h1>Score your funnel</h1>
+    <p>Six questions. Two minutes. Find out how much signal is sitting unused in your GTM data.</p>
+  </div>
+</section>
+
+<div class="quiz-shell">
+  <div class="quiz-card">
+    <div class="quiz-progress" id="qp" aria-hidden="true"></div>
+
+    <div id="quiz">
+      <div class="quiz-qnum" id="qnum">Question 1 of 6</div>
+      <div class="quiz-q" id="qtext"></div>
+      <div class="quiz-opts" id="qopts"></div>
+      <button class="quiz-back" id="qback" style="visibility:hidden">&larr; Back</button>
+    </div>
+
+    <div class="result" id="result">
+      <svg class="score-dial" viewBox="0 0 200 120" aria-hidden="true">
+        <path d="M20,110 A80,80 0 0,1 180,110" fill="none" stroke="#ededf2" stroke-width="14" stroke-linecap="round"/>
+        <path id="dial-arc" d="M20,110 A80,80 0 0,1 180,110" fill="none" stroke="#c4a35a" stroke-width="14" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251"/>
+      </svg>
+      <div class="score-num"><span id="score-val">0</span><span> / 100</span></div>
+      <div class="result-tier" id="tier-title"></div>
+      <p class="result-sub" id="tier-sub"></p>
+      <div class="result-focus">
+        <h4>Where an audit would look first</h4>
+        <ul id="focus-list"></ul>
+      </div>
+      <div class="result-ctas">
+        <a class="result-cta-primary" href="contact#book">Book a free data audit call</a>
+        <a class="result-cta-secondary" href="resources/finding-your-icp">Start with the free ICP guide &rarr;</a>
+      </div>
+      <button class="result-restart" id="restart">Retake the assessment</button>
+    </div>
+  </div>
+  <p class="quiz-note">No email required. Nothing you click leaves this page.</p>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-left">EA Analytics</div>
+  <div class="footer-links">
+    <a href="resources">Resources</a>
+    <a href="blog">Blog</a>
+    <a href="about">About</a>
+    <a href="contact">Contact</a>
+    <a href="privacy-policy">Privacy Policy</a>
+    <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a>
+  </div>
+  <div class="footer-right">&copy; 2026 EA Analytics</div>
+</footer>
+
+<script>
+(function () {
+  var QS = [
+    { q: "Where does your lead and deal data live?",
+      opts: ["Spreadsheets, mostly", "A CRM, but it's messy", "A CRM, fairly clean", "CRM plus a proper analytics stack"],
+      focus: "Getting your CRM into analyzable shape. Clean data is where every other answer starts." },
+    { q: "Can you name your best-converting lead segment, from data?",
+      opts: ["No idea", "We have a gut feel", "Roughly, from a report", "Yes, with numbers behind it"],
+      focus: "Mining closed-won history for your real ICP. This is usually the single biggest finding." },
+    { q: "How do reps decide which lead to work first?",
+      opts: ["First come, first served", "Rep's judgment", "Basic rules (title, size)", "A scoring model on real conversion data"],
+      focus: "Lead scoring built from your own conversions, so reps stop treating every lead the same." },
+    { q: "Do you know which channels produce customers, not just leads?",
+      opts: ["Not really", "Last-click guesses", "Partially, for some channels", "Yes, tracked by cohort"],
+      focus: "Cohort-based channel attribution: grading campaigns by what closes, not what clicks." },
+    { q: "How is next quarter's pipeline forecast made?",
+      opts: ["It isn't", "Gut feel", "Stage-weighted spreadsheet", "A model that includes deal quality"],
+      focus: "A forecast built from lead quality and deal signals, so the number means something." },
+    { q: "When leadership asks \"what's working?\", the answer is…",
+      opts: ["Uncomfortable silence", "Anecdotes", "Dashboards that describe activity", "A data-backed answer we trust"],
+      focus: "One source of truth for the 'what's working' question, so the board deck writes itself." }
+  ];
+
+  var answers = [], idx = 0;
+  var qp = document.getElementById('qp');
+  QS.forEach(function () { var s = document.createElement('div'); s.className = 'qp-seg'; qp.appendChild(s); });
+
+  function render() {
+    document.getElementById('qnum').textContent = 'Question ' + (idx + 1) + ' of ' + QS.length;
+    document.getElementById('qtext').textContent = QS[idx].q;
+    var box = document.getElementById('qopts');
+    box.innerHTML = '';
+    QS[idx].opts.forEach(function (o, i) {
+      var b = document.createElement('button');
+      b.className = 'quiz-opt';
+      b.textContent = o;
+      b.addEventListener('click', function () { pick(i); });
+      box.appendChild(b);
+    });
+    document.getElementById('qback').style.visibility = idx > 0 ? 'visible' : 'hidden';
+    var segs = qp.children;
+    for (var i = 0; i < segs.length; i++) segs[i].classList.toggle('done', i < idx);
+  }
+
+  function pick(v) {
+    answers[idx] = v;
+    if (idx < QS.length - 1) { idx++; render(); }
+    else finish();
+  }
+
+  document.getElementById('qback').addEventListener('click', function () {
+    if (idx > 0) { idx--; render(); }
+  });
+
+  function finish() {
+    var raw = answers.reduce(function (a, b) { return a + b; }, 0);
+    var score = Math.round(raw / (3 * QS.length) * 100);
+    document.getElementById('quiz').style.display = 'none';
+    var res = document.getElementById('result');
+    res.classList.add('show');
+    for (var i = 0; i < qp.children.length; i++) qp.children[i].classList.add('done');
+
+    var tier, sub;
+    if (score <= 35) {
+      tier = "Flying blind. But sitting on gold.";
+      sub = "Your team is making calls without the data it already owns. The good news: this is where audits find the biggest, fastest wins.";
+    } else if (score <= 70) {
+      tier = "Dashboards, not decisions.";
+      sub = "You measure activity, but the money questions (which leads, which channels, what's next quarter) still run on judgment. The raw material for real answers is already in your stack.";
+    } else {
+      tier = "Ahead of most.";
+      sub = "You're running a more data-driven GTM than the vast majority of teams your size. The value now is in validation and sharpening: pressure-testing the models against fresh closed-won data.";
+    }
+    document.getElementById('tier-title').textContent = tier;
+    document.getElementById('tier-sub').textContent = sub;
+
+    // three weakest areas become the audit focus
+    var ranked = answers.map(function (v, i) { return { v: v, i: i }; })
+      .sort(function (a, b) { return a.v - b.v; }).slice(0, 3);
+    var ul = document.getElementById('focus-list');
+    ul.innerHTML = '';
+    ranked.forEach(function (r) {
+      var li = document.createElement('li');
+      li.textContent = QS[r.i].focus;
+      ul.appendChild(li);
+    });
+
+    // animate dial + number
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var arc = document.getElementById('dial-arc');
+    var target = 251 - (251 * score / 100);
+    var el = document.getElementById('score-val');
+    if (reduced) { arc.style.strokeDashoffset = target; el.textContent = score; return; }
+    arc.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
+    requestAnimationFrame(function () { arc.style.strokeDashoffset = target; });
+    var t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / 1200, 1);
+      p = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(score * p);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.getElementById('restart').addEventListener('click', function () {
+    answers = []; idx = 0;
+    document.getElementById('result').classList.remove('show');
+    document.getElementById('quiz').style.display = '';
+    var arc = document.getElementById('dial-arc');
+    arc.style.transition = 'none';
+    arc.style.strokeDashoffset = 251;
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

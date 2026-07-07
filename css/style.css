@@ -2021,3 +2021,83 @@ section, .tools-strip { scroll-margin-top: 80px; }
   .steps-grid::before { transform: scaleX(1); }
   .sticky-cta { transition: none; }
 }
+
+/* ============================================================
+   V4: fact chips, scheduler, intro-video modal, case link
+   ============================================================ */
+.fact-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.fact-chip {
+  padding: 8px 16px;
+  border: 1px solid var(--gray-100);
+  background: var(--gray-50);
+  border-radius: 100px;
+  font-size: 0.82rem;
+  color: var(--gray-700);
+  font-weight: 500;
+}
+
+.scheduler-wrap {
+  border: 1px solid var(--gray-100);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 34px rgba(10, 22, 82, 0.07);
+  background: var(--white);
+}
+
+/* intro video chip + modal (appears only when assets/intro-video.mp4 exists) */
+.video-chip {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy-600);
+  background: none;
+  border: 1.5px solid var(--gray-100);
+  border-radius: 100px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.video-chip.available { display: inline-flex; }
+.video-chip:hover { border-color: var(--gold); color: var(--gold-dark); }
+
+.video-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 10, 30, 0.82);
+  padding: 24px;
+}
+.video-modal.open { display: flex; }
+.video-modal video {
+  max-width: min(720px, 100%);
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+}
+.video-close {
+  position: absolute;
+  top: 18px; right: 22px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.8);
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.video-close:hover { color: #fff; }
+
+/* case link inside testimonial card */
+.t-case-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy-600);
+  text-decoration: none;
+}
+.t-case-link:hover { color: var(--gold-dark); }
