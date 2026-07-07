@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://calendar.app.google https://calendar.google.com; base-uri 'self'; upgrade-insecure-requests">
-<meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0a1652">
 <title>The Report | EA Analytics</title>
@@ -240,6 +239,28 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
   .tierx-tip.show { display: block; }
 }
 
+
+.report-footer { border-top: 1px solid var(--line); padding: 26px 24px; background: #fff; }
+.rf-inner { max-width: 880px; margin: 0 auto; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: space-between; }
+.rf-brand { font-weight: 700; font-size: 0.85rem; color: var(--navy); }
+.rf-links { display: flex; gap: 18px; flex-wrap: wrap; }
+.rf-links a { font-size: 0.78rem; color: var(--ink-mute); text-decoration: none; }
+.rf-links a:hover { color: var(--gold-dark); }
+.rf-c { font-size: 0.72rem; color: var(--ink-mute); }
+
+@media (max-width: 560px) {
+  .term-body { padding: 16px 14px 20px; font-size: 0.68rem; }
+  .term-row { grid-template-columns: 88px 52px 40px 1fr; gap: 6px; }
+  .term-row.hd { font-size: 0.58rem; }
+  .term-foot { font-size: 0.62rem; }
+  .cover-meta { border: none; }
+  .cm { border-right: none; border-top: 1px solid rgba(255,255,255,0.12); width: 100%; margin-right: 0; padding: 12px 0; }
+  .offer-btn { width: 100%; text-align: center; }
+  .tx-tab { font-size: 0.62rem; padding: 7px 10px; }
+  .tx-name { font-size: 11px; }
+  .tx-val { font-size: 13px; }
+  .ch-head { flex-direction: column; gap: 4px; }
+}
 </style>
 </head>
 <body>
@@ -261,11 +282,11 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
   <div class="cover-inner">
     <div class="cover-rule"><span class="cr-tag">EA Analytics &middot; GTM Report No. 001</span><span class="cr-line"></span></div>
     <h1>Know where your revenue actually comes from. <em>In 21 days.</em></h1>
-    <p class="cover-sub">A fixed-scope data audit on the CRM you already have. You walk away with the leads worth calling, the channels worth funding, and a forecast you can defend to the board. No new tools. No hires. No retainer required.</p>
+    <p class="cover-sub">A 21-day paid pilot on the CRM you already have. You walk away with the leads worth calling, the channels worth funding, and a forecast you can defend to the board. It runs on your existing stack, and if the findings don't earn their fee, you get your money back.</p>
 
     <div class="offer-row">
       <a class="offer-btn" href="https://calendar.app.google/98h6wsskR4FHqk9q7" target="_blank" rel="noopener">Book the free first look &middot; 30 min</a>
-      <span class="offer-risk">If the findings don't show you something you didn't know, you don't pay for the audit.</span>
+      <span class="offer-risk">The first call is free, whatever you decide. The pilot is a fixed fee with a money-back guarantee. Ongoing work happens only if you want it afterwards.</span>
     </div>
 
     <div class="cover-meta">
@@ -280,7 +301,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
 <!-- CH 02: EXHIBITS -->
 <section class="chapter" id="ch2" style="padding-bottom: 0;">
   <div class="ch-head"><span class="ch-num">01</span><h2>Evidence first: real client data</h2></div>
-  <p>Not a stock illustration. The query below ran on two years of a real client's inbound leads (shared with permission), after we scored every lead against closed-won history.</p>
+  <p>The query below is a replay of real work: two years of a real client's inbound leads (shared with permission), after every lead was scored against closed-won history.</p>
 </section>
 <div class="query-wrap">
   <div class="exhibit-tag">Exhibit A &middot; live replay</div>
@@ -357,7 +378,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
       <rect class="spark-bar" x="52" y="12" width="10" height="26" rx="2" fill="#b8c4e8"/>
       <rect class="spark-bar" x="68" y="4"  width="10" height="34" rx="2" fill="#c4a35a"/>
     </g></svg>
-    <div class="f-text"><strong>Finding 1 &mdash; your leads are not created equal, and nobody knows which is which.</strong> Somewhere in your funnel there is a segment converting at several times your average. Untagged, unworked, treated like everything else.
+    <div class="f-text"><strong>Finding 1: your leads are not created equal, and nobody knows which is which.</strong> Somewhere in your funnel there is a segment converting at several times your average. Untagged, unworked, treated like everything else.
       <span class="f-note">// typical spread we find: best tier converts 15&ndash;20x the worst</span>
     </div>
   </div>
@@ -367,7 +388,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
       <path class="spark-draw" d="M4,34 C24,34 30,10 46,10 C60,10 64,22 80,6" fill="none" stroke="#c4a35a" stroke-width="2.5" stroke-linecap="round"/>
       <circle cx="80" cy="6" r="3" fill="#2541a8"/>
     </g></svg>
-    <div class="f-text"><strong>Finding 2 &mdash; marketing works with a lag your reports ignore.</strong> Spend looks dead for sixty days, then pipeline lands. Judged monthly, your best channel looks like your worst. Cohorts fix this.
+    <div class="f-text"><strong>Finding 2: marketing works with a lag your reports ignore.</strong> Spend looks dead for sixty days, then pipeline lands. Judged monthly, your best channel looks like your worst. Cohorts fix this.
       <span class="f-note">// 60&ndash;90+ days from first touch to pipeline is normal in B2B</span>
     </div>
   </div>
@@ -378,7 +399,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
       <rect class="spark-bar" x="34" y="18" width="14" height="20" rx="2" fill="#d5d1cb"/>
       <rect class="spark-bar" x="60" y="30" width="14" height="8" rx="2" fill="#c4a35a"/>
     </g></svg>
-    <div class="f-text"><strong>Finding 3 &mdash; your funnel leaks at the top, not the bottom.</strong> Teams tune close rates while most of what they paid for dies before a first meeting. The cheap wins live in the early stages.
+    <div class="f-text"><strong>Finding 3: your funnel leaks at the top, not the bottom.</strong> Teams tune close rates while most of what they paid for dies before a first meeting. The cheap wins live in the early stages.
       <span class="f-note">// ask: which leads deserved to survive, and did they?</span>
     </div>
   </div>
@@ -389,7 +410,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
       <path class="spark-draw" d="M58,20 L78,20" stroke="#c4a35a" stroke-width="3.5" stroke-linecap="round" fill="none"/>
       <circle cx="78" cy="20" r="4" fill="#c4a35a"/>
     </g></svg>
-    <div class="f-text"><strong>Finding 4 &mdash; the forecast is a feeling.</strong> Stage-weighted spreadsheets measure optimism, not probability. Lead quality plus deal signals make a number the board can actually plan on.
+    <div class="f-text"><strong>Finding 4: the forecast is a feeling.</strong> Stage-weighted spreadsheets measure optimism, not probability. Lead quality plus deal signals make a number the board can actually plan on.
       <span class="f-note">// see exhibit B for how close this gets</span>
     </div>
   </div>
@@ -399,14 +420,14 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
 <!-- CH 03: WHAT YOU GET -->
 <section class="chapter" id="ch3">
   <div class="ch-head"><span class="ch-num">03</span><h2>What you walk away with</h2></div>
-  <p>Not dashboards. Not a slide deck about "data maturity". Four things your team uses the next morning:</p>
+  <p>Four things your team starts using the next morning:</p>
   <div class="takeaways">
     <div class="tk"><div class="tk-n">I</div><div><h4>A ranked call list</h4><p>Every lead scored against who actually buys. Reps stop guessing which call to make first.</p></div></div>
     <div class="tk"><div class="tk-n">II</div><div><h4>A budget you can defend</h4><p>Channels graded by the customers they produce, not the leads they generate.</p></div></div>
     <div class="tk"><div class="tk-n">III</div><div><h4>A forecast the board believes</h4><p>Built from lead quality and deal signals. See exhibit B for how close that gets.</p></div></div>
     <div class="tk"><div class="tk-n">IV</div><div><h4>Your real ICP, in writing</h4><p>From closed-won evidence, not the strategy offsite. Sometimes it's two ICPs. You'll know.</p></div></div>
   </div>
-  <p class="method-line">How: <strong>weeks 1&ndash;2</strong> audit your stack &rarr; <strong>weeks 2&ndash;3</strong> findings and models &rarr; <strong>day 21</strong> decisions on the table. Then it's your call whether we keep going monthly.</p>
+  <p class="method-line">How: <strong>weeks 1&ndash;2</strong> audit your stack &rarr; <strong>weeks 2&ndash;3</strong> findings and models &rarr; <strong>day 21</strong> decisions on the table. If you want more, it becomes a monthly engagement. If you don't, you keep everything anyway.</p>
 </section>
 
 <!-- CH 04: ANALYST -->
@@ -432,12 +453,25 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: var(--paper)
 <section class="commission" id="ch5">
   <div class="stamp">Commission &middot; Report No. 002 &middot; Yours</div>
   <h2>The next report should be about <em>your</em> data.</h2>
-  <p>Fixed scope. Twenty-one days. Your existing stack. And it starts with a free 30-minute first look at your data, no prep needed.</p>
+  <p>It starts with a free 30-minute look at your data. The pilot itself is a fixed fee over 21 days, with your money back if the findings disappoint. Most clients continue monthly. That part is entirely up to you.</p>
   <a class="c-btn" href="https://calendar.app.google/98h6wsskR4FHqk9q7" target="_blank" rel="noopener">Book the first 30 minutes</a>
   <span class="c-alt">Not ready to talk? <a href="/funnel-score">Score your funnel in 2 minutes</a> or read <a href="/case-studies/faddom">the Faddom case</a>.</span>
 </section>
 
-<p class="proto-note">PROTOTYPE &middot; NOT LINKED FROM THE LIVE SITE &middot; ea-analytics.com/prototype</p>
+<footer class="report-footer">
+  <div class="rf-inner">
+    <span class="rf-brand">EA Analytics</span>
+    <nav class="rf-links" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/case-studies/faddom">Faddom case</a>
+      <a href="/funnel-score">Score your funnel</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">Contact</a>
+      <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+    <span class="rf-c">&copy; 2026 EA Analytics</span>
+  </div>
+</footer>
 
 <script>
 // chapter progress bar
