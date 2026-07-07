@@ -95,7 +95,8 @@ body {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  padding: 4px;
+  padding: 12px;
+  margin: -6px;
 }
 .nav-hamburger span {
   width: 22px;
@@ -394,17 +395,6 @@ body {
   position: relative;
 }
 
-.steps-grid::before {
-  content: '';
-  position: absolute;
-  top: 38px;
-  left: 16.5%;
-  right: 16.5%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold), rgba(196,163,90,0.1));
-  z-index: 0;
-}
-
 .step-card { text-align: center; position: relative; z-index: 1; }
 
 .step-num {
@@ -531,7 +521,7 @@ body {
 
 .deep-dives-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
@@ -1287,9 +1277,6 @@ body {
   color: var(--gray-500);
 }
 
-@media (max-width: 768px) {
-  .tools-strip { display: none; }
-}
 
 /* ---------- ANIMATIONS ---------- */
 @keyframes fadeUp {
@@ -1347,7 +1334,7 @@ body {
   margin-top: 6px;
 }
 
-.section-label.visible::after {
+.section-label::after {
   width: 40px;
 }
 
@@ -2101,3 +2088,9 @@ section, .tools-strip { scroll-margin-top: 80px; }
   text-decoration: none;
 }
 .t-case-link:hover { color: var(--gold-dark); }
+
+/* contact: booking first on mobile, taller scheduler */
+@media (max-width: 768px) {
+  .scheduler-wrap iframe { height: 760px; }
+  .contact-grid-flip > div:last-child { order: -1; }
+}
