@@ -1551,3 +1551,61 @@ body {
   .open-door { padding: 50px 20px; }
   .open-door-title { font-size: 1.5rem; }
 }
+
+/* ============================================================
+   Testimonial carousel (logo-matched cards)
+   ============================================================ */
+.t-carousel-wrap { position: relative; }
+
+.t-carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 6px 2px 10px;
+}
+.t-carousel::-webkit-scrollbar { display: none; }
+
+.t-carousel .testimonial-card {
+  flex: 0 0 calc((100% - 40px) / 3);
+  scroll-snap-align: center;
+}
+
+.t-logo {
+  display: block;
+  margin-bottom: 18px;
+  text-decoration: none;
+}
+.t-logo img {
+  height: 28px;
+  transition: transform 0.25s ease;
+}
+a.t-logo:hover img { transform: translateY(-2px); }
+
+.t-dots {
+  display: none;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+.t-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-300);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+.t-dot.active { background: var(--gold); transform: scale(1.25); }
+
+@media (max-width: 900px) {
+  .t-carousel .testimonial-card { flex: 0 0 72%; }
+}
+@media (max-width: 640px) {
+  .t-carousel { gap: 14px; }
+  .t-carousel .testimonial-card { flex: 0 0 86%; }
+  .t-logo img { height: 24px; }
+}

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 44" width="300" height="44">
+  <rect x="2" y="6" width="30" height="32" rx="6" fill="none" stroke="#2E9E6B" stroke-width="3"/>
+  <line x1="17" y1="6" x2="17" y2="38" stroke="#2E9E6B" stroke-width="2.4"/>
+  <text x="42" y="33" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="27" letter-spacing="0.5">
+    <tspan fill="#0a1652">COURT</tspan><tspan fill="#2E9E6B">MASTER</tspan>
+  </text>
+</svg>

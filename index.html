@@ -51,28 +51,37 @@
   <div class="section-label">Who I Work With</div>
   <h2 class="section-title reveal">Teams that stopped guessing</h2>
 
-  <div class="logo-strip reveal">
-    <a href="https://faddom.com" target="_blank" rel="noopener" aria-label="Faddom website"><img src="assets/logo-faddom.svg?v=1" alt="Faddom" class="client-logo"></a>
-    <a href="https://formsort.com" target="_blank" rel="noopener" aria-label="Formsort website"><img src="assets/logo-formsort.svg" alt="Formsort" class="client-logo"></a>
-  </div>
-
-  <div class="testimonial-grid reveal">
-    <div class="testimonial-card">
-      <p class="testimonial-quote">&ldquo;I don't dig into lead details anymore. I go straight to the score.&rdquo;</p>
-      <div class="testimonial-attrib">
-        <span class="t-name">Omer Rabinowitz</span>
-        <span class="t-role">Co-Founder &amp; Chief Growth Officer, Faddom</span>
+  <div class="t-carousel-wrap reveal">
+    <div class="t-carousel" id="t-carousel" aria-label="Client testimonials">
+      <div class="testimonial-card">
+        <a class="t-logo" href="https://faddom.com" target="_blank" rel="noopener" aria-label="Faddom website"><img src="assets/logo-faddom.svg?v=1" alt="Faddom"></a>
+        <p class="testimonial-quote">&ldquo;I don't dig into lead details anymore. I go straight to the score.&rdquo;</p>
+        <div class="testimonial-attrib">
+          <span class="t-name">Omer Rabinowitz</span>
+          <span class="t-role">Co-Founder &amp; Chief Growth Officer, Faddom</span>
+        </div>
+        <p class="testimonial-context">Lead scoring from two years of CRM data. One segment converts at 3.8x the average rate.</p>
       </div>
-      <p class="testimonial-context">Lead scoring from two years of CRM data. One segment converts at 3.8x the average rate.</p>
-    </div>
-    <div class="testimonial-card">
-      <p class="testimonial-quote">&ldquo;Elisha plugs into our data and gets to answers fast. Questions we'd been circling for weeks come back as clear, decision-ready analysis.&rdquo;</p>
-      <div class="testimonial-attrib">
-        <span class="t-name">Yael Weinreich</span>
-        <span class="t-role">Director of Business Operations, Formsort</span>
+      <div class="testimonial-card">
+        <a class="t-logo" href="https://formsort.com" target="_blank" rel="noopener" aria-label="Formsort website"><img src="assets/logo-formsort.svg" alt="Formsort"></a>
+        <p class="testimonial-quote">&ldquo;Elisha plugs into our data and gets to answers fast. Questions we'd been circling for weeks come back as clear, decision-ready analysis.&rdquo;</p>
+        <div class="testimonial-attrib">
+          <span class="t-name">Yael Weinreich</span>
+          <span class="t-role">Director of Business Operations, Formsort</span>
+        </div>
+        <p class="testimonial-context">Recurring analytics work on operations and revenue data.</p>
       </div>
-      <p class="testimonial-context">Recurring analytics work on operations and revenue data.</p>
+      <div class="testimonial-card">
+        <span class="t-logo"><img src="assets/logo-courtmaster.svg" alt="Courtmaster"></span>
+        <p class="testimonial-quote">&ldquo;We come to Elisha with a question and leave with an answer and next steps. He makes our product data actually useful.&rdquo;</p>
+        <div class="testimonial-attrib">
+          <span class="t-name">Aliocha Blaise</span>
+          <span class="t-role">Co-Founder, Courtmaster</span>
+        </div>
+        <p class="testimonial-context">Product usage and customer analytics.</p>
+      </div>
     </div>
+    <div class="t-dots" id="t-dots" role="tablist" aria-label="Testimonial navigation"></div>
   </div>
 </section>
 
@@ -280,6 +289,64 @@
   document.querySelectorAll('.reveal, .section-label').forEach(function (el) {
     observer.observe(el);
   });
+})();
+</script>
+
+<script>
+// Testimonial carousel: swipeable, dots, gentle auto-advance (pauses on interaction)
+(function () {
+  var car = document.getElementById('t-carousel');
+  var dotsWrap = document.getElementById('t-dots');
+  if (!car || !dotsWrap) return;
+  var cards = car.children, n = cards.length;
+
+  for (var i = 0; i < n; i++) {
+    (function (idx) {
+      var b = document.createElement('button');
+      b.className = 't-dot';
+      b.setAttribute('aria-label', 'Testimonial ' + (idx + 1));
+      b.addEventListener('click', function () { go(idx); pause(); });
+      dotsWrap.appendChild(b);
+    })(i);
+  }
+  var dots = dotsWrap.children;
+
+  function scrollable() { return car.scrollWidth - car.clientWidth > 10; }
+  function cardLeft(i) { return cards[i].offsetLeft - car.offsetLeft; }
+  function go(i) {
+    car.scrollTo({ left: cardLeft(i) - (car.clientWidth - cards[i].offsetWidth) / 2, behavior: 'smooth' });
+  }
+  function current() {
+    var c = car.scrollLeft + car.clientWidth / 2, best = 0, bd = 1e9;
+    for (var i = 0; i < n; i++) {
+      var d = Math.abs(cardLeft(i) + cards[i].offsetWidth / 2 - c);
+      if (d < bd) { bd = d; best = i; }
+    }
+    return best;
+  }
+  function sync() {
+    dotsWrap.style.display = scrollable() ? 'flex' : 'none';
+    var cur = current();
+    for (var i = 0; i < n; i++) dots[i].classList.toggle('active', i === cur);
+  }
+  car.addEventListener('scroll', function () { requestAnimationFrame(sync); });
+  window.addEventListener('resize', sync);
+
+  var idleUntil = 0;
+  function pause() { idleUntil = Date.now() + 12000; }
+  ['pointerdown', 'touchstart', 'wheel'].forEach(function (ev) {
+    car.addEventListener(ev, pause, { passive: true });
+  });
+
+  var inView = false;
+  new IntersectionObserver(function (es) { inView = es[0].isIntersecting; }, { threshold: 0.3 }).observe(car);
+
+  setInterval(function () {
+    if (!scrollable() || !inView || document.hidden || Date.now() < idleUntil) return;
+    go((current() + 1) % n);
+  }, 5000);
+
+  sync();
 })();
 </script>
 
