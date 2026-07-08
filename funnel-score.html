@@ -98,6 +98,23 @@
   .quiz-card { padding: 28px 20px 26px; }
   .quiz-q { font-size: 1.15rem; }
 }
+
+.result-capture { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--gray-100); }
+.rc-lead { font-size: 0.9rem; color: var(--gray-700); margin-bottom: 10px; font-weight: 600; }
+.rc-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.rc-row input {
+  flex: 1; min-width: 200px; max-width: 300px;
+  padding: 11px 14px; border: 1.5px solid var(--gray-100); border-radius: 9px;
+  font-size: 0.88rem; font-family: 'Inter', sans-serif;
+}
+.rc-row input:focus { outline: none; border-color: var(--gold); }
+.rc-row button {
+  padding: 11px 18px; border-radius: 9px; border: 1.5px solid var(--gold);
+  background: var(--white); color: var(--navy-900); font-weight: 700; font-size: 0.85rem;
+  cursor: pointer; transition: background 0.2s ease;
+}
+.rc-row button:hover { background: var(--gray-50); }
+.rc-note { font-size: 0.72rem; color: var(--gray-500); margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -152,6 +169,14 @@
       <div class="result-ctas">
         <a class="result-cta-primary" href="https://calendar.app.google/98h6wsskR4FHqk9q7" target="_blank" rel="noopener">Book a free data audit call</a>
         <a class="result-cta-secondary" href="resources/finding-your-icp">Start with the free ICP guide &rarr;</a>
+      </div>
+      <div class="result-capture" id="result-capture">
+        <p class="rc-lead">Want two pointers tailored to your score? I'll send them personally.</p>
+        <div class="rc-row">
+          <input type="email" id="rc-email" placeholder="you@company.com" autocomplete="email" aria-label="Your email">
+          <button id="rc-send" type="button">Send my pointers</button>
+        </div>
+        <p class="rc-note" id="rc-note">No newsletter, no sequence. One reply from me.</p>
       </div>
       <button class="result-restart" id="restart">Retake the assessment</button>
     </div>
@@ -279,6 +304,38 @@
     }
     requestAnimationFrame(step);
   }
+
+  document.getElementById('rc-send').addEventListener('click', function () {
+    var email = document.getElementById('rc-email').value.trim();
+    var note = document.getElementById('rc-note');
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      note.textContent = 'That email does not look right. One more try?';
+      return;
+    }
+    var btn = document.getElementById('rc-send');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: '222acbc2-cfb5-4220-9954-fbd1d7c57043',
+        subject: 'Funnel Score lead: ' + document.getElementById('score-val').textContent + '/100',
+        from_name: 'Funnel Score Tool',
+        email: email,
+        message: 'Score: ' + document.getElementById('score-val').textContent + '/100\n' +
+                 'Tier: ' + document.getElementById('tier-title').textContent + '\n' +
+                 'Focus areas: ' + [].map.call(document.querySelectorAll('#focus-list li'), function (li) { return li.textContent; }).join(' | ') + '\n' +
+                 'Visitor email: ' + email
+      })
+    }).then(function (r) {
+      if (r.ok) {
+        document.getElementById('result-capture').innerHTML = '<p class="rc-lead">Sent. You will hear from me within a day.</p>';
+      } else { throw new Error(); }
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = 'Send my pointers';
+      note.textContent = 'Something hiccuped. Email me directly: info@ea-analytics.com';
+    });
+  });
 
   document.getElementById('restart').addEventListener('click', function () {
     answers = []; idx = 0;
