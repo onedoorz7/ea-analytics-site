@@ -208,6 +208,29 @@
   </div>
 </section>
 
+<!-- EVIDENCE: LIVE QUERY -->
+<section class="evidence" id="evidence">
+  <div class="section-label">Real Results</div>
+  <h2 class="section-title reveal">This is what the work looks like</h2>
+  <p class="section-subtitle reveal">A replay of real client work. Two years of inbound leads, scored against closed-won history.</p>
+
+  <div class="terminal reveal">
+    <div class="term-bar"><span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span><span class="term-title">faddom_leads.sql</span></div>
+    <div class="term-body">
+      <div class="term-q" id="term-q"></div>
+      <div class="term-out" id="term-out">
+        <div class="term-row hd"><span>tier</span><span>leads</span><span>wins</span><span>conversion</span></div>
+        <div class="term-row hot" style="--w:100%"><span>Prime ICP</span><span>458</span><span>23</span><span class="bar"><i></i></span></div>
+        <div class="term-row" style="--w:41%"><span>Strong ICP</span><span>1,452</span><span>30</span><span class="bar"><i></i></span></div>
+        <div class="term-row" style="--w:5%"><span>ACP</span><span>1,698</span><span>4</span><span class="bar"><i></i></span></div>
+        <div class="term-row" style="--w:0.5%"><span>Out of scope</span><span>665</span><span>0</span><span class="bar"><i></i></span></div>
+        <div class="term-foot">4 rows &middot; 4,273 leads &middot; top tier converts at <em>3.8x the average</em></div>
+      </div>
+    </div>
+  </div>
+  <p class="evidence-links reveal">Faddom's sales team now works the score instead of the queue. <a href="case-studies/faddom">Read the case</a> &middot; <a href="report/">See the full report</a></p>
+</section>
+
 <!-- DEEP DIVES -->
 <section class="deep-dives">
   <div class="deep-dives-label">Deep Dives</div>
@@ -574,5 +597,54 @@
 
 <script data-goatcounter="https://ea-analytics.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
+
+<script>
+// Evidence terminal: types the query when scrolled into view, then reveals the result
+(function () {
+  var qEl = document.getElementById('term-q');
+  var out = document.getElementById('term-out');
+  if (!qEl || !out) return;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var Q = [
+    { t: 'SELECT', kw: true }, { t: ' tier, COUNT(*) AS leads, SUM(won) AS wins,\n' },
+    { t: '       ' }, { t: 'ROUND', kw: true }, { t: '(100.0 * SUM(won) / COUNT(*), 2) AS conversion\n' },
+    { t: 'FROM', kw: true }, { t: ' leads_scored  ' }, { t: '-- 2 years of inbound\n' },
+    { t: 'GROUP BY', kw: true }, { t: ' tier ' }, { t: 'ORDER BY', kw: true }, { t: ' conversion DESC;' }
+  ];
+  function done() {
+    out.classList.add('show');
+    var rows = out.querySelectorAll('.term-row');
+    rows.forEach(function (r, i) { setTimeout(function () { r.classList.add('in'); }, reduced ? 0 : 150 * i); });
+  }
+  function fill() {
+    qEl.innerHTML = Q.map(function (s) { return s.kw ? '<span class="kw">' + s.t + '</span>' : s.t; }).join('');
+    done();
+  }
+  if (reduced) { fill(); return; }
+  var started = false;
+  var io = new IntersectionObserver(function (es) {
+    if (!es[0].isIntersecting || started) return;
+    started = true; io.disconnect();
+    var caret = document.createElement('span'); caret.className = 'term-caret';
+    qEl.appendChild(caret);
+    var si = 0, ci = 0;
+    (function tick() {
+      if (si >= Q.length) { caret.remove(); setTimeout(done, 250); return; }
+      var seg = Q[si];
+      if (ci === 0) {
+        seg.node = seg.kw ? document.createElement('span') : document.createTextNode('');
+        if (seg.kw) seg.node.className = 'kw';
+        qEl.insertBefore(seg.node, caret);
+      }
+      seg.node.textContent += seg.t[ci];
+      ci++;
+      if (ci >= seg.t.length) { si++; ci = 0; }
+      setTimeout(tick, 18);
+    })();
+  }, { threshold: 0.5 });
+  io.observe(qEl.closest('.terminal'));
+})();
+</script>
+
 </body>
 </html>
