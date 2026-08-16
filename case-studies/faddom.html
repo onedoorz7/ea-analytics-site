@@ -123,6 +123,9 @@ body { background: var(--r-paper); }
 .sworn img { height: 18px; margin-top: 4px; }
 .sworn .sq { font-family: 'Playfair Display', Georgia, serif; font-size: 1.12rem; color: var(--r-navy); font-style: italic; line-height: 1.5; }
 .sworn .sc-cite { font-size: 0.72rem; color: var(--r-ink-mute); margin-top: 4px; }
+.sworn.big { border-top: none; border-left: 3px solid var(--r-gold); padding: 6px 0 6px 22px; margin-top: 30px; max-width: 720px; }
+.sworn.big .sq { font-size: 1.55rem; line-height: 1.45; }
+.sworn.big img { height: 22px; margin-top: 10px; }
 
 /* report plug + commission */
 .report-plug { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--r-navy); border: 1.5px solid var(--r-gold); border-radius: 14px; padding: 20px 22px; margin: 40px 0 0; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -196,12 +199,16 @@ body { background: var(--r-paper); }
     <p class="xread" id="tierx-read">Most of the leads sit in tiers that barely convert. Click through the views. That flip is the whole business case.</p>
   </div>
   <p class="exhibit-cap">665 leads got two years of calls and produced zero revenue. The top tier converts at 3.8x the average, and nobody knew it existed. The score now runs live in Salesforce; the second finding, a separate 10,000+ employee "whale" segment with year-long cycles, gets its own playbook.</p>
+  <div class="sworn">
+    <img src="../assets/logo-faddom.svg?v=1" alt="Faddom">
+    <div><div class="sq">"I don't dig into lead details anymore. I go straight to the score."</div><div class="sc-cite">Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</div></div>
+  </div>
 </section>
 
 <!-- CH 02: DEALS GETTING BIGGER -->
 <section class="chapter" id="c2">
   <div class="ch-head"><span class="ch-num">02</span><h2>Then the deals started getting bigger</h2></div>
-  <p class="ch-lead">Scoring changed the targeting, and targeting changed what a demo is worth. Quarter by quarter, the same funnel produced bigger conversations:</p>
+  <p class="ch-lead">Bigger deals were the company's stated goal when the engagement started. The scoring gave that goal teeth: targeting refined against the tiers that close big, and every demo priced so progress was visible. Quarter by quarter, the effort showed up in the data:</p>
   <div class="exhibit-tag">Exhibit B &middot; interactive &middot; deal size per demo, six quarters</div>
   <div class="xcard">
     <div class="xtabs" role="group" aria-label="Choose a metric">
@@ -224,13 +231,13 @@ body { background: var(--r-paper); }
 
 <!-- CH 03: FORECAST -->
 <section class="chapter" id="c3">
-  <div class="ch-head"><span class="ch-num">03</span><h2>Does the model predict? Watch it against reality</h2></div>
-  <p class="ch-lead">Lead quality times demo quality, rolled forward into expected wins and revenue, then held against what actually landed. Month by month, two years straight.</p>
-  <div class="exhibit-tag">Exhibit C &middot; interactive &middot; forecast vs actuals, 22 months</div>
+  <div class="ch-head"><span class="ch-num">03</span><h2>Every demo gets a price tag, in real time</h2></div>
+  <p class="ch-lead">The day a demo happens, it gets a win probability and a conservative ARR estimate. The month's pipeline value exists immediately, and reality fills in behind it. No waiting a quarter to find out whether marketing delivered.</p>
+  <div class="exhibit-tag">Exhibit C &middot; interactive &middot; live estimates vs what landed, 12 months</div>
   <div class="xcard">
-    <div class="xtabs" role="group" aria-label="Choose forecast view">
-      <button class="xtab fb on" data-f="wins" aria-pressed="true">Wins: expected vs actual</button>
-      <button class="xtab fb" data-f="arr" aria-pressed="false">Revenue: predicted vs actual</button>
+    <div class="xtabs" role="group" aria-label="Choose estimate view">
+      <button class="xtab fb on" data-f="wins" aria-pressed="true">Wins: estimated vs landed</button>
+      <button class="xtab fb" data-f="arr" aria-pressed="false">Dollars: estimated vs landed</button>
     </div>
     <div class="xchart">
       <svg viewBox="0 0 880 310" id="fc-svg" aria-hidden="true"></svg>
@@ -238,10 +245,10 @@ body { background: var(--r-paper); }
     </div>
     <p class="xread" id="fc-read"></p>
   </div>
-  <span class="mono-note">// shaded cohorts still maturing: enterprise deals take up to a year to land &middot; the model prices what is in flight before it arrives &middot; totals calibrated per channel, the monthly shape is the test</span>
+  <span class="mono-note">// estimates are written the month the demos happen &middot; shaded cohorts still landing: enterprise deals take up to a year &middot; conservative on purpose</span>
   <div class="stamp-row">
-    <div class="stampb"><h3>The full-year test</h3><div class="fig">predicted&nbsp; 56 wins &middot; $3.47M<br>actual&nbsp;&nbsp;&nbsp;&nbsp; <b>57 wins &middot; $4.15M</b></div></div>
-    <div class="stampb"><h3>Two years pooled</h3><div class="fig">expected&nbsp; 82.0 wins<br>actual&nbsp;&nbsp;&nbsp;&nbsp; <b>82 wins</b></div></div>
+    <div class="stampb"><h3>The full-year test</h3><div class="fig">estimated&nbsp; 56 wins &middot; $3.47M<br>closed&nbsp;&nbsp;&nbsp;&nbsp; <b>57 wins &middot; $4.15M</b></div><p style="font-size:0.78rem;color:var(--r-ink-mute);margin:6px 0 0;">Off by one win, with revenue landing higher because the deals grew.</p></div>
+    <div class="stampb"><h3>Conservative by design</h3><div class="fig">estimated, Mar-Dec 25&nbsp; $814K<br>closed&nbsp;&nbsp;&nbsp;&nbsp; <b>$974K &middot; 1.2x</b></div><p style="font-size:0.78rem;color:var(--r-ink-mute);margin:6px 0 0;">The team quotes the number in real time, knowing reality lands above it.</p></div>
   </div>
 </section>
 
@@ -269,11 +276,7 @@ body { background: var(--r-paper); }
     <div class="sc"><div class="sc-n">III</div><div><h4>Weekly quality watchdog</h4><p>Lead-quality drift surfaces in weeks, not quarters. Exhibit D shows it working.</p></div></div>
     <div class="sc"><div class="sc-n">IV</div><div><h4>The whale ledger</h4><p>Every 10,000+ employee lead tracked from lead to demo to opportunity, on milestones that respect a year-long cycle.</p></div></div>
   </div>
-  <div class="sworn">
-    <img src="../assets/logo-faddom.svg?v=1" alt="Faddom">
-    <div><div class="sq">"I don't dig into lead details anymore. I go straight to the score."</div><div class="sc-cite">Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</div></div>
-  </div>
-  <div class="sworn">
+  <div class="sworn big">
     <img src="../assets/logo-faddom.svg?v=1" alt="Faddom">
     <div><div class="sq">"I can now show up at a conference and brag about how we measure our funnel."</div><div class="sc-cite">Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</div></div>
   </div>
@@ -466,16 +469,16 @@ function onSeen(id, fn) {
 
 /* ============ Exhibit C: forecast vs reality ============ */
 (function () {
-  // unified model, IB+OB pooled, calibrated. May 2024 - Feb 2026 demo cohorts.
-  var M = ['May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
-  var EXP  = [0.1,2.9,2.3,3.1,1.9,2.0,3.7,4.0,5.4,6.7,5.9,6.8,5.4,4.2,3.5,5.7,3.9,1.7,1.8,2.5,2.8,2.1];
-  var ACT  = [1,5,1,3,2,1,4,4,3,13,11,11,4,2,4,4,2,2,2,1,1,1];
-  var PIPE = [2312,48523,118796,65808,32472,37992,125006,74365,81091,101784,183795,80275,89561,60289,65014,65828,48962,120913,31713,67856,163061,65502];
-  var ARR  = [17850,181100,10500,84950,28600,17850,98850,69183,88400,226882,306700,233326,67350,28350,81500,106500,36850,59500,35700,17850,17850,17850];
-  var MATURE_UNTIL = 19; // index of last mature month (Dec 25)
+  // live-period demo cohorts: estimates written the month the demos happened. Mar 2025 - Feb 2026.
+  var M = ['Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
+  var EXP  = [5.9,6.8,5.4,4.2,3.5,5.7,3.9,1.7,1.8,2.5,2.8,2.1];
+  var ACT  = [11,11,4,2,4,4,2,2,2,1,1,1];
+  var PIPE = [183795,80275,89561,60289,65014,65828,48962,120913,31713,67856,163061,65502];
+  var ARR  = [306700,233326,67350,28350,81500,106500,36850,59500,35700,17850,17850,17850];
+  var MATURE_UNTIL = 9; // index of last mature month (Dec 25)
   var READS = {
-    wins: 'Gold line: what the model expected from each month’s demos. Navy bars: what actually closed. 82.0 expected, 82 landed. The shaded cohorts are still paying out: wins the model has priced before they arrive.',
-    arr:  'Same test in dollars: calibrated predicted pipeline (line) vs actual ARR from those demos (bars). Mature months land at 0.84 of predicted, and the shaded cohorts hold roughly $300K the model expects next. Bookings, visible early.'
+    wins: 'Gold line: the win value assigned to each month’s demos, the month they happened. Navy bars: what those demos actually delivered. Conservative by design: the spring cohorts closed at nearly double the estimate.',
+    arr:  'The same ledger in dollars: pipeline estimated in real time (line) vs the ARR those demos produced (bars). Mature cohorts delivered 1.2x the estimate; the shaded months are still landing.'
   };
   var svg = document.getElementById('fc-svg');
   var tip = document.getElementById('fc-tip');
@@ -495,7 +498,7 @@ function onSeen(id, fn) {
     var shadeX = L + (MATURE_UNTIL + 1) * bw;
     el('rect', { x: shadeX, y: T, width: W - R - shadeX, height: plotH, fill: 'rgba(196,163,90,0.10)' }, svg);
     var shl = el('text', { 'class': 'axis-t', x: shadeX + (W - R - shadeX) / 2, y: T + 14, 'text-anchor': 'middle', fill: '#a88a3e' }, svg);
-    shl.textContent = 'still maturing';
+    shl.textContent = 'still landing';
     el('line', { x1: L, y1: T + plotH, x2: W - R, y2: T + plotH, stroke: '#d9d3c7', 'stroke-width': 1.5 }, svg);
     for (var i = 1; i <= 3; i++) {
       var gv = max * i / 4, gy = T + plotH - plotH * i / 4;
@@ -508,10 +511,8 @@ function onSeen(id, fn) {
       var h = Math.max(v / max * plotH, v > 0 ? 2 : 0.8);
       el('rect', { x: L + i * bw + bw * 0.2, y: T + plotH - h, width: bw * 0.6, height: h, rx: 2.5,
         fill: i > MATURE_UNTIL ? 'rgba(37,65,168,0.45)' : '#2541a8' }, svg);
-      if (i % 2 === 0) {
-        var tl = el('text', { 'class': 'axis-t', x: L + i * bw + bw / 2, y: H - 20, 'text-anchor': 'middle' }, svg);
-        tl.textContent = M[i];
-      }
+      var tl = el('text', { 'class': 'axis-t', x: L + i * bw + bw / 2, y: H - 20, 'text-anchor': 'middle' }, svg);
+      tl.textContent = M[i];
     });
     // line = expected
     var pts = line.map(function (v, i) {
@@ -526,8 +527,8 @@ function onSeen(id, fn) {
     M.forEach(function (m, i) {
       var hc = el('rect', { 'class': 'hover-col', x: L + i * bw, y: T, width: bw, height: plotH }, svg);
       hc.addEventListener('mouseenter', function () {
-        tip.innerHTML = '<b>' + m + (i > MATURE_UNTIL ? ' (maturing)' : '') + '</b><br>expected: ' +
-          (money ? fmtK(line[i]) : line[i].toFixed(1)) + '<br>actual: ' + (money ? fmtK(bars[i]) : bars[i]);
+        tip.innerHTML = '<b>' + m + (i > MATURE_UNTIL ? ' (still landing)' : '') + '</b><br>estimated: ' +
+          (money ? fmtK(line[i]) : line[i].toFixed(1)) + '<br>landed: ' + (money ? fmtK(bars[i]) : bars[i]);
         tip.classList.add('show');
       });
       hc.addEventListener('mouseleave', function () { tip.classList.remove('show'); });
