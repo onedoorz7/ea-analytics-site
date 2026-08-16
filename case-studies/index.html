@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://ea-analytics.goatcounter.com; frame-src https://calendar.app.google https://calendar.google.com; base-uri 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#0a1652">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Files | EA Analytics</title>
+<meta name="description" content="Client case studies from EA Analytics: real GTM data, real charts, real outcomes. Lead scoring, pipeline forecasting, and funnel measurement systems that stay after the engagement ends.">
+<meta property="og:title" content="Case Files | EA Analytics">
+<meta property="og:description" content="Real client data, real charts, real outcomes. The case studies.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ea-analytics.com/case-studies/">
+<meta property="og:image" content="https://ea-analytics.com/assets/og-image.png">
+<link rel="canonical" href="https://ea-analytics.com/case-studies/">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+:root {
+  --r-navy: #0a1652; --r-navy-deep: #071040;
+  --r-gold: #c4a35a; --r-gold-light: #d4b76e; --r-gold-dark: #a88a3e;
+  --r-paper: #faf8f4; --r-ink-soft: #4c5165; --r-ink-mute: #8b8f9f;
+  --r-line: #e7e2d8; --r-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+body { background: var(--r-paper); }
+::selection { background: var(--r-gold); color: var(--r-navy); }
+.cf-hero { background:
+    radial-gradient(ellipse at 25% 20%, rgba(51,86,192,0.20) 0%, transparent 50%),
+    linear-gradient(160deg, var(--r-navy-deep) 0%, var(--r-navy) 60%, #0d1c66 100%);
+  color: #fff; padding: 100px 24px 54px; position: relative; overflow: hidden; }
+.cf-hero::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 56px 56px; }
+.cf-hero-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 2; }
+.cf-rule { display: flex; align-items: center; gap: 14px; margin-bottom: 26px; }
+.cf-rule .cr-line { height: 1px; flex: 1; background: rgba(196,163,90,0.4); }
+.cf-rule .cr-tag { font-family: var(--r-mono); font-size: 0.68rem; letter-spacing: 0.28em; color: var(--r-gold-light); text-transform: uppercase; }
+.cf-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 600; line-height: 1.12; }
+.cf-hero h1 em { font-style: italic; color: var(--r-gold-light); }
+.cf-hero p { margin-top: 14px; color: rgba(255,255,255,0.6); max-width: 540px; font-size: 1rem; }
+.cf-list { max-width: 880px; margin: 0 auto; padding: 54px 24px 30px; }
+.cf-card { display: block; background: #fff; border: 1px solid var(--r-line); border-radius: 16px; padding: 30px 32px; margin-bottom: 22px; text-decoration: none; position: relative; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+a.cf-card:hover { transform: translateY(-3px); box-shadow: 0 18px 50px rgba(10,22,82,0.12); }
+.cf-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--r-gold), #2541a8); }
+.cf-num { font-family: var(--r-mono); font-size: 0.66rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--r-gold-dark); }
+.cf-card h2 { font-family: 'Playfair Display', Georgia, serif; color: var(--r-navy); font-size: 1.45rem; margin: 8px 0 6px; }
+.cf-card .cf-sub { font-size: 0.88rem; color: var(--r-ink-soft); max-width: 560px; line-height: 1.65; }
+.cf-stats { display: flex; gap: 26px; flex-wrap: wrap; margin-top: 16px; }
+.cf-stat .n { font-family: var(--r-mono); font-weight: 600; color: var(--r-navy); font-size: 1.02rem; }
+.cf-stat .n em { color: var(--r-gold-dark); font-style: normal; }
+.cf-stat .l { font-size: 0.68rem; color: var(--r-ink-mute); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+.cf-quote { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--r-line); font-size: 0.85rem; color: var(--r-ink-soft); font-style: italic; }
+.cf-quote span { display: block; font-style: normal; font-size: 0.7rem; color: var(--r-ink-mute); margin-top: 3px; }
+.cf-go { display: inline-block; margin-top: 16px; font-weight: 700; font-size: 0.85rem; color: var(--r-navy); border-bottom: 2px solid var(--r-gold); padding-bottom: 2px; }
+.cf-card.soon { opacity: 0.82; }
+.cf-card.soon h2 { color: var(--r-ink-soft); }
+.cf-badge-soon { display: inline-block; font-family: var(--r-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--r-gold-dark); border: 1px dashed rgba(196,163,90,0.6); border-radius: 5px; padding: 3px 9px; margin-left: 10px; vertical-align: middle; }
+.cf-cta { text-align: center; max-width: 880px; margin: 20px auto 0; padding: 0 24px 70px; }
+.cf-cta a { display: inline-block; background: var(--r-navy); color: #fff; font-weight: 700; padding: 14px 30px; border-radius: 9px; text-decoration: none; border: 1.5px solid var(--r-gold); font-size: 0.92rem; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-logo">EA <span>Data & Analytics</span></a>
+  <div class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links">
+    <a href="/#outcomes">Services</a>
+    <a href="/resources">Resources</a>
+    <a href="/blog">Blog</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" class="nav-cta" target="_blank" rel="noopener">Book a Call</a>
+  </div>
+</nav>
+
+<header class="cf-hero">
+  <div class="cf-hero-inner">
+    <div class="cf-rule"><span class="cr-tag">EA Analytics &middot; The Case Files</span><span class="cr-line"></span></div>
+    <h1>Real clients. Real data. <em>Real charts.</em></h1>
+    <p>Every case file is built from the client's actual CRM numbers, shared with permission. No stock screenshots, no "results may vary."</p>
+  </div>
+</header>
+
+<div class="cf-list">
+
+  <a class="cf-card" href="/case-studies/faddom">
+    <div class="cf-num">Case File No. 001 &middot; Faddom &middot; B2B SaaS, Series A</div>
+    <h2>From gut feel to a system the team runs itself</h2>
+    <p class="cf-sub">Lead scoring on two years of CRM history, a forecast tested against reality, deals that doubled in size, and a weekly watchdog that caught a quality drift in-flight. Four interactive exhibits.</p>
+    <div class="cf-stats">
+      <div class="cf-stat"><div class="n">4,273</div><div class="l">leads scored</div></div>
+      <div class="cf-stat"><div class="n"><em>3.8x</em></div><div class="l">best segment</div></div>
+      <div class="cf-stat"><div class="n">&plusmn;1 win</div><div class="l">forecast error</div></div>
+      <div class="cf-stat"><div class="n"><em>2.2x</em></div><div class="l">median deal, yr/yr</div></div>
+    </div>
+    <div class="cf-quote">"I can now show up at a conference and brag about how we measure our funnel."<span>Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</span></div>
+    <span class="cf-go">Open the case file &rarr;</span>
+  </a>
+
+  <div class="cf-card soon">
+    <div class="cf-num">Case File No. 002 &middot; Courtmaster &middot; Sports-tech</div>
+    <h2>The utilization playbook <span class="cf-badge-soon">In preparation</span></h2>
+    <p class="cf-sub">Court utilization analytics: booking data turned into pricing and capacity decisions.</p>
+    <div class="cf-quote">"We come with a question and leave with an answer and next steps."<span>Aliocha Blaise, Co-Founder, Courtmaster</span></div>
+  </div>
+
+  <div class="cf-card soon">
+    <div class="cf-num">Case File No. 003 &middot; Formsort &middot; B2B SaaS</div>
+    <h2>Decision-ready operations analysis <span class="cf-badge-soon">In preparation</span></h2>
+    <p class="cf-sub">Business-operations questions answered from product and revenue data.</p>
+    <div class="cf-quote">"Questions we'd been circling for weeks come back as clear, decision-ready analysis."<span>Yael Weinreich, Director of Business Operations, Formsort</span></div>
+  </div>
+
+</div>
+
+<div class="cf-cta">
+  <a href="https://calendar.app.google/98h6wsskR4FHqk9q7" target="_blank" rel="noopener">Your CRM has a case file in it. Book a free audit call</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-left">EA Analytics</div>
+  <div class="footer-links">
+    <a href="/resources">Resources</a>
+    <a href="/blog">Blog</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/privacy-policy">Privacy Policy</a>
+    <a href="https://www.linkedin.com/in/elisha-amir/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:info@ea-analytics.com">info@ea-analytics.com</a>
+  </div>
+  <div class="footer-right">&copy; 2026 EA Analytics</div>
+</footer>
+
+<script data-goatcounter="https://ea-analytics.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
