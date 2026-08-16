@@ -198,17 +198,16 @@ body { background: var(--r-paper); }
   <p class="exhibit-cap">665 leads got two years of calls and produced zero revenue. The top tier converts at 3.8x the average, and nobody knew it existed. The score now runs live in Salesforce; the second finding, a separate 10,000+ employee "whale" segment with year-long cycles, gets its own playbook.</p>
 </section>
 
-<!-- CH 02: OPERATING RHYTHM -->
+<!-- CH 02: DEALS GETTING BIGGER -->
 <section class="chapter" id="c2">
-  <div class="ch-head"><span class="ch-num">02</span><h2>Then the funnel went on a rhythm</h2></div>
-  <p class="ch-lead">A score alone changes one decision. A monthly measurement rhythm changes all of them. Same chart the team reads every month:</p>
-  <div class="exhibit-tag">Exhibit B &middot; interactive &middot; 20 months, monthly report data</div>
+  <div class="ch-head"><span class="ch-num">02</span><h2>Then the deals started getting bigger</h2></div>
+  <p class="ch-lead">Scoring changed the targeting, and targeting changed what a demo is worth. Quarter by quarter, the same funnel produced bigger conversations:</p>
+  <div class="exhibit-tag">Exhibit B &middot; interactive &middot; deal size per demo, six quarters</div>
   <div class="xcard">
     <div class="xtabs" role="group" aria-label="Choose a metric">
-      <button class="xtab rb on" data-m="qual" aria-pressed="true">Qualified leads</button>
-      <button class="xtab rb" data-m="demos" aria-pressed="false">Demos</button>
-      <button class="xtab rb" data-m="pipe" aria-pressed="false">Est. pipeline $</button>
-      <button class="xtab rb" data-m="icp" aria-pressed="false">Avg ICP score</button>
+      <button class="xtab rb on" data-m="srv" aria-pressed="true">Median servers / demo</button>
+      <button class="xtab rb" data-m="arrp" aria-pressed="false">Pipeline potential / demo</button>
+      <button class="xtab rb" data-m="ent" aria-pressed="false">Enterprise share %</button>
     </div>
     <div class="xchart">
       <svg viewBox="0 0 880 300" id="rhythm-svg" aria-hidden="true"></svg>
@@ -216,12 +215,10 @@ body { background: var(--r-paper); }
     </div>
     <p class="xread" id="rhythm-read"></p>
   </div>
-  <span class="mono-note">// hover any month for the number &middot; Aug 26 is a partial month</span>
-  <div class="syscards">
-    <div class="sc"><div class="sc-n">I</div><div><h4>Monthly funnel report</h4><p>Spend, quality, demos, pipeline, wins. Operational and cohort views, so B2B lag stops distorting the story.</p></div></div>
-    <div class="sc"><div class="sc-n">II</div><div><h4>Pipeline estimated per demo</h4><p>Deliberately conservative. Deals close above the estimate, so the number is one the team commits to.</p></div></div>
-    <div class="sc"><div class="sc-n">III</div><div><h4>Weekly quality tracking</h4><p>Lead-quality drift surfaces in weeks, not quarters. Exhibit D shows it catching one live.</p></div></div>
-    <div class="sc"><div class="sc-n">IV</div><div><h4>The whale ledger</h4><p>Every 10,000+ employee lead tracked from lead to demo to opportunity, on milestones that respect a year-long cycle.</p></div></div>
+  <span class="mono-note">// hover any quarter &middot; pipeline potential = servers discussed on the demo &times; $40, deliberately conservative</span>
+  <div class="stamp-row">
+    <div class="stampb"><h3>The closed-deal proof</h3><div class="fig">median deal, 2025&nbsp; $17.6K<br>median deal, 2026&nbsp; <b>$39.3K &middot; 2.2x</b></div><p style="font-size:0.78rem;color:var(--r-ink-mute);margin:6px 0 0;">Mann-Whitney p = 0.009. Not noise.</p></div>
+    <div class="stampb"><h3>The demo-size proof</h3><div class="fig">median demo, 2025&nbsp; 150-200 servers<br>peak quarter, Q1 26&nbsp; <b>600 servers &middot; 3x</b></div><p style="font-size:0.78rem;color:var(--r-ink-mute);margin:6px 0 0;">Enterprise (10k+ employee) leads: ~11% of intake in 2025, 2-3x that through 2026.</p></div>
   </div>
 </section>
 
@@ -229,7 +226,7 @@ body { background: var(--r-paper); }
 <section class="chapter" id="c3">
   <div class="ch-head"><span class="ch-num">03</span><h2>Does the model predict? Watch it against reality</h2></div>
   <p class="ch-lead">Lead quality times demo quality, rolled forward into expected wins and revenue, then held against what actually landed. Month by month, two years straight.</p>
-  <div class="exhibit-tag">Exhibit C &middot; interactive &middot; forecast vs actuals, 24 months</div>
+  <div class="exhibit-tag">Exhibit C &middot; interactive &middot; forecast vs actuals, 22 months</div>
   <div class="xcard">
     <div class="xtabs" role="group" aria-label="Choose forecast view">
       <button class="xtab fb on" data-f="wins" aria-pressed="true">Wins: expected vs actual</button>
@@ -241,7 +238,7 @@ body { background: var(--r-paper); }
     </div>
     <p class="xread" id="fc-read"></p>
   </div>
-  <span class="mono-note">// shaded months are still maturing: whale deals take up to a year to land &middot; totals calibrated per channel, the monthly shape is the test</span>
+  <span class="mono-note">// shaded cohorts still maturing: enterprise deals take up to a year to land &middot; the model prices what is in flight before it arrives &middot; totals calibrated per channel, the monthly shape is the test</span>
   <div class="stamp-row">
     <div class="stampb"><h3>The full-year test</h3><div class="fig">predicted&nbsp; 56 wins &middot; $3.47M<br>actual&nbsp;&nbsp;&nbsp;&nbsp; <b>57 wins &middot; $4.15M</b></div></div>
     <div class="stampb"><h3>Two years pooled</h3><div class="fig">expected&nbsp; 82.0 wins<br>actual&nbsp;&nbsp;&nbsp;&nbsp; <b>82 wins</b></div></div>
@@ -250,15 +247,15 @@ body { background: var(--r-paper); }
 
 <!-- CH 04: WATCHDOG -->
 <section class="chapter" id="c4">
-  <div class="ch-head"><span class="ch-num">04</span><h2>The watchdog, catching a drift live</h2></div>
-  <p class="ch-lead">Average ICP score of each week's qualified leads. In July the line broke below its band. The team knew within weeks, not at the quarterly review.</p>
-  <div class="exhibit-tag">Exhibit D &middot; weekly lead quality, 18 weeks</div>
+  <div class="ch-head"><span class="ch-num">04</span><h2>The watchdog: drift caught, drift fixed</h2></div>
+  <p class="ch-lead">Average ICP score of each week's qualified leads. In early July the line broke below its band. Flagged the same week. Two weeks later it was back in the zone.</p>
+  <div class="exhibit-tag">Exhibit D &middot; weekly lead quality, 16 weeks</div>
   <div class="xcard">
     <div class="xchart">
       <svg viewBox="0 0 880 290" id="wd-svg" aria-hidden="true"></svg>
       <div class="xtip" id="wd-tip" role="status"></div>
     </div>
-    <p class="xread">The gold band is the funnel's normal zone (65&ndash;72). Two of the last three weeks landed under 61. That conversation is now happening with data, months before it would have shown up in revenue.</p>
+    <p class="xread">The gold band is the funnel's normal zone (65&ndash;72). Without the weekly read, that July dip surfaces at the quarterly review, three months of budget later. With it, the correction happened inside a fortnight.</p>
   </div>
 </section>
 
@@ -266,6 +263,12 @@ body { background: var(--r-paper); }
 <section class="chapter" id="c5">
   <div class="ch-head"><span class="ch-num">05</span><h2>What stayed when the engagement ended</h2></div>
   <p class="ch-lead">The engagement wrapped in the summer of 2026. The scoring runs live in Salesforce. The team's own monthly metrics are defined in the model's terms: "good leads" means the top two tiers, and pipeline targets use the demo-level estimates. The forecasts stay on record for a scheduled review.</p>
+  <div class="syscards">
+    <div class="sc"><div class="sc-n">I</div><div><h4>Monthly funnel report</h4><p>Spend, quality, demos, pipeline, wins. Operational and cohort views, so B2B lag stops distorting the story.</p></div></div>
+    <div class="sc"><div class="sc-n">II</div><div><h4>Pipeline estimated per demo</h4><p>Deliberately conservative. Deals close above the estimate, so the number is one the team commits to.</p></div></div>
+    <div class="sc"><div class="sc-n">III</div><div><h4>Weekly quality watchdog</h4><p>Lead-quality drift surfaces in weeks, not quarters. Exhibit D shows it working.</p></div></div>
+    <div class="sc"><div class="sc-n">IV</div><div><h4>The whale ledger</h4><p>Every 10,000+ employee lead tracked from lead to demo to opportunity, on milestones that respect a year-long cycle.</p></div></div>
+  </div>
   <div class="sworn">
     <img src="../assets/logo-faddom.svg?v=1" alt="Faddom">
     <div><div class="sq">"I don't dig into lead details anymore. I go straight to the score."</div><div class="sc-cite">Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</div></div>
@@ -397,61 +400,54 @@ function onSeen(id, fn) {
   onSeen('tierx-svg', function () { show('leads'); });
 })();
 
-/* ============ Exhibit B: the operating rhythm ============ */
+/* ============ Exhibit B: deal size per demo, by quarter ============ */
 (function () {
-  // real monthly-report data, Jan 2025 - Aug 2026 (Aug partial)
-  var M = ['Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26','Jun 26','Jul 26','Aug 26'];
+  // quarterly demo-size data (demo-month basis): median servers, trimmed ARR-potential per demo, enterprise share of demos
+  var Q = ['Q1 25','Q2 25','Q3 25','Q4 25','Q1 26','Q2 26'];
   var SERIES = {
-    qual:  { vals: [101,162,150,125,85,118,99,89,81,46,36,44,93,75,56,65,66,64,67,48],
-             label: 'qualified leads', money: false,
-             read: 'Qualified leads per month. The Feb 25 peak, the Q4 25 dip, the 2026 rebuild. One chart, no debate about definitions.' },
-    demos: { vals: [32,47,47,60,40,45,42,44,39,17,7,17,29,18,14,27,24,25,19,5],
-             label: 'demos', money: false,
-             read: 'Demos held per month. The number 40% of the marketing target rides on, counted one way, read by everyone.' },
-    pipe:  { vals: [97985,211051,223034,131390,226898,59135,67419,98898,103978,291799,22843,103634,275286,88186,57684,113489,110618,209613,80062,7943],
-             label: 'estimated pipeline', money: true,
-             read: 'Estimated pipeline created per month: every demo valued by servers discussed, deliberately conservative. Deals close above it.' },
-    icp:   { vals: [66.0,67.5,66.1,63.3,68.8,63.5,63.3,67.2,66.3,66.7,71.4,68.7,69.1,68.4,69.0,67.2,68.2,68.5,62.0,58.3],
-             label: 'avg ICP score', money: false,
-             read: 'Average ICP score of the month’s qualified leads. Stable around 66-69 for 18 months, then the Jul-Aug 26 drift. Exhibit D zooms in.' }
+    srv:  { vals: [200,150,200,300,600,400],
+            label: 'median servers on the demo', money: false,
+            read: 'Median servers discussed per demo. 150-200 through 2025, then 300, then 600. The same funnel started producing conversations 2-3x the size.' },
+    arrp: { vals: [27268,17607,25201,30278,47679,39781],
+            label: 'pipeline potential per demo', money: true,
+            read: 'Pipeline potential per demo (servers x $40, outliers trimmed). From $17.6K at the 2025 trough to $47.7K in Q1 26. Every demo is worth more.' },
+    ent:  { vals: [13,12,6,22,28,18],
+            label: '% of demos from 10,000+ employee companies', money: false, pct: true,
+            read: 'Enterprise (10,000+ employees) share of demos: 6-13% through 2025, then 2-4x that level. The whale strategy, visible in the calendar.' }
   };
   var svg = document.getElementById('rhythm-svg');
   var tip = document.getElementById('rhythm-tip');
   var read = document.getElementById('rhythm-read');
   if (!svg) return;
-  var W = 880, H = 300, L = 58, R = 16, T = 24, B = 44;
+  var W = 880, H = 300, L = 62, R = 16, T = 24, B = 44;
   var plotW = W - L - R, plotH = H - T - B;
-  var cur = 'qual', drawn = false;
+  var drawn = false;
   function draw(key) {
-    cur = key;
     var s = SERIES[key];
     svg.innerHTML = '';
-    var max = Math.max.apply(null, s.vals) * 1.12;
-    var bw = plotW / M.length;
+    var max = Math.max.apply(null, s.vals) * 1.14;
+    var bw = plotW / Q.length;
     el('line', { x1: L, y1: T + plotH, x2: W - R, y2: T + plotH, stroke: '#d9d3c7', 'stroke-width': 1.5 }, svg);
-    // gridlines + y labels
     for (var i = 1; i <= 3; i++) {
       var gv = max * i / 4, gy = T + plotH - plotH * i / 4;
       el('line', { x1: L, y1: gy, x2: W - R, y2: gy, stroke: '#efeae0', 'stroke-width': 1 }, svg);
       var yl = el('text', { 'class': 'axis-v', x: L - 8, y: gy + 4, 'text-anchor': 'end' }, svg);
-      yl.textContent = s.money ? fmtK(gv) : Math.round(gv);
+      yl.textContent = s.money ? fmtK(gv) : (Math.round(gv) + (s.pct ? '%' : ''));
     }
     s.vals.forEach(function (v, i) {
       var h = Math.max(v / max * plotH, 2);
-      var x = L + i * bw + bw * 0.18;
-      var isPartial = (i === M.length - 1);
-      var is26 = i >= 12;
-      el('rect', { x: x, y: T + plotH - h, width: bw * 0.64, height: h, rx: 3,
-        fill: isPartial ? 'rgba(196,163,90,0.35)' : (is26 ? '#c4a35a' : '#3356c0'),
-        opacity: is26 || isPartial ? 1 : 0.55 }, svg);
-      if (i % 2 === 0) {
-        var tl = el('text', { 'class': 'axis-t', x: L + i * bw + bw / 2, y: H - 20, 'text-anchor': 'middle' }, svg);
-        tl.textContent = M[i];
-      }
+      var x = L + i * bw + bw * 0.22;
+      var is26 = i >= 4;
+      el('rect', { x: x, y: T + plotH - h, width: bw * 0.56, height: h, rx: 5,
+        fill: is26 ? '#c4a35a' : '#3356c0', opacity: is26 ? 1 : 0.55 }, svg);
+      var vt = el('text', { 'class': 'axis-v', x: L + i * bw + bw / 2, y: T + plotH - h - 9,
+        'text-anchor': 'middle', 'font-weight': 600, fill: is26 ? '#a88a3e' : '#4c5165' }, svg);
+      vt.textContent = s.money ? fmtK(v) : (v.toLocaleString('en-US') + (s.pct ? '%' : ''));
+      var tl = el('text', { 'class': 'axis-t', x: L + i * bw + bw / 2, y: H - 20, 'text-anchor': 'middle' }, svg);
+      tl.textContent = Q[i];
       var hc = el('rect', { 'class': 'hover-col', x: L + i * bw, y: T, width: bw, height: plotH }, svg);
       hc.addEventListener('mouseenter', function () {
-        tip.innerHTML = '<b>' + M[i] + (isPartial ? ' (partial)' : '') + '</b><br>' +
-          (s.money ? fmtK(v) : v.toLocaleString('en-US')) + ' ' + s.label;
+        tip.innerHTML = '<b>' + Q[i] + '</b><br>' + (s.money ? fmtK(v) : v.toLocaleString('en-US') + (s.pct ? '%' : '')) + ' ' + s.label;
         tip.classList.add('show');
       });
       hc.addEventListener('mouseleave', function () { tip.classList.remove('show'); });
@@ -465,21 +461,21 @@ function onSeen(id, fn) {
       draw(t.getAttribute('data-m'));
     });
   });
-  onSeen('rhythm-svg', function () { if (!drawn) { drawn = true; draw('qual'); } });
+  onSeen('rhythm-svg', function () { if (!drawn) { drawn = true; draw('srv'); } });
 })();
 
 /* ============ Exhibit C: forecast vs reality ============ */
 (function () {
-  // unified model, IB+OB pooled, calibrated. May 2024 - Apr 2026 demo cohorts.
-  var M = ['May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'];
-  var EXP  = [0.1,2.9,2.3,3.1,1.9,2.0,3.7,4.0,5.4,6.7,5.9,6.8,5.4,4.2,3.5,5.7,3.9,1.7,1.8,2.5,2.8,2.1,1.9,1.8];
-  var ACT  = [1,5,1,3,2,1,4,4,3,13,11,11,4,2,4,4,2,2,2,1,1,1,0,0];
-  var PIPE = [2312,48523,118796,65808,32472,37992,125006,74365,81091,101784,183795,80275,89561,60289,65014,65828,48962,120913,31713,67856,163061,65502,39134,63407];
-  var ARR  = [17850,181100,10500,84950,28600,17850,98850,69183,88400,226882,306700,233326,67350,28350,81500,106500,36850,59500,35700,17850,17850,17850,0,0];
+  // unified model, IB+OB pooled, calibrated. May 2024 - Feb 2026 demo cohorts.
+  var M = ['May 24','Jun 24','Jul 24','Aug 24','Sep 24','Oct 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26'];
+  var EXP  = [0.1,2.9,2.3,3.1,1.9,2.0,3.7,4.0,5.4,6.7,5.9,6.8,5.4,4.2,3.5,5.7,3.9,1.7,1.8,2.5,2.8,2.1];
+  var ACT  = [1,5,1,3,2,1,4,4,3,13,11,11,4,2,4,4,2,2,2,1,1,1];
+  var PIPE = [2312,48523,118796,65808,32472,37992,125006,74365,81091,101784,183795,80275,89561,60289,65014,65828,48962,120913,31713,67856,163061,65502];
+  var ARR  = [17850,181100,10500,84950,28600,17850,98850,69183,88400,226882,306700,233326,67350,28350,81500,106500,36850,59500,35700,17850,17850,17850];
   var MATURE_UNTIL = 19; // index of last mature month (Dec 25)
   var READS = {
-    wins: 'Gold line: what the model expected from each month’s demos. Navy bars: what actually closed. 82.0 expected, 82 landed. The shaded months are still in flight.',
-    arr:  'Same test in dollars: calibrated predicted pipeline (line) vs actual ARR from those demos (bars). Mature months land at 0.84 of predicted. The shaded 2026 months hold ~$300K still maturing.'
+    wins: 'Gold line: what the model expected from each month’s demos. Navy bars: what actually closed. 82.0 expected, 82 landed. The shaded cohorts are still paying out: wins the model has priced before they arrive.',
+    arr:  'Same test in dollars: calibrated predicted pipeline (line) vs actual ARR from those demos (bars). Mature months land at 0.84 of predicted, and the shaded cohorts hold roughly $300K the model expects next. Bookings, visible early.'
   };
   var svg = document.getElementById('fc-svg');
   var tip = document.getElementById('fc-tip');
@@ -550,9 +546,9 @@ function onSeen(id, fn) {
 
 /* ============ Exhibit D: the weekly watchdog ============ */
 (function () {
-  var WK = ['Apr 13','Apr 20','Apr 27','May 04','May 11','May 18','May 25','Jun 01','Jun 08','Jun 15','Jun 22','Jun 29','Jul 06','Jul 13','Jul 20','Jul 27','Aug 03','Aug 10'];
-  var ICP = [70.4,61.7,70.2,72.8,66.2,68.0,65.3,67.8,69.3,69.0,68.4,64.2,55.8,56.2,67.9,65.5,60.1,53.8];
-  var N   = [17,11,13,12,11,25,16,12,15,20,13,18,13,12,13,15,34,14];
+  var WK = ['Apr 13','Apr 20','Apr 27','May 04','May 11','May 18','May 25','Jun 01','Jun 08','Jun 15','Jun 22','Jun 29','Jul 06','Jul 13','Jul 20','Jul 27'];
+  var ICP = [70.4,61.7,70.2,72.8,66.2,68.0,65.3,67.8,69.3,69.0,68.4,64.2,55.8,56.2,67.9,65.5];
+  var N   = [17,11,13,12,11,25,16,12,15,20,13,18,13,12,13,15];
   var svg = document.getElementById('wd-svg');
   var tip = document.getElementById('wd-tip');
   if (!svg) return;
@@ -593,11 +589,15 @@ function onSeen(id, fn) {
       });
       hc.addEventListener('mouseleave', function () { tip.classList.remove('show'); });
     });
-    // annotation on the break
+    // annotation on the break + the recovery
     var bx = L + 12 * step;
     el('line', { x1: bx, y1: T + 4, x2: bx, y2: y(55.8) - 10, stroke: '#b0413e', 'stroke-width': 1, 'stroke-dasharray': '4 4' }, svg);
-    var an = el('text', { 'class': 'axis-t', x: bx + 6, y: T + 16, fill: '#b0413e' }, svg);
+    var an = el('text', { 'class': 'axis-t', x: bx - 6, y: T + 16, fill: '#b0413e', 'text-anchor': 'end' }, svg);
     an.textContent = 'drift flagged here';
+    var rx = L + 14 * step;
+    el('line', { x1: rx, y1: T + 4, x2: rx, y2: y(67.9) - 10, stroke: '#3d7a4f', 'stroke-width': 1, 'stroke-dasharray': '4 4' }, svg);
+    var an2 = el('text', { 'class': 'axis-t', x: rx + 6, y: T + 16, fill: '#3d7a4f' }, svg);
+    an2.textContent = 'back in the zone';
   }
   onSeen('wd-svg', function () { if (!drawn) { drawn = true; draw(); } });
 })();
