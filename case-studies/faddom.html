@@ -7,9 +7,9 @@
 <meta name="theme-color" content="#0a1652">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Faddom Case Study | EA Analytics</title>
-<meta name="description" content="How Faddom went from manual lead prioritization to a live scoring model in Salesforce. One segment converts at 3.8x the average. Forecast off by one win.">
-<meta property="og:title" content="Case Study: Lead Scoring at Faddom">
-<meta property="og:description" content="Two years of inbound leads, scored. One segment converts at 3.8x the average. A forecast off by one win.">
+<meta name="description" content="How Faddom went from manual lead prioritization to a funnel operating system: live scoring in Salesforce, monthly funnel reporting, and a forecast off by one win. Ten months, start to self-running.">
+<meta property="og:title" content="Case Study: GTM Analytics at Faddom">
+<meta property="og:description" content="Two years of leads scored, a segment converting at 3.8x average, a forecast off by one win, and a measurement system the team now runs itself.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://ea-analytics.com/case-studies/faddom">
 <meta property="og:image" content="https://ea-analytics.com/assets/og-image.png">
@@ -38,6 +38,40 @@
 .stat-box .l { font-size: 0.72rem; color: var(--gray-500); margin-top: 4px; line-height: 1.35; }
 .case-cta { text-align: center; background: var(--navy-50); border-radius: 14px; padding: 34px 24px; margin-top: 44px; }
 .case-cta p { color: var(--gray-700); }
+.ops-list { margin: 14px 0 20px; padding-left: 20px; }
+.ops-list li { color: var(--gray-700); font-size: 0.95rem; line-height: 1.7; margin-bottom: 10px; }
+.ops-list li strong { color: var(--navy-900); }
+/* interactive tier explorer (ported from /report/) */
+.tierx { background: #fff; border: 1px solid var(--gray-100); border-radius: 14px; padding: 22px 22px 16px; margin: 18px 0; box-shadow: 0 14px 44px rgba(10,22,82,0.08); }
+.tierx-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.tx-tab { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.68rem; letter-spacing: 0.04em; padding: 8px 14px; border-radius: 100px; border: 1.5px solid var(--gray-100); background: none; color: var(--gray-500); cursor: pointer; transition: all 0.2s ease; }
+.tx-tab:hover { border-color: var(--gold); }
+.tx-tab.on { background: var(--navy-900); color: #fff; border-color: var(--navy-900); }
+.tierx-chart { position: relative; }
+.tierx-chart svg { width: 100%; height: auto; display: block; }
+.tx-bar { cursor: pointer; transition: opacity 0.2s ease; }
+.tx-bar rect { transition: y 0.7s cubic-bezier(0.22,1,0.36,1), height 0.7s cubic-bezier(0.22,1,0.36,1); }
+.tx-bar.dim { opacity: 0.45; }
+.tx-val { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 15px; font-weight: 600; fill: var(--navy-900); }
+.tx-name { font-size: 13px; fill: var(--gray-500); }
+.tierx-tip { position: absolute; top: 8px; right: 8px; max-width: 250px; background: var(--navy-900); color: rgba(255,255,255,0.9); font-size: 0.75rem; line-height: 1.55; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(196,163,90,0.4); opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+.tierx-tip.show { opacity: 1; }
+.tierx-tip b { color: #e3c98a; }
+.tierx-read { font-size: 0.82rem; color: var(--gray-500); font-style: italic; margin: 12px 4px 4px; }
+@media (max-width: 720px) {
+  .tx-tab { font-size: 0.62rem; padding: 7px 10px; }
+  .tx-name { font-size: 20px; }
+  .tx-val { font-size: 24px; }
+  .tierx-tip { position: static; max-width: none; margin-top: 8px; display: none; }
+  .tierx-tip.show { display: block; }
+}
+/* report plug */
+.report-plug { display: flex; align-items: center; justify-content: space-between; gap: 16px; background: var(--navy-900); border: 1.5px solid var(--gold); border-radius: 14px; padding: 20px 22px; margin: 30px 0 6px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.report-plug:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(10,22,82,0.25); }
+.rp-tag { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.64rem; letter-spacing: 0.08em; text-transform: uppercase; color: #e3c98a; margin-bottom: 5px; }
+.rp-title { font-family: 'Playfair Display', Georgia, serif; font-size: 1.1rem; font-weight: 600; color: #fff; }
+.rp-sub { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 4px; line-height: 1.5; }
+.rp-arrow { font-size: 1.5rem; color: #e3c98a; flex-shrink: 0; }
 </style>
 </head>
 <body>
@@ -60,18 +94,19 @@
 <section class="page-hero">
   <div class="page-hero-content">
     <img src="../assets/logo-faddom.svg?v=1" alt="Faddom" style="height:30px;margin-bottom:18px;">
-    <h1>From gut feel to a goal: lead scoring at Faddom</h1>
-    <p>Series A &middot; agentless IT infrastructure mapping &middot; ~50 people</p>
+    <h1>From gut feel to a system: GTM analytics at Faddom</h1>
+    <p>Series A &middot; agentless IT infrastructure mapping &middot; ~50 people &middot; 10-month fractional engagement</p>
   </div>
 </section>
 
 <div class="case-page">
-  <p class="lede">Faddom's sales team was prioritizing leads by hand. A lot of work, and no way to know whether they were getting it right. Marketing couldn't tie spend to pipeline. Next quarter was a guess.</p>
+  <p class="lede">Faddom's sales team was prioritizing leads by hand. A lot of work, and no way to know whether they were getting it right. Marketing couldn't tie spend to pipeline. Next quarter was a guess. What started as a scoring project became a ten-month engagement that changed how the team measures its funnel.</p>
 
   <div class="stat-row">
     <div class="stat-box"><div class="n"><em>3.8x</em></div><div class="l">best segment vs average conversion</div></div>
     <div class="stat-box"><div class="n">4,273</div><div class="l">inbound leads analyzed, two years</div></div>
     <div class="stat-box"><div class="n">&plusmn;1</div><div class="l">wins off, on a full-year forecast</div></div>
+    <div class="stat-box"><div class="n">10</div><div class="l">months, from first audit to a self-running system</div></div>
   </div>
 
   <h2>What the data revealed</h2>
@@ -79,6 +114,22 @@
   <p><strong>First: Faddom doesn't have one ICP. It has two.</strong> A "bread &amp; butter" segment (1,000&ndash;10,000 employee companies) that closes often and fast, and a "whale" segment (10,000+) with lower close rates and year-long cycles, where a single deal can transform the year. Two segments, two different playbooks.</p>
   <p><strong>Second: not all leads are created equal. At all.</strong></p>
 
+  <div class="tierx">
+    <div class="tierx-tabs" role="group" aria-label="Choose a view of the tier data">
+      <button class="tx-tab on" data-view="leads" aria-pressed="true">Where the leads are</button>
+      <button class="tx-tab" data-view="wins" aria-pressed="false">Where the wins are</button>
+      <button class="tx-tab" data-view="conv" aria-pressed="false">Conversion rate</button>
+    </div>
+    <div class="tierx-chart">
+      <svg viewBox="0 0 640 260" id="tierx-svg" aria-hidden="true">
+        <g id="tx-bars"></g>
+        <line x1="30" y1="228" x2="610" y2="228" stroke="#d9d3c7" stroke-width="1.5"/>
+      </svg>
+      <div class="tierx-tip" id="tierx-tip" role="status"></div>
+    </div>
+    <p class="tierx-read" id="tierx-read">Most of the leads sit in tiers that barely convert. Click through the views. That flip is the whole business case.</p>
+  </div>
+  <noscript>
   <table class="tier-table">
     <thead><tr><th>Tier</th><th>Leads</th><th>Wins</th><th>Conversion</th></tr></thead>
     <tbody>
@@ -88,6 +139,7 @@
       <tr><td>Out of scope</td><td>665</td><td>0</td><td>0.00%</td></tr>
     </tbody>
   </table>
+  </noscript>
   <p>665 leads had received two years of calls and follow-ups, and produced zero revenue. Meanwhile the top tier converted at 3.8x the average, and nobody knew it existed.</p>
 
   <h2>What we built</h2>
@@ -98,8 +150,34 @@
     <cite>Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</cite>
   </div>
 
+  <h2>From a score to an operating system</h2>
+  <p>The scoring model was phase one. Over ten months the work grew into a monthly rhythm the whole team reads:</p>
+  <ul class="ops-list">
+    <li><strong>A monthly funnel report</strong> covering spend, lead quality, demos, pipeline, and wins, in two views: operational (what happened this month) and cohort (what each month's leads eventually produced). B2B lag stops distorting the story.</li>
+    <li><strong>Demo-level pipeline estimates</strong>, deliberately conservative. Deals consistently close above them, which makes the number one the team can commit to.</li>
+    <li><strong>Weekly lead-quality tracking</strong>, so drift in the funnel shows up within weeks instead of quarters.</li>
+    <li><strong>A dedicated enterprise view</strong>: the 10,000+ employee "whale" segment from the dual-ICP finding, tracked from lead to demo to opportunity with milestones that respect a year-long sales cycle.</li>
+  </ul>
+
   <h2>Did it work? Check the forecast.</h2>
   <p>The same foundations power a pipeline forecast: lead attributes plus demo quality, rolled into expected wins and revenue. The model predicted 56 wins and $3.47M. The year closed at 57 wins and $4.15M. Off by one win, with revenue coming in higher because the deals got bigger.</p>
+
+  <a class="report-plug" href="/report/">
+    <div>
+      <div class="rp-tag">Interactive briefing</div>
+      <div class="rp-title">Prefer to explore the data yourself?</div>
+      <div class="rp-sub">The Report replays this analysis live: the scored funnel, the tier explorer, the forecast test.</div>
+    </div>
+    <span class="rp-arrow">&rarr;</span>
+  </a>
+
+  <h2>What stayed after the engagement</h2>
+  <p>The engagement wrapped in the summer of 2026, and this is the part worth reading closely: the system kept running. Scoring lives in Salesforce and updates itself. The marketing team's own monthly metrics are defined in the model's terms, where "good leads" means the top two tiers and pipeline targets use the demo-level estimates. The definitions became the team's shared language, and the forecasts stay on record for a scheduled follow-up review.</p>
+
+  <div class="big-quote">
+    <p>"I can now show up at a conference and brag about how we measure our funnel."</p>
+    <cite>Omer Rabinowitz, Co-Founder &amp; Chief Growth Officer, Faddom</cite>
+  </div>
 
   <div class="case-cta">
     <h2 style="margin-top:0;">Your CRM has answers like these.</h2>
@@ -124,5 +202,103 @@
 
 <script data-goatcounter="https://ea-analytics.goatcounter.com/count"
         async src="https://gc.zgo.at/count.js"></script>
+<script>
+// Interactive tier explorer: one dataset, three questions (shared with /report/)
+(function () {
+  var DATA = [
+    { name: 'Prime ICP',    leads: 458,  wins: 23, conv: 5.02,
+      tip: '<b>458 leads, 23 wins.</b> A tenth of the volume, nearly half the revenue. This is the segment nobody knew existed.' },
+    { name: 'Strong ICP',   leads: 1452, wins: 30, conv: 2.07,
+      tip: '<b>1,452 leads, 30 wins.</b> Solid tier. Worth working, with the right expectations.' },
+    { name: 'ACP',          leads: 1698, wins: 4,  conv: 0.24,
+      tip: '<b>1,698 leads, 4 wins.</b> The biggest tier by volume. It ate 40% of sales attention.' },
+    { name: 'Out of scope', leads: 665,  wins: 0,  conv: 0.00,
+      tip: '<b>665 leads, 0 wins.</b> Two years of calls into a wall. Every hour here was free to reclaim.' }
+  ];
+  // validated: leads sum 4273, wins sum 57, top conv/avg = 3.8x
+  var READS = {
+    leads: 'Where the volume is: the two weakest tiers hold most of the leads. This is what "busy" looks like.',
+    wins:  'Where the money is: almost everything closes in the top two tiers. 665 leads produced nothing.',
+    conv:  'The flip: the smallest tier converts at 5.02%, which is 3.8x the funnel average. Volume and value are different maps.'
+  };
+  var svgNS = 'http://www.w3.org/2000/svg';
+  var g = document.getElementById('tx-bars');
+  var tip = document.getElementById('tierx-tip');
+  var read = document.getElementById('tierx-read');
+  if (!g) return;
+  var W = 640, BASE = 228, TOP = 30, BW = 104, GAP = 40, X0 = 62;
+  var bars = [];
+
+  DATA.forEach(function (d, i) {
+    var grp = document.createElementNS(svgNS, 'g');
+    grp.setAttribute('class', 'tx-bar');
+    var x = X0 + i * (BW + GAP);
+    var r = document.createElementNS(svgNS, 'rect');
+    r.setAttribute('x', x); r.setAttribute('width', BW);
+    r.setAttribute('y', BASE); r.setAttribute('height', 0);
+    r.setAttribute('rx', 6);
+    r.setAttribute('fill', i === 0 ? '#c4a35a' : (i === 1 ? '#3356c0' : '#c9cfdd'));
+    var val = document.createElementNS(svgNS, 'text');
+    val.setAttribute('class', 'tx-val');
+    val.setAttribute('x', x + BW / 2); val.setAttribute('text-anchor', 'middle');
+    var nm = document.createElementNS(svgNS, 'text');
+    nm.setAttribute('class', 'tx-name');
+    nm.setAttribute('x', x + BW / 2); nm.setAttribute('y', BASE + 20);
+    nm.setAttribute('text-anchor', 'middle');
+    nm.textContent = d.name;
+    grp.appendChild(r); grp.appendChild(val); grp.appendChild(nm);
+    g.appendChild(grp);
+    bars.push({ rect: r, val: val, grp: grp, d: d });
+
+    function focus() {
+      tip.innerHTML = d.tip;
+      tip.classList.add('show');
+      bars.forEach(function (b) { b.grp.classList.toggle('dim', b.d !== d); });
+    }
+    function blur() {
+      tip.classList.remove('show');
+      bars.forEach(function (b) { b.grp.classList.remove('dim'); });
+    }
+    grp.addEventListener('mouseenter', focus);
+    grp.addEventListener('mouseleave', blur);
+    grp.addEventListener('click', function () {
+      tip.classList.contains('show') && tip.innerHTML === d.tip ? blur() : focus();
+    });
+  });
+
+  function fmt(v, view) {
+    if (view === 'conv') return v.toFixed(2) + '%';
+    return v.toLocaleString('en-US');
+  }
+  function show(view) {
+    var max = Math.max.apply(null, DATA.map(function (d) { return d[view]; }));
+    bars.forEach(function (b) {
+      var v = b.d[view];
+      var h = max ? Math.max(v / max * (BASE - TOP), v > 0 ? 4 : 1.5) : 1.5;
+      b.rect.setAttribute('y', BASE - h);
+      b.rect.setAttribute('height', h);
+      b.val.setAttribute('y', BASE - h - 8);
+      b.val.textContent = fmt(v, view);
+    });
+    read.textContent = READS[view];
+  }
+
+  document.querySelectorAll('.tx-tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.tx-tab').forEach(function (o) {
+        o.classList.remove('on'); o.setAttribute('aria-pressed', 'false');
+      });
+      t.classList.add('on'); t.setAttribute('aria-pressed', 'true');
+      show(t.getAttribute('data-view'));
+    });
+  });
+
+  // enter animation on first view
+  var io = new IntersectionObserver(function (es) {
+    if (es[0].isIntersecting) { show('leads'); io.disconnect(); }
+  }, { threshold: 0.4 });
+  io.observe(document.getElementById('tierx-svg'));
+})();
+</script>
 </body>
 </html>
